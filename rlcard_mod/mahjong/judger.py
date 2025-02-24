@@ -117,6 +117,7 @@ class MahjongJudger:
             #player_id = players_val.index(max(players_val))
             return False, win_player, players_val
 
+    
     def judge_hu(self, player):
         ''' Judge whether the player has won the game
         Args:
@@ -126,33 +127,9 @@ class MahjongJudger:
             Result (bool): Win or not
             Maximum_score (int): Set count score of the player
         '''
-        set_count = 0
-        hand = [card.get_str() for card in player.hand]
-        count_dict = {card: hand.count(card) for card in hand}
-        set_count = len(player.pile)
-        #### SHORT MAHJONG MODIFIED ####
-        if set_count >= 2:  # 4 -> 2
-            return True, set_count
-        
-        # az: below checks number of possible sets formable in hand where "each" is the pair
-        used = []
-        maximum = 0
-        for each in count_dict:
-            if each in used:
-                continue
-            tmp_set_count = 0
-            tmp_hand = hand.copy()
-            if count_dict[each] == 2:
-                for _ in range(count_dict[each]):
-                    tmp_hand.pop(tmp_hand.index(each))
-                tmp_set_count, _set = self.cal_set(tmp_hand)
-                used.extend(_set)
-                if tmp_set_count + set_count > maximum:
-                    maximum = tmp_set_count + set_count
-                #### SHORT MAHJONG MODIFIED ####
-                if tmp_set_count + set_count >= 2:  # 4 -> 2
-                    return True, maximum
-        return False, maximum
+        ### TODO: IMPLEMENT THIS
+        return
+
 
     @staticmethod
     def check_consecutive(_list):
@@ -168,6 +145,7 @@ class MahjongJudger:
             return True
         return False
 
+
     def cal_set(self, cards):
         ''' Calculate the set for given cards
         Args:
@@ -177,45 +155,99 @@ class MahjongJudger:
             Set_count (int):
             Sets (list): List of cards that has been pop from user's hand
         '''
-        tmp_cards = cards.copy()
-        sets = []
-        set_count = 0
-        _dict = {card: tmp_cards.count(card) for card in tmp_cards}
-        # check pong/gang
-        for each in _dict:
-            if _dict[each] == 3 or _dict[each] == 4:
-                set_count += 1
-                for _ in range(_dict[each]):
-                    tmp_cards.pop(tmp_cards.index(each))
+        ### TODO: IMPLEMENT THIS 
+        return
+    
 
-        # get all of the traits of each type in hand (except dragons and winds)
-        _dict_by_type = defaultdict(list)
-        for card in tmp_cards:
-            _type = card.split("-")[0]
-            _trait = card.split("-")[1]
-            if _type == 'dragons' or _type == 'winds':
-                continue
-            else:
-                _dict_by_type[_type].append(_trait)
-        for _type in _dict_by_type.keys():
-            values = sorted(_dict_by_type[_type])
-            if len(values) > 2:
-                for index, _ in enumerate(values):
-                    if index == 0:
-                        test_case = [values[index], values[index+1], values[index+2]]
-                    elif index == len(values)-1:
-                        test_case = [values[index-2], values[index-1], values[index]]
-                    else:
-                        test_case = [values[index-1], values[index], values[index+1]]
-                    if self.check_consecutive(test_case):
-                        set_count += 1
-                        for each in test_case:
-                            values.pop(values.index(each))
-                            c = _type+"-"+str(each)
-                            sets.append(c)
-                            if c in tmp_cards:
-                                tmp_cards.pop(tmp_cards.index(c))
-        return set_count, sets
+    ###OLD CODE###
+
+        # def judge_hu(self, player):
+    #     ''' Judge whether the player has won the game
+    #     Args:
+    #         player (object): Target player
+
+    #     Return:
+    #         Result (bool): Win or not
+    #         Maximum_score (int): Set count score of the player
+    #     '''
+    #     set_count = 0
+    #     hand = [card.get_str() for card in player.hand]
+    #     count_dict = {card: hand.count(card) for card in hand}
+    #     set_count = len(player.pile)
+    #     #### SHORT MAHJONG MODIFIED ####
+    #     if set_count >= 2:  # 4 -> 2
+    #         return True, set_count
+        
+    #     # az: below checks number of possible sets formable in hand where "each" is the pair
+    #     used = []
+    #     maximum = 0
+    #     for each in count_dict:
+    #         if each in used:
+    #             continue
+    #         tmp_set_count = 0
+    #         tmp_hand = hand.copy()
+    #         if count_dict[each] == 2:
+    #             for _ in range(count_dict[each]):
+    #                 tmp_hand.pop(tmp_hand.index(each))
+    #             tmp_set_count, _set = self.cal_set(tmp_hand)
+    #             used.extend(_set)
+    #             if tmp_set_count + set_count > maximum:
+    #                 maximum = tmp_set_count + set_count
+    #             #### SHORT MAHJONG MODIFIED ####
+    #             if tmp_set_count + set_count >= 2:  # 4 -> 2
+    #                 return True, maximum
+    #     return False, maximum
+
+
+
+    # def cal_set(self, cards):
+    #     ''' Calculate the set for given cards
+    #     Args:
+    #         Cards (list): List of cards.
+
+    #     Return:
+    #         Set_count (int):
+    #         Sets (list): List of cards that has been pop from user's hand
+    #     '''
+    #     tmp_cards = cards.copy()
+    #     sets = []
+    #     set_count = 0
+    #     _dict = {card: tmp_cards.count(card) for card in tmp_cards}
+    #     # check pong/gang
+    #     for each in _dict:
+    #         if _dict[each] == 3 or _dict[each] == 4:
+    #             set_count += 1
+    #             for _ in range(_dict[each]):
+    #                 tmp_cards.pop(tmp_cards.index(each))
+
+    #     # get all of the traits of each type in hand (except dragons and winds)
+    #     _dict_by_type = defaultdict(list)
+    #     for card in tmp_cards:
+    #         _type = card.split("-")[0]
+    #         _trait = card.split("-")[1]
+    #         if _type == 'dragons' or _type == 'winds':
+    #             continue
+    #         else:
+    #             _dict_by_type[_type].append(_trait)
+    #     for _type in _dict_by_type.keys():
+    #         values = sorted(_dict_by_type[_type])
+    #         if len(values) > 2:
+    #             for index, _ in enumerate(values):
+    #                 if index == 0:
+    #                     test_case = [values[index], values[index+1], values[index+2]]
+    #                 elif index == len(values)-1:
+    #                     test_case = [values[index-2], values[index-1], values[index]]
+    #                 else:
+    #                     test_case = [values[index-1], values[index], values[index+1]]
+    #                 if self.check_consecutive(test_case):
+    #                     set_count += 1
+    #                     for each in test_case:
+    #                         values.pop(values.index(each))
+    #                         c = _type+"-"+str(each)
+    #                         sets.append(c)
+    #                         if c in tmp_cards:
+    #                             tmp_cards.pop(tmp_cards.index(c))
+    #     return set_count, sets
 
 #if __name__ == "__main__":
 #    judger = MahjongJudger()
