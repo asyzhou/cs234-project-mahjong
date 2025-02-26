@@ -128,7 +128,30 @@ class MahjongJudger:
             Maximum_score (int): Set count score of the player
         '''
         ### TODO: IMPLEMENT THIS
-        return
+        set_count = len(player.pile)  # starting number of sets shown to the table in pile
+        hand = [card.get_str() for card in player.hand]
+        count_dict = {card: hand.count(card) for card in hand}
+
+        max_set_count = 0
+        # check maximum number of sets possible with each tile that can be used as pair
+        for pair_option in count_dict:
+            if count_dict[pair_option] >= 2:
+                # pop pair from hand and calculate max number of sets
+                temp_hand = hand.copy()
+                for _ in range(2):
+                    temp_hand.pop(temp_hand.index(pair_option))
+                temp_set_count, _ = self.cal_set(temp_hand)
+                # update max sets
+                if temp_set_count + set_count > max_set_count:
+                    max_set_count = temp_set_count + set_count
+                if max_set_count >= 2:
+                    return True, max_set_count
+        
+        # check max sets possible with no pair tile (in the case of no winning hand)
+        temp_set_count, _ = self.cal_set(hand)
+        if temp_set_count + set_count > max_set_count:
+            max_set_count = temp_set_count + set_count
+        return False, max_set_count
 
 
     @staticmethod
@@ -145,21 +168,62 @@ class MahjongJudger:
             return True
         return False
 
-
+    
     def cal_set(self, cards):
         ''' Calculate the set for given cards
         Args:
             Cards (list): List of cards.
 
         Return:
-            Set_count (int):
-            Sets (list): List of cards that has been pop from user's hand
+            Set_count (int): 
+            Sets (list): List of cards that has been popped from user's hand
         '''
-        ### TODO: IMPLEMENT THIS 
-        return
+        if len(cards) < 3:
+            return 0, []
+        
+        _dict = {card: cards.count(card) for card in cards}
+        _dict_by_type = {'dots' : [0]*9, 'bamboo' : [0]*9, 'characters' : [0]*9}
+        for card in cards:
+            _type, _trait = card.split("-")
+            if _type in _dict_by_type:
+                _dict_by_type[_type][_trait] += 1
+        
+        target_card = cards[0]
+        target_type, target_trait = target_card.split("-")[0]
+        max_set_count, max_sets = 0, []
+        # check triplet (pong)
+        if _dict[target_card] >= 3:
+            temp_hand = cards.copy()
+            for _ in range(3):
+                temp_hand.pop(temp_hand.index(target_card))
+            set_count, sets = self.cal_set(temp_hand)
+            if set_count + 1 > max_set_count:
+                max_set_count = set_count + 1
+                max_sets = [[target_card]*3] + sets
+        # check sequences (chow)
+        counts = _dict_by_type[target_type]
+        if counts >= 3:
+            possible_sequences = [[-2, -1, 0], [-1, 0, 1], [0, 1, 2]]
+            for sequence in possible_sequences:
+                check = [target_trait + i for i in sequence]
+                if check[0] >= 0 and check[2] <= 9:
+                    if counts[check[0]] > 0 and counts[check[1]] > 0 and counts[check[2]] > 0:
+                        temp_hand = cards.copy()
+                        for i in check:
+                            temp_hand.pop(temp_hand.index(target_type + "-"+str(i)))
+                        set_count, sets = self.cal_set(temp_hand)
+                        if set_count + 1 > max_set_count:
+                            max_set_count = set_count + 1
+                            max_sets = [target_type + "-"+str(check[0]), 
+                                        target_type + "-"+str(check[1]), 
+                                        target_type + "-"+str(check[2])] + sets
+        return max_set_count, max_sets
+
+        
+
     
 
-    ###OLD CODE###
+### OLD CODE ###
 
         # def judge_hu(self, player):
     #     ''' Judge whether the player has won the game
