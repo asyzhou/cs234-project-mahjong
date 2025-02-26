@@ -188,6 +188,7 @@ class MahjongJudger:
             if _type in _dict_by_type:
                 _dict_by_type[_type][_trait] += 1
         
+        # check first card
         target_card = cards[0]
         target_type, target_trait = target_card.split("-")[0]
         max_set_count, max_sets = 0, []
@@ -217,6 +218,16 @@ class MahjongJudger:
                             max_sets = [target_type + "-"+str(check[0]), 
                                         target_type + "-"+str(check[1]), 
                                         target_type + "-"+str(check[2])] + sets
+
+        # check without first card
+        temp_hand = cards.copy()
+        temp_hand.pop(temp_hand.index(target_card))
+        set_count, sets = self.cal_set(temp_hand)
+        if set_count + 1 > max_set_count:
+            max_set_count = set_count + 1
+            max_sets = [target_type + "-"+str(check[0]), 
+                        target_type + "-"+str(check[1]), 
+                        target_type + "-"+str(check[2])] + sets
         return max_set_count, max_sets
 
         
