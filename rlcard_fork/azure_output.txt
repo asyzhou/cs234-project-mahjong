@@ -39,6 +39,7 @@ NEW GAME STATE:
 right now, the last state added to history had 91 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: characters-4 ; last cards:  []
 => pre play card:  characters-4 hand:  ['characters-4', 'dots-7', 'characters-9', 'dots-4', 'characters-4', 'characters-2', 'dots-8', 'bamboo-3']
@@ -60,6 +61,7 @@ NEW GAME STATE:
 right now, the last state added to history had 90 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: characters-9 ; last cards:  []
 => pre play card:  characters-9 hand:  ['characters-9', 'dragons-red', 'bamboo-5', 'bamboo-5', 'characters-1', 'dots-3', 'characters-2', 'dots-3']
@@ -81,6 +83,7 @@ NEW GAME STATE:
 right now, the last state added to history had 89 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: characters-1 ; last cards:  []
 => pre play card:  characters-1 hand:  ['characters-1', 'bamboo-1', 'characters-5', 'dots-5', 'characters-6', 'bamboo-3', 'characters-2', 'dots-1']
@@ -102,6 +105,7 @@ NEW GAME STATE:
 right now, the last state added to history had 88 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: characters-1 ; last cards:  []
 => pre play card:  characters-1 hand:  ['characters-1', 'bamboo-2', 'dragons-white', 'dots-2', 'dragons-green', 'bamboo-4', 'characters-9', 'bamboo-7']
@@ -123,6 +127,7 @@ NEW GAME STATE:
 right now, the last state added to history had 87 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: dots-7 ; last cards:  []
 => pre play card:  dots-7 hand:  ['dots-7', 'characters-9', 'dots-4', 'characters-4', 'characters-2', 'dots-8', 'bamboo-3', 'characters-7']
@@ -144,6 +149,7 @@ NEW GAME STATE:
 right now, the last state added to history had 86 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: dragons-red ; last cards:  []
 => pre play card:  dragons-red hand:  ['dragons-red', 'bamboo-5', 'bamboo-5', 'characters-1', 'dots-3', 'characters-2', 'dots-3', 'dots-4']
@@ -165,6 +171,7 @@ NEW GAME STATE:
 right now, the last state added to history had 85 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: bamboo-1 ; last cards:  []
 => pre play card:  bamboo-1 hand:  ['bamboo-1', 'characters-5', 'dots-5', 'characters-6', 'bamboo-3', 'characters-2', 'dots-1', 'characters-5']
@@ -186,6 +193,7 @@ NEW GAME STATE:
 right now, the last state added to history had 84 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: bamboo-2 ; last cards:  []
 => pre play card:  bamboo-2 hand:  ['bamboo-2', 'dragons-white', 'dots-2', 'dragons-green', 'bamboo-4', 'characters-9', 'bamboo-7', 'dots-9']
@@ -207,6 +215,7 @@ NEW GAME STATE:
 right now, the last state added to history had 83 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: characters-9 ; last cards:  []
 => pre play card:  characters-9 hand:  ['characters-9', 'dots-4', 'characters-4', 'characters-2', 'dots-8', 'bamboo-3', 'characters-7', 'bamboo-7']
@@ -228,6 +237,7 @@ NEW GAME STATE:
 right now, the last state added to history had 82 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: bamboo-5 ; last cards:  []
 => pre play card:  bamboo-5 hand:  ['bamboo-5', 'bamboo-5', 'characters-1', 'dots-3', 'characters-2', 'dots-3', 'dots-4', 'bamboo-2']
@@ -249,6 +259,7 @@ NEW GAME STATE:
 right now, the last state added to history had 81 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: characters-5 ; last cards:  []
 => pre play card:  characters-5 hand:  ['characters-5', 'dots-5', 'characters-6', 'bamboo-3', 'characters-2', 'dots-1', 'characters-5', 'bamboo-3']
@@ -270,6 +281,7 @@ NEW GAME STATE:
 right now, the last state added to history had 80 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: dragons-white ; last cards:  []
 => pre play card:  dragons-white hand:  ['dragons-white', 'dots-2', 'dragons-green', 'bamboo-4', 'characters-9', 'bamboo-7', 'dots-9', 'bamboo-9']
@@ -291,6 +303,7 @@ NEW GAME STATE:
 right now, the last state added to history had 79 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: dots-4 ; last cards:  []
 => pre play card:  dots-4 hand:  ['dots-4', 'characters-4', 'characters-2', 'dots-8', 'bamboo-3', 'characters-7', 'bamboo-7', 'characters-2']
@@ -312,6 +325,7 @@ NEW GAME STATE:
 right now, the last state added to history had 78 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: bamboo-5 ; last cards:  []
 => pre play card:  bamboo-5 hand:  ['bamboo-5', 'characters-1', 'dots-3', 'characters-2', 'dots-3', 'dots-4', 'bamboo-2', 'bamboo-8']
@@ -333,6 +347,7 @@ NEW GAME STATE:
 right now, the last state added to history had 77 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: dots-5 ; last cards:  []
 => pre play card:  dots-5 hand:  ['dots-5', 'characters-6', 'bamboo-3', 'characters-2', 'dots-1', 'characters-5', 'bamboo-3', 'bamboo-2']
@@ -354,6 +369,7 @@ NEW GAME STATE:
 right now, the last state added to history had 76 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: dots-2 ; last cards:  []
 => pre play card:  dots-2 hand:  ['dots-2', 'dragons-green', 'bamboo-4', 'characters-9', 'bamboo-7', 'dots-9', 'bamboo-9', 'characters-7']
@@ -375,6 +391,7 @@ NEW GAME STATE:
 right now, the last state added to history had 75 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: characters-4 ; last cards:  []
 => pre play card:  characters-4 hand:  ['characters-4', 'characters-2', 'dots-8', 'bamboo-3', 'characters-7', 'bamboo-7', 'characters-2', 'dots-4']
@@ -396,6 +413,7 @@ NEW GAME STATE:
 right now, the last state added to history had 74 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: characters-1 ; last cards:  []
 => pre play card:  characters-1 hand:  ['characters-1', 'dots-3', 'characters-2', 'dots-3', 'dots-4', 'bamboo-2', 'bamboo-8', 'dots-5']
@@ -417,6 +435,7 @@ NEW GAME STATE:
 right now, the last state added to history had 73 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: characters-6 ; last cards:  []
 => pre play card:  characters-6 hand:  ['characters-6', 'bamboo-3', 'characters-2', 'dots-1', 'characters-5', 'bamboo-3', 'bamboo-2', 'characters-8']
@@ -438,6 +457,7 @@ NEW GAME STATE:
 right now, the last state added to history had 72 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: dragons-green ; last cards:  []
 => pre play card:  dragons-green hand:  ['dragons-green', 'bamboo-4', 'characters-9', 'bamboo-7', 'dots-9', 'bamboo-9', 'characters-7', 'bamboo-7']
@@ -459,6 +479,7 @@ NEW GAME STATE:
 right now, the last state added to history had 71 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: characters-2 ; last cards:  []
 => pre play card:  characters-2 hand:  ['characters-2', 'dots-8', 'bamboo-3', 'characters-7', 'bamboo-7', 'characters-2', 'dots-4', 'bamboo-4']
@@ -480,6 +501,7 @@ NEW GAME STATE:
 right now, the last state added to history had 70 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: dots-3 ; last cards:  []
 => pre play card:  dots-3 hand:  ['dots-3', 'characters-2', 'dots-3', 'dots-4', 'bamboo-2', 'bamboo-8', 'dots-5', 'dots-8']
@@ -501,6 +523,7 @@ NEW GAME STATE:
 right now, the last state added to history had 69 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: bamboo-3 ; last cards:  []
 => pre play card:  bamboo-3 hand:  ['bamboo-3', 'characters-2', 'dots-1', 'characters-5', 'bamboo-3', 'bamboo-2', 'characters-8', 'dots-2']
@@ -522,6 +545,7 @@ NEW GAME STATE:
 right now, the last state added to history had 68 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: bamboo-4 ; last cards:  []
 => pre play card:  bamboo-4 hand:  ['bamboo-4', 'characters-9', 'bamboo-7', 'dots-9', 'bamboo-9', 'characters-7', 'bamboo-7', 'characters-8']
@@ -543,6 +567,7 @@ NEW GAME STATE:
 right now, the last state added to history had 67 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: dots-8 ; last cards:  []
 => pre play card:  dots-8 hand:  ['dots-8', 'bamboo-3', 'characters-7', 'bamboo-7', 'characters-2', 'dots-4', 'bamboo-4', 'dots-6']
@@ -564,6 +589,7 @@ NEW GAME STATE:
 right now, the last state added to history had 66 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: characters-2 ; last cards:  []
 => pre play card:  characters-2 hand:  ['characters-2', 'dots-3', 'dots-4', 'bamboo-2', 'bamboo-8', 'dots-5', 'dots-8', 'dragons-white']
@@ -585,6 +611,7 @@ NEW GAME STATE:
 right now, the last state added to history had 65 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: characters-2 ; last cards:  []
 => pre play card:  characters-2 hand:  ['characters-2', 'dots-1', 'characters-5', 'bamboo-3', 'bamboo-2', 'characters-8', 'dots-2', 'dots-2']
@@ -606,6 +633,7 @@ NEW GAME STATE:
 right now, the last state added to history had 64 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: characters-9 ; last cards:  []
 => pre play card:  characters-9 hand:  ['characters-9', 'bamboo-7', 'dots-9', 'bamboo-9', 'characters-7', 'bamboo-7', 'characters-8', 'characters-9']
@@ -627,6 +655,7 @@ NEW GAME STATE:
 right now, the last state added to history had 63 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: bamboo-3 ; last cards:  []
 => pre play card:  bamboo-3 hand:  ['bamboo-3', 'characters-7', 'bamboo-7', 'characters-2', 'dots-4', 'bamboo-4', 'dots-6', 'bamboo-4']
@@ -648,6 +677,7 @@ NEW GAME STATE:
 right now, the last state added to history had 62 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: dots-3 ; last cards:  []
 => pre play card:  dots-3 hand:  ['dots-3', 'dots-4', 'bamboo-2', 'bamboo-8', 'dots-5', 'dots-8', 'dragons-white', 'dragons-white']
@@ -669,6 +699,7 @@ NEW GAME STATE:
 right now, the last state added to history had 61 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: dots-1 ; last cards:  []
 => pre play card:  dots-1 hand:  ['dots-1', 'characters-5', 'bamboo-3', 'bamboo-2', 'characters-8', 'dots-2', 'dots-2', 'dots-6']
@@ -690,6 +721,7 @@ NEW GAME STATE:
 right now, the last state added to history had 60 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: bamboo-7 ; last cards:  []
 => pre play card:  bamboo-7 hand:  ['bamboo-7', 'dots-9', 'bamboo-9', 'characters-7', 'bamboo-7', 'characters-8', 'characters-9', 'bamboo-6']
@@ -711,6 +743,7 @@ NEW GAME STATE:
 right now, the last state added to history had 59 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: characters-7 ; last cards:  []
 => pre play card:  characters-7 hand:  ['characters-7', 'bamboo-7', 'characters-2', 'dots-4', 'bamboo-4', 'dots-6', 'bamboo-4', 'dots-1']
@@ -732,6 +765,7 @@ NEW GAME STATE:
 right now, the last state added to history had 58 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: dots-4 ; last cards:  []
 => pre play card:  dots-4 hand:  ['dots-4', 'bamboo-2', 'bamboo-8', 'dots-5', 'dots-8', 'dragons-white', 'dragons-white', 'characters-3']
@@ -753,6 +787,7 @@ NEW GAME STATE:
 right now, the last state added to history had 57 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: characters-5 ; last cards:  []
 => pre play card:  characters-5 hand:  ['characters-5', 'bamboo-3', 'bamboo-2', 'characters-8', 'dots-2', 'dots-2', 'dots-6', 'dragons-red']
@@ -774,6 +809,7 @@ NEW GAME STATE:
 right now, the last state added to history had 56 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: dots-9 ; last cards:  []
 => pre play card:  dots-9 hand:  ['dots-9', 'bamboo-9', 'characters-7', 'bamboo-7', 'characters-8', 'characters-9', 'bamboo-6', 'dragons-red']
@@ -795,6 +831,7 @@ NEW GAME STATE:
 right now, the last state added to history had 55 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: bamboo-7 ; last cards:  []
 => pre play card:  bamboo-7 hand:  ['bamboo-7', 'characters-2', 'dots-4', 'bamboo-4', 'dots-6', 'bamboo-4', 'dots-1', 'bamboo-4']
@@ -816,6 +853,7 @@ NEW GAME STATE:
 right now, the last state added to history had 54 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: bamboo-2 ; last cards:  []
 => pre play card:  bamboo-2 hand:  ['bamboo-2', 'bamboo-8', 'dots-5', 'dots-8', 'dragons-white', 'dragons-white', 'characters-3', 'bamboo-9']
@@ -837,6 +875,7 @@ NEW GAME STATE:
 right now, the last state added to history had 53 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: bamboo-3 ; last cards:  []
 => pre play card:  bamboo-3 hand:  ['bamboo-3', 'bamboo-2', 'characters-8', 'dots-2', 'dots-2', 'dots-6', 'dragons-red', 'dots-7']
@@ -858,6 +897,7 @@ NEW GAME STATE:
 right now, the last state added to history had 52 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: bamboo-9 ; last cards:  []
 => pre play card:  bamboo-9 hand:  ['bamboo-9', 'characters-7', 'bamboo-7', 'characters-8', 'characters-9', 'bamboo-6', 'dragons-red', 'characters-4']
@@ -879,6 +919,7 @@ NEW GAME STATE:
 right now, the last state added to history had 51 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: characters-2 ; last cards:  []
 => pre play card:  characters-2 hand:  ['characters-2', 'dots-4', 'bamboo-4', 'dots-6', 'bamboo-4', 'dots-1', 'bamboo-4', 'dots-6']
@@ -900,6 +941,7 @@ NEW GAME STATE:
 right now, the last state added to history had 50 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: bamboo-8 ; last cards:  []
 => pre play card:  bamboo-8 hand:  ['bamboo-8', 'dots-5', 'dots-8', 'dragons-white', 'dragons-white', 'characters-3', 'bamboo-9', 'dots-7']
@@ -921,6 +963,7 @@ NEW GAME STATE:
 right now, the last state added to history had 49 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: bamboo-2 ; last cards:  []
 => pre play card:  bamboo-2 hand:  ['bamboo-2', 'characters-8', 'dots-2', 'dots-2', 'dots-6', 'dragons-red', 'dots-7', 'dots-4']
@@ -942,6 +985,7 @@ NEW GAME STATE:
 right now, the last state added to history had 48 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: characters-7 ; last cards:  []
 => pre play card:  characters-7 hand:  ['characters-7', 'bamboo-7', 'characters-8', 'characters-9', 'bamboo-6', 'dragons-red', 'characters-4', 'dragons-white']
@@ -963,6 +1007,7 @@ NEW GAME STATE:
 right now, the last state added to history had 47 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: dots-4 ; last cards:  []
 => pre play card:  dots-4 hand:  ['dots-4', 'bamboo-4', 'dots-6', 'bamboo-4', 'dots-1', 'bamboo-4', 'dots-6', 'bamboo-9']
@@ -984,6 +1029,7 @@ NEW GAME STATE:
 right now, the last state added to history had 46 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: dots-5 ; last cards:  []
 => pre play card:  dots-5 hand:  ['dots-5', 'dots-8', 'dragons-white', 'dragons-white', 'characters-3', 'bamboo-9', 'dots-7', 'dragons-green']
@@ -1005,6 +1051,7 @@ NEW GAME STATE:
 right now, the last state added to history had 45 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: characters-8 ; last cards:  []
 => pre play card:  characters-8 hand:  ['characters-8', 'dots-2', 'dots-2', 'dots-6', 'dragons-red', 'dots-7', 'dots-4', 'dots-3']
@@ -1026,6 +1073,7 @@ NEW GAME STATE:
 right now, the last state added to history had 44 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: bamboo-7 ; last cards:  []
 => pre play card:  bamboo-7 hand:  ['bamboo-7', 'characters-8', 'characters-9', 'bamboo-6', 'dragons-red', 'characters-4', 'dragons-white', 'characters-8']
@@ -1047,6 +1095,7 @@ NEW GAME STATE:
 right now, the last state added to history had 43 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: bamboo-4 ; last cards:  []
 => pre play card:  bamboo-4 hand:  ['bamboo-4', 'dots-6', 'bamboo-4', 'dots-1', 'bamboo-4', 'dots-6', 'bamboo-9', 'characters-8']
@@ -1068,6 +1117,7 @@ NEW GAME STATE:
 right now, the last state added to history had 42 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: dots-8 ; last cards:  []
 => pre play card:  dots-8 hand:  ['dots-8', 'dragons-white', 'dragons-white', 'characters-3', 'bamboo-9', 'dots-7', 'dragons-green', 'characters-3']
@@ -1089,6 +1139,7 @@ NEW GAME STATE:
 right now, the last state added to history had 41 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: dots-2 ; last cards:  []
 => pre play card:  dots-2 hand:  ['dots-2', 'dots-2', 'dots-6', 'dragons-red', 'dots-7', 'dots-4', 'dots-3', 'characters-3']
@@ -1110,6 +1161,7 @@ NEW GAME STATE:
 right now, the last state added to history had 40 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: characters-8 ; last cards:  []
 => pre play card:  characters-8 hand:  ['characters-8', 'characters-9', 'bamboo-6', 'dragons-red', 'characters-4', 'dragons-white', 'characters-8', 'characters-6']
@@ -1131,6 +1183,7 @@ NEW GAME STATE:
 right now, the last state added to history had 39 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: dots-6 ; last cards:  []
 => pre play card:  dots-6 hand:  ['dots-6', 'bamboo-4', 'dots-1', 'bamboo-4', 'dots-6', 'bamboo-9', 'characters-8', 'bamboo-8']
@@ -1152,6 +1205,7 @@ NEW GAME STATE:
 right now, the last state added to history had 38 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: dragons-white ; last cards:  []
 => pre play card:  dragons-white hand:  ['dragons-white', 'dragons-white', 'characters-3', 'bamboo-9', 'dots-7', 'dragons-green', 'characters-3', 'dots-7']
@@ -1173,6 +1227,7 @@ NEW GAME STATE:
 right now, the last state added to history had 37 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: dots-2 ; last cards:  []
 => pre play card:  dots-2 hand:  ['dots-2', 'dots-6', 'dragons-red', 'dots-7', 'dots-4', 'dots-3', 'characters-3', 'bamboo-5']
@@ -1194,6 +1249,7 @@ NEW GAME STATE:
 right now, the last state added to history had 36 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: characters-9 ; last cards:  []
 => pre play card:  characters-9 hand:  ['characters-9', 'bamboo-6', 'dragons-red', 'characters-4', 'dragons-white', 'characters-8', 'characters-6', 'characters-5']
@@ -1215,6 +1271,7 @@ NEW GAME STATE:
 right now, the last state added to history had 35 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: bamboo-4 ; last cards:  []
 => pre play card:  bamboo-4 hand:  ['bamboo-4', 'dots-1', 'bamboo-4', 'dots-6', 'bamboo-9', 'characters-8', 'bamboo-8', 'bamboo-6']
@@ -1236,6 +1293,7 @@ NEW GAME STATE:
 right now, the last state added to history had 34 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: dragons-white ; last cards:  []
 => pre play card:  dragons-white hand:  ['dragons-white', 'characters-3', 'bamboo-9', 'dots-7', 'dragons-green', 'characters-3', 'dots-7', 'bamboo-9']
@@ -1257,6 +1315,7 @@ NEW GAME STATE:
 right now, the last state added to history had 33 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: dots-6 ; last cards:  []
 => pre play card:  dots-6 hand:  ['dots-6', 'dragons-red', 'dots-7', 'dots-4', 'dots-3', 'characters-3', 'bamboo-5', 'dots-5']
@@ -1278,6 +1337,7 @@ NEW GAME STATE:
 right now, the last state added to history had 32 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: bamboo-6 ; last cards:  []
 => pre play card:  bamboo-6 hand:  ['bamboo-6', 'dragons-red', 'characters-4', 'dragons-white', 'characters-8', 'characters-6', 'characters-5', 'bamboo-1']
@@ -1299,6 +1359,7 @@ NEW GAME STATE:
 right now, the last state added to history had 31 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: dots-1 ; last cards:  []
 => pre play card:  dots-1 hand:  ['dots-1', 'bamboo-4', 'dots-6', 'bamboo-9', 'characters-8', 'bamboo-8', 'bamboo-6', 'bamboo-8']
@@ -1320,6 +1381,7 @@ NEW GAME STATE:
 right now, the last state added to history had 30 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: characters-3 ; last cards:  []
 => pre play card:  characters-3 hand:  ['characters-3', 'bamboo-9', 'dots-7', 'dragons-green', 'characters-3', 'dots-7', 'bamboo-9', 'dots-1']
@@ -1341,6 +1403,7 @@ NEW GAME STATE:
 right now, the last state added to history had 29 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: dragons-red ; last cards:  []
 => pre play card:  dragons-red hand:  ['dragons-red', 'dots-7', 'dots-4', 'dots-3', 'characters-3', 'bamboo-5', 'dots-5', 'characters-1']
@@ -1362,6 +1425,7 @@ NEW GAME STATE:
 right now, the last state added to history had 28 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: dragons-red ; last cards:  []
 => pre play card:  dragons-red hand:  ['dragons-red', 'characters-4', 'dragons-white', 'characters-8', 'characters-6', 'characters-5', 'bamboo-1', 'bamboo-5']
@@ -1383,6 +1447,7 @@ NEW GAME STATE:
 right now, the last state added to history had 27 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: bamboo-4 ; last cards:  []
 => pre play card:  bamboo-4 hand:  ['bamboo-4', 'dots-6', 'bamboo-9', 'characters-8', 'bamboo-8', 'bamboo-6', 'bamboo-8', 'bamboo-7']
@@ -1404,6 +1469,7 @@ NEW GAME STATE:
 right now, the last state added to history had 26 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: bamboo-9 ; last cards:  []
 => pre play card:  bamboo-9 hand:  ['bamboo-9', 'dots-7', 'dragons-green', 'characters-3', 'dots-7', 'bamboo-9', 'dots-1', 'bamboo-1']
@@ -1425,6 +1491,7 @@ NEW GAME STATE:
 right now, the last state added to history had 25 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: dots-7 ; last cards:  []
 => pre play card:  dots-7 hand:  ['dots-7', 'dots-4', 'dots-3', 'characters-3', 'bamboo-5', 'dots-5', 'characters-1', 'dots-8']
@@ -1447,6 +1514,7 @@ NEW GAME STATE:
 right now, the last state added to history had 24 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: pong ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre pong:  ['dots-7', 'dots-7', 'dots-7']  hand:  ['dots-7', 'dragons-green', 'characters-3', 'dots-7', 'bamboo-9', 'dots-1', 'bamboo-1']  pile:  []
@@ -1468,6 +1536,7 @@ NEW GAME STATE:
 right now, the last state added to history had 24 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: dragons-green ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  dragons-green hand:  ['dragons-green', 'characters-3', 'bamboo-9', 'dots-1', 'bamboo-1']
@@ -1489,6 +1558,7 @@ NEW GAME STATE:
 right now, the last state added to history had 24 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: dots-4 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  dots-4 hand:  ['dots-4', 'dots-3', 'characters-3', 'bamboo-5', 'dots-5', 'characters-1', 'dots-8', 'characters-7']
@@ -1510,6 +1580,7 @@ NEW GAME STATE:
 right now, the last state added to history had 23 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: characters-4 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  characters-4 hand:  ['characters-4', 'dragons-white', 'characters-8', 'characters-6', 'characters-5', 'bamboo-1', 'bamboo-5', 'dragons-green']
@@ -1531,6 +1602,7 @@ NEW GAME STATE:
 right now, the last state added to history had 22 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: dots-6 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  dots-6 hand:  ['dots-6', 'bamboo-9', 'characters-8', 'bamboo-8', 'bamboo-6', 'bamboo-8', 'bamboo-7', 'bamboo-8']
@@ -1552,6 +1624,7 @@ NEW GAME STATE:
 right now, the last state added to history had 21 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: characters-3 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  characters-3 hand:  ['characters-3', 'bamboo-9', 'dots-1', 'bamboo-1', 'dots-6']
@@ -1573,6 +1646,7 @@ NEW GAME STATE:
 right now, the last state added to history had 20 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: dots-3 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  dots-3 hand:  ['dots-3', 'characters-3', 'bamboo-5', 'dots-5', 'characters-1', 'dots-8', 'characters-7', 'dots-3']
@@ -1594,6 +1668,7 @@ NEW GAME STATE:
 right now, the last state added to history had 19 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: dragons-white ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  dragons-white hand:  ['dragons-white', 'characters-8', 'characters-6', 'characters-5', 'bamboo-1', 'bamboo-5', 'dragons-green', 'dots-5']
@@ -1615,6 +1690,7 @@ NEW GAME STATE:
 right now, the last state added to history had 18 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: bamboo-9 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  bamboo-9 hand:  ['bamboo-9', 'characters-8', 'bamboo-8', 'bamboo-6', 'bamboo-8', 'bamboo-7', 'bamboo-8', 'characters-6']
@@ -1636,6 +1712,7 @@ NEW GAME STATE:
 right now, the last state added to history had 17 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: bamboo-9 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  bamboo-9 hand:  ['bamboo-9', 'dots-1', 'bamboo-1', 'dots-6', 'dots-9']
@@ -1657,6 +1734,7 @@ NEW GAME STATE:
 right now, the last state added to history had 16 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: characters-3 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  characters-3 hand:  ['characters-3', 'bamboo-5', 'dots-5', 'characters-1', 'dots-8', 'characters-7', 'dots-3', 'bamboo-1']
@@ -1678,6 +1756,7 @@ NEW GAME STATE:
 right now, the last state added to history had 15 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: characters-8 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  characters-8 hand:  ['characters-8', 'characters-6', 'characters-5', 'bamboo-1', 'bamboo-5', 'dragons-green', 'dots-5', 'dots-8']
@@ -1699,6 +1778,7 @@ NEW GAME STATE:
 right now, the last state added to history had 14 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: characters-8 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  characters-8 hand:  ['characters-8', 'bamboo-8', 'bamboo-6', 'bamboo-8', 'bamboo-7', 'bamboo-8', 'characters-6', 'dots-9']
@@ -1720,6 +1800,7 @@ NEW GAME STATE:
 right now, the last state added to history had 13 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: dots-1 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  dots-1 hand:  ['dots-1', 'bamboo-1', 'dots-6', 'dots-9', 'dots-9']
@@ -1741,6 +1822,7 @@ NEW GAME STATE:
 right now, the last state added to history had 12 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: bamboo-5 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  bamboo-5 hand:  ['bamboo-5', 'dots-5', 'characters-1', 'dots-8', 'characters-7', 'dots-3', 'bamboo-1', 'dragons-red']
@@ -1762,6 +1844,7 @@ NEW GAME STATE:
 right now, the last state added to history had 11 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: characters-6 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  characters-6 hand:  ['characters-6', 'characters-5', 'bamboo-1', 'bamboo-5', 'dragons-green', 'dots-5', 'dots-8', 'characters-7']
@@ -1783,6 +1866,7 @@ NEW GAME STATE:
 right now, the last state added to history had 10 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: bamboo-8 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  bamboo-8 hand:  ['bamboo-8', 'bamboo-6', 'bamboo-8', 'bamboo-7', 'bamboo-8', 'characters-6', 'dots-9', 'bamboo-6']
@@ -1804,6 +1888,7 @@ NEW GAME STATE:
 right now, the last state added to history had 9 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: bamboo-1 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  bamboo-1 hand:  ['bamboo-1', 'dots-6', 'dots-9', 'dots-9', 'bamboo-2']
@@ -1825,6 +1910,7 @@ NEW GAME STATE:
 right now, the last state added to history had 8 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: dots-5 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  dots-5 hand:  ['dots-5', 'characters-1', 'dots-8', 'characters-7', 'dots-3', 'bamboo-1', 'dragons-red', 'dragons-green']
@@ -1846,6 +1932,7 @@ NEW GAME STATE:
 right now, the last state added to history had 7 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: characters-5 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  characters-5 hand:  ['characters-5', 'bamboo-1', 'bamboo-5', 'dragons-green', 'dots-5', 'dots-8', 'characters-7', 'bamboo-6']
@@ -1867,6 +1954,7 @@ NEW GAME STATE:
 right now, the last state added to history had 6 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: bamboo-6 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  bamboo-6 hand:  ['bamboo-6', 'bamboo-8', 'bamboo-7', 'bamboo-8', 'characters-6', 'dots-9', 'bamboo-6', 'characters-4']
@@ -1888,6 +1976,7 @@ NEW GAME STATE:
 right now, the last state added to history had 5 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: dots-6 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  dots-6 hand:  ['dots-6', 'dots-9', 'dots-9', 'bamboo-2', 'bamboo-3']
@@ -1909,6 +1998,7 @@ NEW GAME STATE:
 right now, the last state added to history had 4 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 3 ; action: characters-1 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  characters-1 hand:  ['characters-1', 'dots-8', 'characters-7', 'dots-3', 'bamboo-1', 'dragons-red', 'dragons-green', 'characters-3']
@@ -1930,6 +2020,7 @@ NEW GAME STATE:
 right now, the last state added to history had 3 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 0 ; action: bamboo-1 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  bamboo-1 hand:  ['bamboo-1', 'bamboo-5', 'dragons-green', 'dots-5', 'dots-8', 'characters-7', 'bamboo-6', 'characters-6']
@@ -1951,6 +2042,7 @@ NEW GAME STATE:
 right now, the last state added to history had 2 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 1 ; action: bamboo-8 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  bamboo-8 hand:  ['bamboo-8', 'bamboo-7', 'bamboo-8', 'characters-6', 'dots-9', 'bamboo-6', 'characters-4', 'dots-2']
@@ -1972,6 +2064,7 @@ NEW GAME STATE:
 right now, the last state added to history had 1 cards left in deck
 done.
 stepped!!
+we step
 [0, 1, 1, 0]
 
 WINNER: player 3
@@ -2009,6 +2102,7 @@ player id:  2
 player id:  3
 ['dots-8', 'characters-7', 'dots-3', 'bamboo-1', 'dragons-red', 'dragons-green', 'characters-3']
 []
+IT'S OVER GDI
 [0, 1, 1, 0]
 finally stepping back
 in stepped back version, self dealer has 1 cards in the deck
@@ -2033,6 +2127,7 @@ NEW GAME STATE:
 right now, the last state added to history had 1 cards left in deck
 done.
 stepped!!
+we step
 checking if over and the result is  False
 PROCEEDING ROUND: player: 2 ; action: dots-9 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
 => pre play card:  dots-9 hand:  ['dots-9', 'dots-9', 'bamboo-2', 'bamboo-3', 'dots-1']
