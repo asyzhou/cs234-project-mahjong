@@ -71,7 +71,9 @@ class CFRAgent():
             # Keep traversing the child state
             self.env.step(action)
             utility = self.traverse_tree(new_probs, player_id)
+            print("finally stepping back")
             self.env.step_back()
+            print("stepped back")
 
             state_utility += action_prob * utility
             action_utilities[action] = utility
@@ -145,7 +147,6 @@ class CFRAgent():
         return action_probs
 
 
-    ## azure: where is this even used ??? when running cfr agent?
     def eval_step(self, state):
         ''' Given a state, predict action based on average policy
 
