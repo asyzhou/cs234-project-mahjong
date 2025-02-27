@@ -3,13 +3,11 @@
 import argparse
 import pprint
 
-import rlcard  
-from rlcard.agents import RandomAgent
-from rlcard.utils import set_seed
+import rlcard_fork as rlcard
+from rlcard_fork.rlcard.agents import RandomAgent
+from rlcard_fork.rlcard.utils import set_seed
 
 def run(args):
-    print("START RANDOM_RUN", args.env)
-
     # Make environment
     env = rlcard.make(
         args.env,
@@ -17,8 +15,6 @@ def run(args):
             'seed': 42,
         }
     )
-
-    print("MahjongEnv vars: ", vars(env))
 
     # Seed numpy, torch, random
     set_seed(42)
@@ -30,14 +26,12 @@ def run(args):
     # Generate data from the environment
     trajectories, player_wins = env.run(is_training=False)
     # Print out the trajectories
-    '''
     print('\nTrajectories:')
     print(trajectories)
     print('\nSample raw observation:')
     pprint.pprint(trajectories[0][0]['raw_obs'])
     print('\nSample raw legal_actions:')
     pprint.pprint(trajectories[0][0]['raw_legal_actions'])
-    '''
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser("Random example in RLCard")

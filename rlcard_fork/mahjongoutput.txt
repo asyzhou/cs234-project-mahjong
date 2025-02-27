@@ -1,0 +1,19 @@
+START RANDOM_RUN mahjong
+In MahjongEnv init
+In MahjongGame Init
+CARD ENCODING DICT! {'bamboo-1': 0, 'bamboo-2': 1, 'bamboo-3': 2, 'bamboo-4': 3, 'bamboo-5': 4, 'bamboo-6': 5, 'bamboo-7': 6, 'bamboo-8': 7, 'bamboo-9': 8, 'characters-1': 9, 'characters-2': 10, 'characters-3': 11, 'characters-4': 12, 'characters-5': 13, 'characters-6': 14, 'characters-7': 15, 'characters-8': 16, 'characters-9': 17, 'dots-1': 18, 'dots-2': 19, 'dots-3': 20, 'dots-4': 21, 'dots-5': 22, 'dots-6': 23, 'dots-7': 24, 'dots-8': 25, 'dots-9': 26, 'dragons-green': 27, 'dragons-red': 28, 'dragons-white': 29, 'pong': 30, 'chow': 31, 'stand': 33}
+MahjongEnv vars:  {'name': 'mahjong', 'game': <rlcard.games.mahjong.game.MahjongGame object at 0x102735b50>, 'allow_step_back': False, 'action_recorder': [], 'num_players': 4, 'num_actions': 38, 'timestep': 0, 'np_random': RandomState(MT19937) at 0x10273C740, 'action_id': {'bamboo-1': 0, 'bamboo-2': 1, 'bamboo-3': 2, 'bamboo-4': 3, 'bamboo-5': 4, 'bamboo-6': 5, 'bamboo-7': 6, 'bamboo-8': 7, 'bamboo-9': 8, 'characters-1': 9, 'characters-2': 10, 'characters-3': 11, 'characters-4': 12, 'characters-5': 13, 'characters-6': 14, 'characters-7': 15, 'characters-8': 16, 'characters-9': 17, 'dots-1': 18, 'dots-2': 19, 'dots-3': 20, 'dots-4': 21, 'dots-5': 22, 'dots-6': 23, 'dots-7': 24, 'dots-8': 25, 'dots-9': 26, 'dragons-green': 27, 'dragons-red': 28, 'dragons-white': 29, 'pong': 30, 'chow': 31, 'stand': 33}, 'de_action_id': {0: 'bamboo-1', 1: 'bamboo-2', 2: 'bamboo-3', 3: 'bamboo-4', 4: 'bamboo-5', 5: 'bamboo-6', 6: 'bamboo-7', 7: 'bamboo-8', 8: 'bamboo-9', 9: 'characters-1', 10: 'characters-2', 11: 'characters-3', 12: 'characters-4', 13: 'characters-5', 14: 'characters-6', 15: 'characters-7', 16: 'characters-8', 17: 'characters-9', 18: 'dots-1', 19: 'dots-2', 20: 'dots-3', 21: 'dots-4', 22: 'dots-5', 23: 'dots-6', 24: 'dots-7', 25: 'dots-8', 26: 'dots-9', 27: 'dragons-green', 28: 'dragons-red', 29: 'dragons-white', 30: 'pong', 31: 'chow', 33: 'stand'}, 'state_shape': [[6, 34, 4], [6, 34, 4], [6, 34, 4], [6, 34, 4]], 'action_shape': [None, None, None, None]}
+========================================================================================================
+Running the game...
+In MahjongGame init_game()
+INITIAL GAME STATE: 
+=> valid_act: ['play']
+=> table: 
+=> player: 0
+=> current_hand: bamboo-7 6,characters-8 7,characters-2 1,dots-2 1,dragons-white 2,dragons-white 2,dots-7 6,dots-9 8
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-7 6,characters-8 7,characters-2 1,dots-2 1,dragons-white 2,dragons-white 2,dots-7 6,dots-9 8

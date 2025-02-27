@@ -14,13 +14,15 @@ for _trait in ['green', 'red', 'white']:
     card_encoding_dict[card] = num
     num += 1
 
-for _trait in ['east', 'west', 'north', 'south']:
-    card = 'winds-'+_trait
-    card_encoding_dict[card] = num
-    num += 1
+#### SHORT MAHJONG MODIFIED ####
+# for _trait in ['east', 'west', 'north', 'south']:
+#     card = 'winds-'+_trait
+#     card_encoding_dict[card] = num
+#     num += 1
 card_encoding_dict['pong'] = num
 card_encoding_dict['chow'] = num + 1
-card_encoding_dict['gong'] = num + 2
+#### SHORT MAHJONG MODIFIED ####
+# card_encoding_dict['gong'] = num + 2
 card_encoding_dict['stand'] = num + 3
 
 card_decoding_dict = {card_encoding_dict[key]: key for key in card_encoding_dict.keys()}
@@ -30,7 +32,7 @@ def init_deck():
     info = Card.info
     for _type in info['type']:
         index_num = 0
-        if _type != 'dragons' and _type != 'winds':
+        if _type != 'dragons':  # and _type != 'winds': #### SHORT MAHJONG MODIFIED ####
             for _trait in info['trait'][:9]:
                 card = Card(_type, _trait)
                 card.set_index_num(index_num)
@@ -42,12 +44,13 @@ def init_deck():
                 card.set_index_num(index_num)
                 index_num = index_num + 1
                 deck.append(card)
-        else:
-            for _trait in info['trait'][12:]:
-                card = Card(_type, _trait)
-                card.set_index_num(index_num)
-                index_num = index_num + 1
-                deck.append(card)
+        #### SHORT MAHJONG MODIFIED ####
+        # else:
+        #     for _trait in info['trait'][12:]:
+        #         card = Card(_type, _trait)
+        #         card.set_index_num(index_num)
+        #         index_num = index_num + 1
+        #         deck.append(card)
     deck = deck * 4
     return deck
 

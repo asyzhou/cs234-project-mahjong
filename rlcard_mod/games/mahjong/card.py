@@ -23,7 +23,7 @@ class MahjongCard:
             (str): The string of card's color and trait
         '''
         return self.type+ '-'+ self.trait
-
+    
     def set_index_num(self, index_num):
 
         self.index_num = index_num
