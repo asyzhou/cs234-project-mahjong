@@ -82,7 +82,6 @@ class Env(object):
         # Record the action for human interface
         self.action_recorder.append((self.get_player_id(), action))
         next_state, player_id = self.game.step(action)
-        print("stepped!!")
 
         return self._extract_state(next_state), player_id
 
@@ -146,7 +145,6 @@ class Env(object):
             # Agent plays
             if not is_training:
                 action, _ = self.agents[player_id].eval_step(state)
-                print("we've been evaluating the whole time")
             else:
                 action = self.agents[player_id].step(state)
 
@@ -184,7 +182,7 @@ class Env(object):
         Returns:
             (boolean): True if current game is over
         '''
-        print("checking if over and the result is ", self.game.is_over())
+        # print("checking if over and the result is ", self.game.is_over())
         return self.game.is_over()
 
     def get_player_id(self):

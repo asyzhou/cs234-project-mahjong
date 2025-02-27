@@ -53,9 +53,7 @@ class CFRAgent():
         Returns:
             state_utilities (list): The expected utilities for all the players
         '''
-        print(self.env.game.dealer )
         if self.env.is_over():
-            print("IT'S OVER GDI!!!!!")
             return self.env.get_payoffs()
 
         current_player = self.env.get_player_id()
@@ -71,12 +69,11 @@ class CFRAgent():
             new_probs[current_player] *= action_prob
 
             # Keep traversing the child state
+            # print("we step")
             self.env.step(action)
-            print("we step")
             utility = self.traverse_tree(new_probs, player_id)
-            print("finally stepping back")
             self.env.step_back()
-            print("stepped back")
+            # print("stepped back")
 
             state_utility += action_prob * utility
             action_utilities[action] = utility
