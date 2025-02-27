@@ -49,7 +49,7 @@ class MahjongRound:
                 self.current_player = player.player_id
             else:
                 self.last_player = self.current_player
-                self.current_player = (self.player_before_act + 1) % 4
+                self.current_player = (self.player_before_act + 1) % self.num_players
                 self.dealer.deal_cards(players[self.current_player], 1)
                 self.valid_act = False
         
@@ -82,7 +82,7 @@ class MahjongRound:
                 self.current_player = player.player_id
             else:
                 self.last_player = self.current_player
-                self.current_player = (self.current_player + 1) % 4
+                self.current_player = (self.current_player + 1) % self.num_players
                 self.dealer.deal_cards(players[self.current_player], 1)
         print("END OF ROUND. NOW: cur player: ", self.current_player, " ; last: ", self.last_player, " DECK LEN ", len(self.dealer.deck))
 

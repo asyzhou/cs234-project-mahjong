@@ -16,12 +16,12 @@ from rlcard.utils import (
     plot_curve,
 )
 
-import wandb
+# import wandb
 
-wandb.init(
-    project="rlcard-nfsp",  # Change this to your project name
-    name=f"NFSP"  # Name the run
-)
+# wandb.init(
+#     project="rlcard-nfsp",  # Change this to your project name
+#     name=f"NFSP"  # Name the run
+# )
 
 
 def train(args):
@@ -39,6 +39,7 @@ def train(args):
             'seed': args.seed,
         }
     )
+    print("NUM PLAYERS: ", env.num_players)
 
     # Initialize the agent and use random agents as opponents
     if args.algorithm == 'dqn':
@@ -98,7 +99,7 @@ def train(args):
                 win_rate = tournament(env, args.num_eval_games)[0]
 
                 # Log evaluation results to W&B
-                wandb.log({"episode": episode, "win_rate": win_rate})
+                # wandb.log({"episode": episode, "win_rate": win_rate})
 
                 # Print progress
                 print(f"Episode {episode}: Win Rate = {win_rate:.2f}")
