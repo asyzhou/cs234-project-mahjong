@@ -75,6 +75,7 @@ class Env(object):
                 (dict): The next state
                 (int): The ID of the next player
         '''
+        print("starting environment step! deck length is", len(self.game.dealer.deck))
         if not raw_action:
             action = self._decode_action(action)
 
@@ -82,7 +83,7 @@ class Env(object):
         # Record the action for human interface
         self.action_recorder.append((self.get_player_id(), action))
         next_state, player_id = self.game.step(action)
-        print("stepped!!")
+        print("stepped!! deck length is", len(self.game.dealer.deck))
 
         return self._extract_state(next_state), player_id
 
