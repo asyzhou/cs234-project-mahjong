@@ -16,6 +16,14 @@ from rlcard.utils import (
     plot_curve,
 )
 
+import wandb
+
+wandb.init(
+    project="rlcard-nfsp",  # Change this to your project name
+    name=f"NFSP"  # Name the run
+)
+
+
 def train(args):
 
     # Check whether gpu is available
@@ -87,13 +95,20 @@ def train(args):
 
             # Evaluate the performance. Play with random agents.
             if episode % args.evaluate_every == 0:
-                logger.log_performance(
-                    episode,
-                    tournament(
-                        env,
-                        args.num_eval_games,
-                    )[0]
-                )
+                win_rate = tournament(env, args.num_eval_games)[0]
+
+                # Log evaluation results to W&B
+                wandb.log({"episode": episode, "win_rate": win_rate})
+
+                # Print progress
+                print(f"Episode {episode}: Win Rate = {win_rate:.2f}")
+                #logger.log_performance(
+                #    episode,
+                #    tournament(
+                #        env,
+                #        args.num_eval_games,
+                #    )[0]
+                #)
 
         # Get the paths
         csv_path, fig_path = logger.csv_path, logger.fig_path
@@ -107,6 +122,13 @@ def train(args):
     print('Model saved in', save_path)
 
 if __name__ == '__main__':
+
+    import sys
+
+    log_file = "output.log"  # Change to your desired filename
+    sys.stdout = open(log_file, "w")  # Redirect all prints to this file
+    sys.stderr = sys.stdout 
+
     parser = argparse.ArgumentParser("DQN/NFSP example in RLCard")
     parser.add_argument(
         '--env',
