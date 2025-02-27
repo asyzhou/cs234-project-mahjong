@@ -176,9 +176,13 @@ class MahjongGame:
         self.winner = player
         
         if win:
-            print("\nWINNER: player", self.players[self.winner].get_player_id())
-            self.players[self.winner].print_hand()
-            self.players[self.winner].print_pile()
+            if player != -1:
+                print("\nWINNER: player", self.players[self.winner].get_player_id())
+                self.players[self.winner].print_hand()
+                self.players[self.winner].print_pile()
+
+            else:
+                print("DECK HAS FINISHED -- GAME OVER")
 
             print("ALL PLAYERS' HANDS & PILES: ")
             for player in self.players:
