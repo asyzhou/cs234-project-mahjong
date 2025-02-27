@@ -35,12 +35,12 @@ class MahjongRound:
         #pile_len = [sum([len([c for c in p]) for p in pp.pile]) for pp in players]
         #total_len = [i + j for i, j in zip(hand_len, pile_len)]
         cards = [c.get_str() for c in self.last_cards]
-        print("PROCEEDING ROUND: player:", self.current_player, "; action:", action, "; last cards: ", cards)
+        # print("PROCEEDING ROUND: player:", self.current_player, "; action:", action, "; last cards: ", cards)
 
         if action == 'stand':
             # STAND: if the player has the option to PONG/GONG, but does not act upon it.
             (valid_act, player, cards) = self.judger.judge_chow(self.dealer, players, self.last_player)
-            print("=> check stand: ", valid_act, player, cards)
+            # print("=> check stand: ", valid_act, player, cards)
 
             if valid_act:
                 self.valid_act = valid_act
@@ -75,7 +75,7 @@ class MahjongRound:
             self.last_player = self.current_player
             (valid_act, player, cards) = self.judger.judge_pong_gong(self.dealer, players, self.last_player)
             if valid_act:
-                print("Calculated valid_acts: ", valid_act, player.player_id, [c.get_str() for c in cards])
+                # print("Calculated valid_acts: ", valid_act, player.player_id, [c.get_str() for c in cards])
                 self.valid_act = valid_act
                 self.last_cards = cards
                 self.last_player = self.current_player
@@ -84,7 +84,7 @@ class MahjongRound:
                 self.last_player = self.current_player
                 self.current_player = (self.current_player + 1) % 4
                 self.dealer.deal_cards(players[self.current_player], 1)
-        print("END OF ROUND. NOW: cur player: ", self.current_player, " ; last: ", self.last_player, " DECK LEN ", len(self.dealer.deck))
+        # print("END OF ROUND. NOW: cur player: ", self.current_player, " ; last: ", self.last_player, " DECK LEN ", len(self.dealer.deck))
 
         #hand_len = [len(p.hand) for p in players]
         #pile_len = [sum([len([c for c in p]) for p in pp.pile]) for pp in players]

@@ -78,10 +78,10 @@ class MahjongGame:
         state = self.get_state(self.round.current_player)
         self.cur_state = state
 
-        print("\nNEW GAME STATE: ")
-        self.print_game_state()
-        print("right now, the deck length that we have is", len(self.dealer.deck), "cards left in deck")
-        print("done.")
+        # print("\nNEW GAME STATE: ")
+        # self.print_game_state()
+        # print("right now, the deck length that we have is", len(self.dealer.deck), "cards left in deck")
+        # print("done.")
 
         return state, self.round.current_player
 
@@ -111,9 +111,8 @@ class MahjongGame:
             return False
         self.dealer, self.players, self.round = self.history.pop()
         self.round.dealer = self.dealer
-        print("in stepped back version, self dealer has", len(self.dealer.deck), "cards in the deck")
-        print("in fact --")
-        self.print_game_state()
+        # print("in fact --")
+        # self.print_game_state()
         return True
 
     def get_state(self, player_id):
@@ -175,19 +174,19 @@ class MahjongGame:
         win, player, _ = self.judger.judge_game(self)
         self.winner = player
         
-        if win:
-            if player != -1:
-                print("\nWINNER: player", self.players[self.winner].get_player_id())
-                self.players[self.winner].print_hand()
-                self.players[self.winner].print_pile()
+        # if win:
+        #     if player != -1:
+        #         print("\nWINNER: player", self.players[self.winner].get_player_id())
+        #         self.players[self.winner].print_hand()
+        #         self.players[self.winner].print_pile()
 
-            else:
-                print("DECK HAS FINISHED -- GAME OVER")
+        #     else:
+        #         print("DECK HAS FINISHED -- GAME OVER")
 
-            print("ALL PLAYERS' HANDS & PILES: ")
-            for player in self.players:
-                print("player id: ", player.get_player_id())
-                player.print_hand()
-                player.print_pile()
+        #     print("ALL PLAYERS' HANDS & PILES: ")
+        #     for player in self.players:
+        #         print("player id: ", player.get_player_id())
+        #         player.print_hand()
+        #         player.print_pile()
 
         return win
