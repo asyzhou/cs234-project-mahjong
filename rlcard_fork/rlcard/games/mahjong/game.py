@@ -69,7 +69,6 @@ class MahjongGame:
                 (int): next plater's id
         '''
         # First snapshot the current state
-        azure_hist_dealer = deepcopy(self.dealer)
         if self.allow_step_back:
             hist_dealer = deepcopy(self.dealer)
             hist_round = deepcopy(self.round)
@@ -79,10 +78,10 @@ class MahjongGame:
         state = self.get_state(self.round.current_player)
         self.cur_state = state
 
-        print("\nNEW GAME STATE: ")
-        self.print_game_state()
-        print("right now, the last state added to history had", len(azure_hist_dealer.deck), "cards left in deck")
-        print("done.")
+        # print("\nNEW GAME STATE: ")
+        # self.print_game_state()
+        # print("right now, the deck length that we have is", len(self.dealer.deck), "cards left in deck")
+        # print("done.")
 
         return state, self.round.current_player
 
@@ -111,7 +110,7 @@ class MahjongGame:
         if not self.history:
             return False
         self.dealer, self.players, self.round = self.history.pop()
-        print("in stepped back version, self dealer has", len(self.dealer.deck), "cards in the deck")
+        self.round.dealer = self.dealer
         # print("in fact --")
         # self.print_game_state()
         return True
@@ -175,19 +174,19 @@ class MahjongGame:
         win, player, _ = self.judger.judge_game(self)
         self.winner = player
         
-        if win:
-            if player != -1:
-                print("\nWINNER: player", self.players[self.winner].get_player_id())
-                self.players[self.winner].print_hand()
-                self.players[self.winner].print_pile()
+        # if win:
+        #     if player != -1:
+        #         print("\nWINNER: player", self.players[self.winner].get_player_id())
+        #         self.players[self.winner].print_hand()
+        #         self.players[self.winner].print_pile()
 
-            else:
-                print("DECK HAS FINISHED -- GAME OVER")
+        #     else:
+        #         print("DECK HAS FINISHED -- GAME OVER")
 
-            print("ALL PLAYERS' HANDS & PILES: ")
-            for player in self.players:
-                print("player id: ", player.get_player_id())
-                player.print_hand()
-                player.print_pile()
+        #     print("ALL PLAYERS' HANDS & PILES: ")
+        #     for player in self.players:
+        #         print("player id: ", player.get_player_id())
+        #         player.print_hand()
+        #         player.print_pile()
 
         return win
