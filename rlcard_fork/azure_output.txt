@@ -1,0 +1,2041 @@
+START TRAIN mahjong
+In MahjongEnv init
+In MahjongGame Init
+CARD ENCODING DICT! {'bamboo-1': 0, 'bamboo-2': 1, 'bamboo-3': 2, 'bamboo-4': 3, 'bamboo-5': 4, 'bamboo-6': 5, 'bamboo-7': 6, 'bamboo-8': 7, 'bamboo-9': 8, 'characters-1': 9, 'characters-2': 10, 'characters-3': 11, 'characters-4': 12, 'characters-5': 13, 'characters-6': 14, 'characters-7': 15, 'characters-8': 16, 'characters-9': 17, 'dots-1': 18, 'dots-2': 19, 'dots-3': 20, 'dots-4': 21, 'dots-5': 22, 'dots-6': 23, 'dots-7': 24, 'dots-8': 25, 'dots-9': 26, 'dragons-green': 27, 'dragons-red': 28, 'dragons-white': 29, 'pong': 30, 'chow': 31, 'stand': 33}
+In MahjongEnv init
+In MahjongGame Init
+CARD ENCODING DICT! {'bamboo-1': 0, 'bamboo-2': 1, 'bamboo-3': 2, 'bamboo-4': 3, 'bamboo-5': 4, 'bamboo-6': 5, 'bamboo-7': 6, 'bamboo-8': 7, 'bamboo-9': 8, 'characters-1': 9, 'characters-2': 10, 'characters-3': 11, 'characters-4': 12, 'characters-5': 13, 'characters-6': 14, 'characters-7': 15, 'characters-8': 16, 'characters-9': 17, 'dots-1': 18, 'dots-2': 19, 'dots-3': 20, 'dots-4': 21, 'dots-5': 22, 'dots-6': 23, 'dots-7': 24, 'dots-8': 25, 'dots-9': 26, 'dragons-green': 27, 'dragons-red': 28, 'dragons-white': 29, 'pong': 30, 'chow': 31, 'stand': 33}
+In MahjongGame init_game()
+INITIAL GAME STATE: 
+=> valid_act: ['play']
+=> table: 
+=> dealer: cards left91
+=> player: 0
+=> current_hand: characters-5 idx=4,characters-1 idx=0,bamboo-2 idx=1,dragons-white idx=2,dots-2 idx=1,dragons-green idx=0,bamboo-4 idx=3,characters-9 idx=8
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-5 idx=4,characters-1 idx=0,bamboo-2 idx=1,dragons-white idx=2,dots-2 idx=1,dragons-green idx=0,bamboo-4 idx=3,characters-9 idx=8
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: characters-5 ; last cards:  []
+=> pre play card:  characters-5 hand:  ['characters-5', 'characters-1', 'bamboo-2', 'dragons-white', 'dots-2', 'dragons-green', 'bamboo-4', 'characters-9']
+==> post play card:  characters-5 hand:  ['characters-1', 'bamboo-2', 'dragons-white', 'dots-2', 'dragons-green', 'bamboo-4', 'characters-9']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  90
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5
+=> dealer: cards left90
+=> player: 1
+=> current_hand: characters-4 idx=3,dots-7 idx=6,characters-9 idx=8,dots-4 idx=3,characters-4 idx=3,characters-2 idx=1,dots-8 idx=7,bamboo-3 idx=2
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-4 idx=3,dots-7 idx=6,characters-9 idx=8,dots-4 idx=3,characters-4 idx=3,characters-2 idx=1,dots-8 idx=7,bamboo-3 idx=2
+right now, the last state added to history had 91 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: characters-4 ; last cards:  []
+=> pre play card:  characters-4 hand:  ['characters-4', 'dots-7', 'characters-9', 'dots-4', 'characters-4', 'characters-2', 'dots-8', 'bamboo-3']
+==> post play card:  characters-4 hand:  ['dots-7', 'characters-9', 'dots-4', 'characters-4', 'characters-2', 'dots-8', 'bamboo-3']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  89
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4
+=> dealer: cards left89
+=> player: 2
+=> current_hand: characters-9 idx=8,dragons-red idx=1,bamboo-5 idx=4,bamboo-5 idx=4,characters-1 idx=0,dots-3 idx=2,characters-2 idx=1,dots-3 idx=2
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-9 idx=8,dragons-red idx=1,bamboo-5 idx=4,bamboo-5 idx=4,characters-1 idx=0,dots-3 idx=2,characters-2 idx=1,dots-3 idx=2
+right now, the last state added to history had 90 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: characters-9 ; last cards:  []
+=> pre play card:  characters-9 hand:  ['characters-9', 'dragons-red', 'bamboo-5', 'bamboo-5', 'characters-1', 'dots-3', 'characters-2', 'dots-3']
+==> post play card:  characters-9 hand:  ['dragons-red', 'bamboo-5', 'bamboo-5', 'characters-1', 'dots-3', 'characters-2', 'dots-3']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  88
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9
+=> dealer: cards left88
+=> player: 3
+=> current_hand: characters-1 idx=0,bamboo-1 idx=0,characters-5 idx=4,dots-5 idx=4,characters-6 idx=5,bamboo-3 idx=2,characters-2 idx=1,dots-1 idx=0
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-1 idx=0,bamboo-1 idx=0,characters-5 idx=4,dots-5 idx=4,characters-6 idx=5,bamboo-3 idx=2,characters-2 idx=1,dots-1 idx=0
+right now, the last state added to history had 89 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: characters-1 ; last cards:  []
+=> pre play card:  characters-1 hand:  ['characters-1', 'bamboo-1', 'characters-5', 'dots-5', 'characters-6', 'bamboo-3', 'characters-2', 'dots-1']
+==> post play card:  characters-1 hand:  ['bamboo-1', 'characters-5', 'dots-5', 'characters-6', 'bamboo-3', 'characters-2', 'dots-1']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  87
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1
+=> dealer: cards left87
+=> player: 0
+=> current_hand: characters-1 idx=0,bamboo-2 idx=1,dragons-white idx=2,dots-2 idx=1,dragons-green idx=0,bamboo-4 idx=3,characters-9 idx=8,bamboo-7 idx=6
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-1 idx=0,bamboo-2 idx=1,dragons-white idx=2,dots-2 idx=1,dragons-green idx=0,bamboo-4 idx=3,characters-9 idx=8,bamboo-7 idx=6
+right now, the last state added to history had 88 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: characters-1 ; last cards:  []
+=> pre play card:  characters-1 hand:  ['characters-1', 'bamboo-2', 'dragons-white', 'dots-2', 'dragons-green', 'bamboo-4', 'characters-9', 'bamboo-7']
+==> post play card:  characters-1 hand:  ['bamboo-2', 'dragons-white', 'dots-2', 'dragons-green', 'bamboo-4', 'characters-9', 'bamboo-7']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  86
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1
+=> dealer: cards left86
+=> player: 1
+=> current_hand: dots-7 idx=6,characters-9 idx=8,dots-4 idx=3,characters-4 idx=3,characters-2 idx=1,dots-8 idx=7,bamboo-3 idx=2,characters-7 idx=6
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-7 idx=6,characters-9 idx=8,dots-4 idx=3,characters-4 idx=3,characters-2 idx=1,dots-8 idx=7,bamboo-3 idx=2,characters-7 idx=6
+right now, the last state added to history had 87 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: dots-7 ; last cards:  []
+=> pre play card:  dots-7 hand:  ['dots-7', 'characters-9', 'dots-4', 'characters-4', 'characters-2', 'dots-8', 'bamboo-3', 'characters-7']
+==> post play card:  dots-7 hand:  ['characters-9', 'dots-4', 'characters-4', 'characters-2', 'dots-8', 'bamboo-3', 'characters-7']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  85
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7
+=> dealer: cards left85
+=> player: 2
+=> current_hand: dragons-red idx=1,bamboo-5 idx=4,bamboo-5 idx=4,characters-1 idx=0,dots-3 idx=2,characters-2 idx=1,dots-3 idx=2,dots-4 idx=3
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dragons-red idx=1,bamboo-5 idx=4,bamboo-5 idx=4,characters-1 idx=0,dots-3 idx=2,characters-2 idx=1,dots-3 idx=2,dots-4 idx=3
+right now, the last state added to history had 86 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: dragons-red ; last cards:  []
+=> pre play card:  dragons-red hand:  ['dragons-red', 'bamboo-5', 'bamboo-5', 'characters-1', 'dots-3', 'characters-2', 'dots-3', 'dots-4']
+==> post play card:  dragons-red hand:  ['bamboo-5', 'bamboo-5', 'characters-1', 'dots-3', 'characters-2', 'dots-3', 'dots-4']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  84
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red
+=> dealer: cards left84
+=> player: 3
+=> current_hand: bamboo-1 idx=0,characters-5 idx=4,dots-5 idx=4,characters-6 idx=5,bamboo-3 idx=2,characters-2 idx=1,dots-1 idx=0,characters-5 idx=4
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-1 idx=0,characters-5 idx=4,dots-5 idx=4,characters-6 idx=5,bamboo-3 idx=2,characters-2 idx=1,dots-1 idx=0,characters-5 idx=4
+right now, the last state added to history had 85 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: bamboo-1 ; last cards:  []
+=> pre play card:  bamboo-1 hand:  ['bamboo-1', 'characters-5', 'dots-5', 'characters-6', 'bamboo-3', 'characters-2', 'dots-1', 'characters-5']
+==> post play card:  bamboo-1 hand:  ['characters-5', 'dots-5', 'characters-6', 'bamboo-3', 'characters-2', 'dots-1', 'characters-5']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  83
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1
+=> dealer: cards left83
+=> player: 0
+=> current_hand: bamboo-2 idx=1,dragons-white idx=2,dots-2 idx=1,dragons-green idx=0,bamboo-4 idx=3,characters-9 idx=8,bamboo-7 idx=6,dots-9 idx=8
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-2 idx=1,dragons-white idx=2,dots-2 idx=1,dragons-green idx=0,bamboo-4 idx=3,characters-9 idx=8,bamboo-7 idx=6,dots-9 idx=8
+right now, the last state added to history had 84 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: bamboo-2 ; last cards:  []
+=> pre play card:  bamboo-2 hand:  ['bamboo-2', 'dragons-white', 'dots-2', 'dragons-green', 'bamboo-4', 'characters-9', 'bamboo-7', 'dots-9']
+==> post play card:  bamboo-2 hand:  ['dragons-white', 'dots-2', 'dragons-green', 'bamboo-4', 'characters-9', 'bamboo-7', 'dots-9']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  82
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2
+=> dealer: cards left82
+=> player: 1
+=> current_hand: characters-9 idx=8,dots-4 idx=3,characters-4 idx=3,characters-2 idx=1,dots-8 idx=7,bamboo-3 idx=2,characters-7 idx=6,bamboo-7 idx=6
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-9 idx=8,dots-4 idx=3,characters-4 idx=3,characters-2 idx=1,dots-8 idx=7,bamboo-3 idx=2,characters-7 idx=6,bamboo-7 idx=6
+right now, the last state added to history had 83 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: characters-9 ; last cards:  []
+=> pre play card:  characters-9 hand:  ['characters-9', 'dots-4', 'characters-4', 'characters-2', 'dots-8', 'bamboo-3', 'characters-7', 'bamboo-7']
+==> post play card:  characters-9 hand:  ['dots-4', 'characters-4', 'characters-2', 'dots-8', 'bamboo-3', 'characters-7', 'bamboo-7']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  81
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9
+=> dealer: cards left81
+=> player: 2
+=> current_hand: bamboo-5 idx=4,bamboo-5 idx=4,characters-1 idx=0,dots-3 idx=2,characters-2 idx=1,dots-3 idx=2,dots-4 idx=3,bamboo-2 idx=1
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-5 idx=4,bamboo-5 idx=4,characters-1 idx=0,dots-3 idx=2,characters-2 idx=1,dots-3 idx=2,dots-4 idx=3,bamboo-2 idx=1
+right now, the last state added to history had 82 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: bamboo-5 ; last cards:  []
+=> pre play card:  bamboo-5 hand:  ['bamboo-5', 'bamboo-5', 'characters-1', 'dots-3', 'characters-2', 'dots-3', 'dots-4', 'bamboo-2']
+==> post play card:  bamboo-5 hand:  ['bamboo-5', 'characters-1', 'dots-3', 'characters-2', 'dots-3', 'dots-4', 'bamboo-2']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  80
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5
+=> dealer: cards left80
+=> player: 3
+=> current_hand: characters-5 idx=4,dots-5 idx=4,characters-6 idx=5,bamboo-3 idx=2,characters-2 idx=1,dots-1 idx=0,characters-5 idx=4,bamboo-3 idx=2
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-5 idx=4,dots-5 idx=4,characters-6 idx=5,bamboo-3 idx=2,characters-2 idx=1,dots-1 idx=0,characters-5 idx=4,bamboo-3 idx=2
+right now, the last state added to history had 81 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: characters-5 ; last cards:  []
+=> pre play card:  characters-5 hand:  ['characters-5', 'dots-5', 'characters-6', 'bamboo-3', 'characters-2', 'dots-1', 'characters-5', 'bamboo-3']
+==> post play card:  characters-5 hand:  ['dots-5', 'characters-6', 'bamboo-3', 'characters-2', 'dots-1', 'characters-5', 'bamboo-3']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  79
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5
+=> dealer: cards left79
+=> player: 0
+=> current_hand: dragons-white idx=2,dots-2 idx=1,dragons-green idx=0,bamboo-4 idx=3,characters-9 idx=8,bamboo-7 idx=6,dots-9 idx=8,bamboo-9 idx=8
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dragons-white idx=2,dots-2 idx=1,dragons-green idx=0,bamboo-4 idx=3,characters-9 idx=8,bamboo-7 idx=6,dots-9 idx=8,bamboo-9 idx=8
+right now, the last state added to history had 80 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: dragons-white ; last cards:  []
+=> pre play card:  dragons-white hand:  ['dragons-white', 'dots-2', 'dragons-green', 'bamboo-4', 'characters-9', 'bamboo-7', 'dots-9', 'bamboo-9']
+==> post play card:  dragons-white hand:  ['dots-2', 'dragons-green', 'bamboo-4', 'characters-9', 'bamboo-7', 'dots-9', 'bamboo-9']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  78
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white
+=> dealer: cards left78
+=> player: 1
+=> current_hand: dots-4 idx=3,characters-4 idx=3,characters-2 idx=1,dots-8 idx=7,bamboo-3 idx=2,characters-7 idx=6,bamboo-7 idx=6,characters-2 idx=1
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-4 idx=3,characters-4 idx=3,characters-2 idx=1,dots-8 idx=7,bamboo-3 idx=2,characters-7 idx=6,bamboo-7 idx=6,characters-2 idx=1
+right now, the last state added to history had 79 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: dots-4 ; last cards:  []
+=> pre play card:  dots-4 hand:  ['dots-4', 'characters-4', 'characters-2', 'dots-8', 'bamboo-3', 'characters-7', 'bamboo-7', 'characters-2']
+==> post play card:  dots-4 hand:  ['characters-4', 'characters-2', 'dots-8', 'bamboo-3', 'characters-7', 'bamboo-7', 'characters-2']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  77
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4
+=> dealer: cards left77
+=> player: 2
+=> current_hand: bamboo-5 idx=4,characters-1 idx=0,dots-3 idx=2,characters-2 idx=1,dots-3 idx=2,dots-4 idx=3,bamboo-2 idx=1,bamboo-8 idx=7
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-5 idx=4,characters-1 idx=0,dots-3 idx=2,characters-2 idx=1,dots-3 idx=2,dots-4 idx=3,bamboo-2 idx=1,bamboo-8 idx=7
+right now, the last state added to history had 78 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: bamboo-5 ; last cards:  []
+=> pre play card:  bamboo-5 hand:  ['bamboo-5', 'characters-1', 'dots-3', 'characters-2', 'dots-3', 'dots-4', 'bamboo-2', 'bamboo-8']
+==> post play card:  bamboo-5 hand:  ['characters-1', 'dots-3', 'characters-2', 'dots-3', 'dots-4', 'bamboo-2', 'bamboo-8']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  76
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5
+=> dealer: cards left76
+=> player: 3
+=> current_hand: dots-5 idx=4,characters-6 idx=5,bamboo-3 idx=2,characters-2 idx=1,dots-1 idx=0,characters-5 idx=4,bamboo-3 idx=2,bamboo-2 idx=1
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-5 idx=4,characters-6 idx=5,bamboo-3 idx=2,characters-2 idx=1,dots-1 idx=0,characters-5 idx=4,bamboo-3 idx=2,bamboo-2 idx=1
+right now, the last state added to history had 77 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: dots-5 ; last cards:  []
+=> pre play card:  dots-5 hand:  ['dots-5', 'characters-6', 'bamboo-3', 'characters-2', 'dots-1', 'characters-5', 'bamboo-3', 'bamboo-2']
+==> post play card:  dots-5 hand:  ['characters-6', 'bamboo-3', 'characters-2', 'dots-1', 'characters-5', 'bamboo-3', 'bamboo-2']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  75
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5
+=> dealer: cards left75
+=> player: 0
+=> current_hand: dots-2 idx=1,dragons-green idx=0,bamboo-4 idx=3,characters-9 idx=8,bamboo-7 idx=6,dots-9 idx=8,bamboo-9 idx=8,characters-7 idx=6
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-2 idx=1,dragons-green idx=0,bamboo-4 idx=3,characters-9 idx=8,bamboo-7 idx=6,dots-9 idx=8,bamboo-9 idx=8,characters-7 idx=6
+right now, the last state added to history had 76 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: dots-2 ; last cards:  []
+=> pre play card:  dots-2 hand:  ['dots-2', 'dragons-green', 'bamboo-4', 'characters-9', 'bamboo-7', 'dots-9', 'bamboo-9', 'characters-7']
+==> post play card:  dots-2 hand:  ['dragons-green', 'bamboo-4', 'characters-9', 'bamboo-7', 'dots-9', 'bamboo-9', 'characters-7']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  74
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2
+=> dealer: cards left74
+=> player: 1
+=> current_hand: characters-4 idx=3,characters-2 idx=1,dots-8 idx=7,bamboo-3 idx=2,characters-7 idx=6,bamboo-7 idx=6,characters-2 idx=1,dots-4 idx=3
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-4 idx=3,characters-2 idx=1,dots-8 idx=7,bamboo-3 idx=2,characters-7 idx=6,bamboo-7 idx=6,characters-2 idx=1,dots-4 idx=3
+right now, the last state added to history had 75 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: characters-4 ; last cards:  []
+=> pre play card:  characters-4 hand:  ['characters-4', 'characters-2', 'dots-8', 'bamboo-3', 'characters-7', 'bamboo-7', 'characters-2', 'dots-4']
+==> post play card:  characters-4 hand:  ['characters-2', 'dots-8', 'bamboo-3', 'characters-7', 'bamboo-7', 'characters-2', 'dots-4']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  73
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4
+=> dealer: cards left73
+=> player: 2
+=> current_hand: characters-1 idx=0,dots-3 idx=2,characters-2 idx=1,dots-3 idx=2,dots-4 idx=3,bamboo-2 idx=1,bamboo-8 idx=7,dots-5 idx=4
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-1 idx=0,dots-3 idx=2,characters-2 idx=1,dots-3 idx=2,dots-4 idx=3,bamboo-2 idx=1,bamboo-8 idx=7,dots-5 idx=4
+right now, the last state added to history had 74 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: characters-1 ; last cards:  []
+=> pre play card:  characters-1 hand:  ['characters-1', 'dots-3', 'characters-2', 'dots-3', 'dots-4', 'bamboo-2', 'bamboo-8', 'dots-5']
+==> post play card:  characters-1 hand:  ['dots-3', 'characters-2', 'dots-3', 'dots-4', 'bamboo-2', 'bamboo-8', 'dots-5']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  72
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1
+=> dealer: cards left72
+=> player: 3
+=> current_hand: characters-6 idx=5,bamboo-3 idx=2,characters-2 idx=1,dots-1 idx=0,characters-5 idx=4,bamboo-3 idx=2,bamboo-2 idx=1,characters-8 idx=7
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-6 idx=5,bamboo-3 idx=2,characters-2 idx=1,dots-1 idx=0,characters-5 idx=4,bamboo-3 idx=2,bamboo-2 idx=1,characters-8 idx=7
+right now, the last state added to history had 73 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: characters-6 ; last cards:  []
+=> pre play card:  characters-6 hand:  ['characters-6', 'bamboo-3', 'characters-2', 'dots-1', 'characters-5', 'bamboo-3', 'bamboo-2', 'characters-8']
+==> post play card:  characters-6 hand:  ['bamboo-3', 'characters-2', 'dots-1', 'characters-5', 'bamboo-3', 'bamboo-2', 'characters-8']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  71
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6
+=> dealer: cards left71
+=> player: 0
+=> current_hand: dragons-green idx=0,bamboo-4 idx=3,characters-9 idx=8,bamboo-7 idx=6,dots-9 idx=8,bamboo-9 idx=8,characters-7 idx=6,bamboo-7 idx=6
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dragons-green idx=0,bamboo-4 idx=3,characters-9 idx=8,bamboo-7 idx=6,dots-9 idx=8,bamboo-9 idx=8,characters-7 idx=6,bamboo-7 idx=6
+right now, the last state added to history had 72 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: dragons-green ; last cards:  []
+=> pre play card:  dragons-green hand:  ['dragons-green', 'bamboo-4', 'characters-9', 'bamboo-7', 'dots-9', 'bamboo-9', 'characters-7', 'bamboo-7']
+==> post play card:  dragons-green hand:  ['bamboo-4', 'characters-9', 'bamboo-7', 'dots-9', 'bamboo-9', 'characters-7', 'bamboo-7']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  70
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green
+=> dealer: cards left70
+=> player: 1
+=> current_hand: characters-2 idx=1,dots-8 idx=7,bamboo-3 idx=2,characters-7 idx=6,bamboo-7 idx=6,characters-2 idx=1,dots-4 idx=3,bamboo-4 idx=3
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-2 idx=1,dots-8 idx=7,bamboo-3 idx=2,characters-7 idx=6,bamboo-7 idx=6,characters-2 idx=1,dots-4 idx=3,bamboo-4 idx=3
+right now, the last state added to history had 71 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: characters-2 ; last cards:  []
+=> pre play card:  characters-2 hand:  ['characters-2', 'dots-8', 'bamboo-3', 'characters-7', 'bamboo-7', 'characters-2', 'dots-4', 'bamboo-4']
+==> post play card:  characters-2 hand:  ['dots-8', 'bamboo-3', 'characters-7', 'bamboo-7', 'characters-2', 'dots-4', 'bamboo-4']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  69
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2
+=> dealer: cards left69
+=> player: 2
+=> current_hand: dots-3 idx=2,characters-2 idx=1,dots-3 idx=2,dots-4 idx=3,bamboo-2 idx=1,bamboo-8 idx=7,dots-5 idx=4,dots-8 idx=7
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-3 idx=2,characters-2 idx=1,dots-3 idx=2,dots-4 idx=3,bamboo-2 idx=1,bamboo-8 idx=7,dots-5 idx=4,dots-8 idx=7
+right now, the last state added to history had 70 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: dots-3 ; last cards:  []
+=> pre play card:  dots-3 hand:  ['dots-3', 'characters-2', 'dots-3', 'dots-4', 'bamboo-2', 'bamboo-8', 'dots-5', 'dots-8']
+==> post play card:  dots-3 hand:  ['characters-2', 'dots-3', 'dots-4', 'bamboo-2', 'bamboo-8', 'dots-5', 'dots-8']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  68
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3
+=> dealer: cards left68
+=> player: 3
+=> current_hand: bamboo-3 idx=2,characters-2 idx=1,dots-1 idx=0,characters-5 idx=4,bamboo-3 idx=2,bamboo-2 idx=1,characters-8 idx=7,dots-2 idx=1
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-3 idx=2,characters-2 idx=1,dots-1 idx=0,characters-5 idx=4,bamboo-3 idx=2,bamboo-2 idx=1,characters-8 idx=7,dots-2 idx=1
+right now, the last state added to history had 69 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: bamboo-3 ; last cards:  []
+=> pre play card:  bamboo-3 hand:  ['bamboo-3', 'characters-2', 'dots-1', 'characters-5', 'bamboo-3', 'bamboo-2', 'characters-8', 'dots-2']
+==> post play card:  bamboo-3 hand:  ['characters-2', 'dots-1', 'characters-5', 'bamboo-3', 'bamboo-2', 'characters-8', 'dots-2']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  67
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3
+=> dealer: cards left67
+=> player: 0
+=> current_hand: bamboo-4 idx=3,characters-9 idx=8,bamboo-7 idx=6,dots-9 idx=8,bamboo-9 idx=8,characters-7 idx=6,bamboo-7 idx=6,characters-8 idx=7
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-4 idx=3,characters-9 idx=8,bamboo-7 idx=6,dots-9 idx=8,bamboo-9 idx=8,characters-7 idx=6,bamboo-7 idx=6,characters-8 idx=7
+right now, the last state added to history had 68 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: bamboo-4 ; last cards:  []
+=> pre play card:  bamboo-4 hand:  ['bamboo-4', 'characters-9', 'bamboo-7', 'dots-9', 'bamboo-9', 'characters-7', 'bamboo-7', 'characters-8']
+==> post play card:  bamboo-4 hand:  ['characters-9', 'bamboo-7', 'dots-9', 'bamboo-9', 'characters-7', 'bamboo-7', 'characters-8']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  66
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4
+=> dealer: cards left66
+=> player: 1
+=> current_hand: dots-8 idx=7,bamboo-3 idx=2,characters-7 idx=6,bamboo-7 idx=6,characters-2 idx=1,dots-4 idx=3,bamboo-4 idx=3,dots-6 idx=5
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-8 idx=7,bamboo-3 idx=2,characters-7 idx=6,bamboo-7 idx=6,characters-2 idx=1,dots-4 idx=3,bamboo-4 idx=3,dots-6 idx=5
+right now, the last state added to history had 67 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: dots-8 ; last cards:  []
+=> pre play card:  dots-8 hand:  ['dots-8', 'bamboo-3', 'characters-7', 'bamboo-7', 'characters-2', 'dots-4', 'bamboo-4', 'dots-6']
+==> post play card:  dots-8 hand:  ['bamboo-3', 'characters-7', 'bamboo-7', 'characters-2', 'dots-4', 'bamboo-4', 'dots-6']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  65
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8
+=> dealer: cards left65
+=> player: 2
+=> current_hand: characters-2 idx=1,dots-3 idx=2,dots-4 idx=3,bamboo-2 idx=1,bamboo-8 idx=7,dots-5 idx=4,dots-8 idx=7,dragons-white idx=2
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-2 idx=1,dots-3 idx=2,dots-4 idx=3,bamboo-2 idx=1,bamboo-8 idx=7,dots-5 idx=4,dots-8 idx=7,dragons-white idx=2
+right now, the last state added to history had 66 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: characters-2 ; last cards:  []
+=> pre play card:  characters-2 hand:  ['characters-2', 'dots-3', 'dots-4', 'bamboo-2', 'bamboo-8', 'dots-5', 'dots-8', 'dragons-white']
+==> post play card:  characters-2 hand:  ['dots-3', 'dots-4', 'bamboo-2', 'bamboo-8', 'dots-5', 'dots-8', 'dragons-white']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  64
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2
+=> dealer: cards left64
+=> player: 3
+=> current_hand: characters-2 idx=1,dots-1 idx=0,characters-5 idx=4,bamboo-3 idx=2,bamboo-2 idx=1,characters-8 idx=7,dots-2 idx=1,dots-2 idx=1
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-2 idx=1,dots-1 idx=0,characters-5 idx=4,bamboo-3 idx=2,bamboo-2 idx=1,characters-8 idx=7,dots-2 idx=1,dots-2 idx=1
+right now, the last state added to history had 65 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: characters-2 ; last cards:  []
+=> pre play card:  characters-2 hand:  ['characters-2', 'dots-1', 'characters-5', 'bamboo-3', 'bamboo-2', 'characters-8', 'dots-2', 'dots-2']
+==> post play card:  characters-2 hand:  ['dots-1', 'characters-5', 'bamboo-3', 'bamboo-2', 'characters-8', 'dots-2', 'dots-2']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  63
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2
+=> dealer: cards left63
+=> player: 0
+=> current_hand: characters-9 idx=8,bamboo-7 idx=6,dots-9 idx=8,bamboo-9 idx=8,characters-7 idx=6,bamboo-7 idx=6,characters-8 idx=7,characters-9 idx=8
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-9 idx=8,bamboo-7 idx=6,dots-9 idx=8,bamboo-9 idx=8,characters-7 idx=6,bamboo-7 idx=6,characters-8 idx=7,characters-9 idx=8
+right now, the last state added to history had 64 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: characters-9 ; last cards:  []
+=> pre play card:  characters-9 hand:  ['characters-9', 'bamboo-7', 'dots-9', 'bamboo-9', 'characters-7', 'bamboo-7', 'characters-8', 'characters-9']
+==> post play card:  characters-9 hand:  ['bamboo-7', 'dots-9', 'bamboo-9', 'characters-7', 'bamboo-7', 'characters-8', 'characters-9']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  62
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9
+=> dealer: cards left62
+=> player: 1
+=> current_hand: bamboo-3 idx=2,characters-7 idx=6,bamboo-7 idx=6,characters-2 idx=1,dots-4 idx=3,bamboo-4 idx=3,dots-6 idx=5,bamboo-4 idx=3
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-3 idx=2,characters-7 idx=6,bamboo-7 idx=6,characters-2 idx=1,dots-4 idx=3,bamboo-4 idx=3,dots-6 idx=5,bamboo-4 idx=3
+right now, the last state added to history had 63 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: bamboo-3 ; last cards:  []
+=> pre play card:  bamboo-3 hand:  ['bamboo-3', 'characters-7', 'bamboo-7', 'characters-2', 'dots-4', 'bamboo-4', 'dots-6', 'bamboo-4']
+==> post play card:  bamboo-3 hand:  ['characters-7', 'bamboo-7', 'characters-2', 'dots-4', 'bamboo-4', 'dots-6', 'bamboo-4']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  61
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3
+=> dealer: cards left61
+=> player: 2
+=> current_hand: dots-3 idx=2,dots-4 idx=3,bamboo-2 idx=1,bamboo-8 idx=7,dots-5 idx=4,dots-8 idx=7,dragons-white idx=2,dragons-white idx=2
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-3 idx=2,dots-4 idx=3,bamboo-2 idx=1,bamboo-8 idx=7,dots-5 idx=4,dots-8 idx=7,dragons-white idx=2,dragons-white idx=2
+right now, the last state added to history had 62 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: dots-3 ; last cards:  []
+=> pre play card:  dots-3 hand:  ['dots-3', 'dots-4', 'bamboo-2', 'bamboo-8', 'dots-5', 'dots-8', 'dragons-white', 'dragons-white']
+==> post play card:  dots-3 hand:  ['dots-4', 'bamboo-2', 'bamboo-8', 'dots-5', 'dots-8', 'dragons-white', 'dragons-white']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  60
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3
+=> dealer: cards left60
+=> player: 3
+=> current_hand: dots-1 idx=0,characters-5 idx=4,bamboo-3 idx=2,bamboo-2 idx=1,characters-8 idx=7,dots-2 idx=1,dots-2 idx=1,dots-6 idx=5
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-1 idx=0,characters-5 idx=4,bamboo-3 idx=2,bamboo-2 idx=1,characters-8 idx=7,dots-2 idx=1,dots-2 idx=1,dots-6 idx=5
+right now, the last state added to history had 61 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: dots-1 ; last cards:  []
+=> pre play card:  dots-1 hand:  ['dots-1', 'characters-5', 'bamboo-3', 'bamboo-2', 'characters-8', 'dots-2', 'dots-2', 'dots-6']
+==> post play card:  dots-1 hand:  ['characters-5', 'bamboo-3', 'bamboo-2', 'characters-8', 'dots-2', 'dots-2', 'dots-6']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  59
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1
+=> dealer: cards left59
+=> player: 0
+=> current_hand: bamboo-7 idx=6,dots-9 idx=8,bamboo-9 idx=8,characters-7 idx=6,bamboo-7 idx=6,characters-8 idx=7,characters-9 idx=8,bamboo-6 idx=5
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-7 idx=6,dots-9 idx=8,bamboo-9 idx=8,characters-7 idx=6,bamboo-7 idx=6,characters-8 idx=7,characters-9 idx=8,bamboo-6 idx=5
+right now, the last state added to history had 60 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: bamboo-7 ; last cards:  []
+=> pre play card:  bamboo-7 hand:  ['bamboo-7', 'dots-9', 'bamboo-9', 'characters-7', 'bamboo-7', 'characters-8', 'characters-9', 'bamboo-6']
+==> post play card:  bamboo-7 hand:  ['dots-9', 'bamboo-9', 'characters-7', 'bamboo-7', 'characters-8', 'characters-9', 'bamboo-6']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  58
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7
+=> dealer: cards left58
+=> player: 1
+=> current_hand: characters-7 idx=6,bamboo-7 idx=6,characters-2 idx=1,dots-4 idx=3,bamboo-4 idx=3,dots-6 idx=5,bamboo-4 idx=3,dots-1 idx=0
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-7 idx=6,bamboo-7 idx=6,characters-2 idx=1,dots-4 idx=3,bamboo-4 idx=3,dots-6 idx=5,bamboo-4 idx=3,dots-1 idx=0
+right now, the last state added to history had 59 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: characters-7 ; last cards:  []
+=> pre play card:  characters-7 hand:  ['characters-7', 'bamboo-7', 'characters-2', 'dots-4', 'bamboo-4', 'dots-6', 'bamboo-4', 'dots-1']
+==> post play card:  characters-7 hand:  ['bamboo-7', 'characters-2', 'dots-4', 'bamboo-4', 'dots-6', 'bamboo-4', 'dots-1']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  57
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7
+=> dealer: cards left57
+=> player: 2
+=> current_hand: dots-4 idx=3,bamboo-2 idx=1,bamboo-8 idx=7,dots-5 idx=4,dots-8 idx=7,dragons-white idx=2,dragons-white idx=2,characters-3 idx=2
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-4 idx=3,bamboo-2 idx=1,bamboo-8 idx=7,dots-5 idx=4,dots-8 idx=7,dragons-white idx=2,dragons-white idx=2,characters-3 idx=2
+right now, the last state added to history had 58 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: dots-4 ; last cards:  []
+=> pre play card:  dots-4 hand:  ['dots-4', 'bamboo-2', 'bamboo-8', 'dots-5', 'dots-8', 'dragons-white', 'dragons-white', 'characters-3']
+==> post play card:  dots-4 hand:  ['bamboo-2', 'bamboo-8', 'dots-5', 'dots-8', 'dragons-white', 'dragons-white', 'characters-3']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  56
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4
+=> dealer: cards left56
+=> player: 3
+=> current_hand: characters-5 idx=4,bamboo-3 idx=2,bamboo-2 idx=1,characters-8 idx=7,dots-2 idx=1,dots-2 idx=1,dots-6 idx=5,dragons-red idx=1
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-5 idx=4,bamboo-3 idx=2,bamboo-2 idx=1,characters-8 idx=7,dots-2 idx=1,dots-2 idx=1,dots-6 idx=5,dragons-red idx=1
+right now, the last state added to history had 57 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: characters-5 ; last cards:  []
+=> pre play card:  characters-5 hand:  ['characters-5', 'bamboo-3', 'bamboo-2', 'characters-8', 'dots-2', 'dots-2', 'dots-6', 'dragons-red']
+==> post play card:  characters-5 hand:  ['bamboo-3', 'bamboo-2', 'characters-8', 'dots-2', 'dots-2', 'dots-6', 'dragons-red']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  55
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5
+=> dealer: cards left55
+=> player: 0
+=> current_hand: dots-9 idx=8,bamboo-9 idx=8,characters-7 idx=6,bamboo-7 idx=6,characters-8 idx=7,characters-9 idx=8,bamboo-6 idx=5,dragons-red idx=1
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-9 idx=8,bamboo-9 idx=8,characters-7 idx=6,bamboo-7 idx=6,characters-8 idx=7,characters-9 idx=8,bamboo-6 idx=5,dragons-red idx=1
+right now, the last state added to history had 56 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: dots-9 ; last cards:  []
+=> pre play card:  dots-9 hand:  ['dots-9', 'bamboo-9', 'characters-7', 'bamboo-7', 'characters-8', 'characters-9', 'bamboo-6', 'dragons-red']
+==> post play card:  dots-9 hand:  ['bamboo-9', 'characters-7', 'bamboo-7', 'characters-8', 'characters-9', 'bamboo-6', 'dragons-red']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  54
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9
+=> dealer: cards left54
+=> player: 1
+=> current_hand: bamboo-7 idx=6,characters-2 idx=1,dots-4 idx=3,bamboo-4 idx=3,dots-6 idx=5,bamboo-4 idx=3,dots-1 idx=0,bamboo-4 idx=3
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-7 idx=6,characters-2 idx=1,dots-4 idx=3,bamboo-4 idx=3,dots-6 idx=5,bamboo-4 idx=3,dots-1 idx=0,bamboo-4 idx=3
+right now, the last state added to history had 55 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: bamboo-7 ; last cards:  []
+=> pre play card:  bamboo-7 hand:  ['bamboo-7', 'characters-2', 'dots-4', 'bamboo-4', 'dots-6', 'bamboo-4', 'dots-1', 'bamboo-4']
+==> post play card:  bamboo-7 hand:  ['characters-2', 'dots-4', 'bamboo-4', 'dots-6', 'bamboo-4', 'dots-1', 'bamboo-4']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  53
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7
+=> dealer: cards left53
+=> player: 2
+=> current_hand: bamboo-2 idx=1,bamboo-8 idx=7,dots-5 idx=4,dots-8 idx=7,dragons-white idx=2,dragons-white idx=2,characters-3 idx=2,bamboo-9 idx=8
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-2 idx=1,bamboo-8 idx=7,dots-5 idx=4,dots-8 idx=7,dragons-white idx=2,dragons-white idx=2,characters-3 idx=2,bamboo-9 idx=8
+right now, the last state added to history had 54 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: bamboo-2 ; last cards:  []
+=> pre play card:  bamboo-2 hand:  ['bamboo-2', 'bamboo-8', 'dots-5', 'dots-8', 'dragons-white', 'dragons-white', 'characters-3', 'bamboo-9']
+==> post play card:  bamboo-2 hand:  ['bamboo-8', 'dots-5', 'dots-8', 'dragons-white', 'dragons-white', 'characters-3', 'bamboo-9']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  52
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2
+=> dealer: cards left52
+=> player: 3
+=> current_hand: bamboo-3 idx=2,bamboo-2 idx=1,characters-8 idx=7,dots-2 idx=1,dots-2 idx=1,dots-6 idx=5,dragons-red idx=1,dots-7 idx=6
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-3 idx=2,bamboo-2 idx=1,characters-8 idx=7,dots-2 idx=1,dots-2 idx=1,dots-6 idx=5,dragons-red idx=1,dots-7 idx=6
+right now, the last state added to history had 53 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: bamboo-3 ; last cards:  []
+=> pre play card:  bamboo-3 hand:  ['bamboo-3', 'bamboo-2', 'characters-8', 'dots-2', 'dots-2', 'dots-6', 'dragons-red', 'dots-7']
+==> post play card:  bamboo-3 hand:  ['bamboo-2', 'characters-8', 'dots-2', 'dots-2', 'dots-6', 'dragons-red', 'dots-7']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  51
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3
+=> dealer: cards left51
+=> player: 0
+=> current_hand: bamboo-9 idx=8,characters-7 idx=6,bamboo-7 idx=6,characters-8 idx=7,characters-9 idx=8,bamboo-6 idx=5,dragons-red idx=1,characters-4 idx=3
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-9 idx=8,characters-7 idx=6,bamboo-7 idx=6,characters-8 idx=7,characters-9 idx=8,bamboo-6 idx=5,dragons-red idx=1,characters-4 idx=3
+right now, the last state added to history had 52 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: bamboo-9 ; last cards:  []
+=> pre play card:  bamboo-9 hand:  ['bamboo-9', 'characters-7', 'bamboo-7', 'characters-8', 'characters-9', 'bamboo-6', 'dragons-red', 'characters-4']
+==> post play card:  bamboo-9 hand:  ['characters-7', 'bamboo-7', 'characters-8', 'characters-9', 'bamboo-6', 'dragons-red', 'characters-4']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  50
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9
+=> dealer: cards left50
+=> player: 1
+=> current_hand: characters-2 idx=1,dots-4 idx=3,bamboo-4 idx=3,dots-6 idx=5,bamboo-4 idx=3,dots-1 idx=0,bamboo-4 idx=3,dots-6 idx=5
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-2 idx=1,dots-4 idx=3,bamboo-4 idx=3,dots-6 idx=5,bamboo-4 idx=3,dots-1 idx=0,bamboo-4 idx=3,dots-6 idx=5
+right now, the last state added to history had 51 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: characters-2 ; last cards:  []
+=> pre play card:  characters-2 hand:  ['characters-2', 'dots-4', 'bamboo-4', 'dots-6', 'bamboo-4', 'dots-1', 'bamboo-4', 'dots-6']
+==> post play card:  characters-2 hand:  ['dots-4', 'bamboo-4', 'dots-6', 'bamboo-4', 'dots-1', 'bamboo-4', 'dots-6']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  49
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2
+=> dealer: cards left49
+=> player: 2
+=> current_hand: bamboo-8 idx=7,dots-5 idx=4,dots-8 idx=7,dragons-white idx=2,dragons-white idx=2,characters-3 idx=2,bamboo-9 idx=8,dots-7 idx=6
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-8 idx=7,dots-5 idx=4,dots-8 idx=7,dragons-white idx=2,dragons-white idx=2,characters-3 idx=2,bamboo-9 idx=8,dots-7 idx=6
+right now, the last state added to history had 50 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: bamboo-8 ; last cards:  []
+=> pre play card:  bamboo-8 hand:  ['bamboo-8', 'dots-5', 'dots-8', 'dragons-white', 'dragons-white', 'characters-3', 'bamboo-9', 'dots-7']
+==> post play card:  bamboo-8 hand:  ['dots-5', 'dots-8', 'dragons-white', 'dragons-white', 'characters-3', 'bamboo-9', 'dots-7']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  48
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8
+=> dealer: cards left48
+=> player: 3
+=> current_hand: bamboo-2 idx=1,characters-8 idx=7,dots-2 idx=1,dots-2 idx=1,dots-6 idx=5,dragons-red idx=1,dots-7 idx=6,dots-4 idx=3
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-2 idx=1,characters-8 idx=7,dots-2 idx=1,dots-2 idx=1,dots-6 idx=5,dragons-red idx=1,dots-7 idx=6,dots-4 idx=3
+right now, the last state added to history had 49 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: bamboo-2 ; last cards:  []
+=> pre play card:  bamboo-2 hand:  ['bamboo-2', 'characters-8', 'dots-2', 'dots-2', 'dots-6', 'dragons-red', 'dots-7', 'dots-4']
+==> post play card:  bamboo-2 hand:  ['characters-8', 'dots-2', 'dots-2', 'dots-6', 'dragons-red', 'dots-7', 'dots-4']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  47
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2
+=> dealer: cards left47
+=> player: 0
+=> current_hand: characters-7 idx=6,bamboo-7 idx=6,characters-8 idx=7,characters-9 idx=8,bamboo-6 idx=5,dragons-red idx=1,characters-4 idx=3,dragons-white idx=2
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-7 idx=6,bamboo-7 idx=6,characters-8 idx=7,characters-9 idx=8,bamboo-6 idx=5,dragons-red idx=1,characters-4 idx=3,dragons-white idx=2
+right now, the last state added to history had 48 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: characters-7 ; last cards:  []
+=> pre play card:  characters-7 hand:  ['characters-7', 'bamboo-7', 'characters-8', 'characters-9', 'bamboo-6', 'dragons-red', 'characters-4', 'dragons-white']
+==> post play card:  characters-7 hand:  ['bamboo-7', 'characters-8', 'characters-9', 'bamboo-6', 'dragons-red', 'characters-4', 'dragons-white']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  46
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7
+=> dealer: cards left46
+=> player: 1
+=> current_hand: dots-4 idx=3,bamboo-4 idx=3,dots-6 idx=5,bamboo-4 idx=3,dots-1 idx=0,bamboo-4 idx=3,dots-6 idx=5,bamboo-9 idx=8
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-4 idx=3,bamboo-4 idx=3,dots-6 idx=5,bamboo-4 idx=3,dots-1 idx=0,bamboo-4 idx=3,dots-6 idx=5,bamboo-9 idx=8
+right now, the last state added to history had 47 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: dots-4 ; last cards:  []
+=> pre play card:  dots-4 hand:  ['dots-4', 'bamboo-4', 'dots-6', 'bamboo-4', 'dots-1', 'bamboo-4', 'dots-6', 'bamboo-9']
+==> post play card:  dots-4 hand:  ['bamboo-4', 'dots-6', 'bamboo-4', 'dots-1', 'bamboo-4', 'dots-6', 'bamboo-9']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  45
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4
+=> dealer: cards left45
+=> player: 2
+=> current_hand: dots-5 idx=4,dots-8 idx=7,dragons-white idx=2,dragons-white idx=2,characters-3 idx=2,bamboo-9 idx=8,dots-7 idx=6,dragons-green idx=0
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-5 idx=4,dots-8 idx=7,dragons-white idx=2,dragons-white idx=2,characters-3 idx=2,bamboo-9 idx=8,dots-7 idx=6,dragons-green idx=0
+right now, the last state added to history had 46 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: dots-5 ; last cards:  []
+=> pre play card:  dots-5 hand:  ['dots-5', 'dots-8', 'dragons-white', 'dragons-white', 'characters-3', 'bamboo-9', 'dots-7', 'dragons-green']
+==> post play card:  dots-5 hand:  ['dots-8', 'dragons-white', 'dragons-white', 'characters-3', 'bamboo-9', 'dots-7', 'dragons-green']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  44
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5
+=> dealer: cards left44
+=> player: 3
+=> current_hand: characters-8 idx=7,dots-2 idx=1,dots-2 idx=1,dots-6 idx=5,dragons-red idx=1,dots-7 idx=6,dots-4 idx=3,dots-3 idx=2
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-8 idx=7,dots-2 idx=1,dots-2 idx=1,dots-6 idx=5,dragons-red idx=1,dots-7 idx=6,dots-4 idx=3,dots-3 idx=2
+right now, the last state added to history had 45 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: characters-8 ; last cards:  []
+=> pre play card:  characters-8 hand:  ['characters-8', 'dots-2', 'dots-2', 'dots-6', 'dragons-red', 'dots-7', 'dots-4', 'dots-3']
+==> post play card:  characters-8 hand:  ['dots-2', 'dots-2', 'dots-6', 'dragons-red', 'dots-7', 'dots-4', 'dots-3']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  43
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8
+=> dealer: cards left43
+=> player: 0
+=> current_hand: bamboo-7 idx=6,characters-8 idx=7,characters-9 idx=8,bamboo-6 idx=5,dragons-red idx=1,characters-4 idx=3,dragons-white idx=2,characters-8 idx=7
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-7 idx=6,characters-8 idx=7,characters-9 idx=8,bamboo-6 idx=5,dragons-red idx=1,characters-4 idx=3,dragons-white idx=2,characters-8 idx=7
+right now, the last state added to history had 44 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: bamboo-7 ; last cards:  []
+=> pre play card:  bamboo-7 hand:  ['bamboo-7', 'characters-8', 'characters-9', 'bamboo-6', 'dragons-red', 'characters-4', 'dragons-white', 'characters-8']
+==> post play card:  bamboo-7 hand:  ['characters-8', 'characters-9', 'bamboo-6', 'dragons-red', 'characters-4', 'dragons-white', 'characters-8']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  42
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7
+=> dealer: cards left42
+=> player: 1
+=> current_hand: bamboo-4 idx=3,dots-6 idx=5,bamboo-4 idx=3,dots-1 idx=0,bamboo-4 idx=3,dots-6 idx=5,bamboo-9 idx=8,characters-8 idx=7
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-4 idx=3,dots-6 idx=5,bamboo-4 idx=3,dots-1 idx=0,bamboo-4 idx=3,dots-6 idx=5,bamboo-9 idx=8,characters-8 idx=7
+right now, the last state added to history had 43 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: bamboo-4 ; last cards:  []
+=> pre play card:  bamboo-4 hand:  ['bamboo-4', 'dots-6', 'bamboo-4', 'dots-1', 'bamboo-4', 'dots-6', 'bamboo-9', 'characters-8']
+==> post play card:  bamboo-4 hand:  ['dots-6', 'bamboo-4', 'dots-1', 'bamboo-4', 'dots-6', 'bamboo-9', 'characters-8']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  41
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4
+=> dealer: cards left41
+=> player: 2
+=> current_hand: dots-8 idx=7,dragons-white idx=2,dragons-white idx=2,characters-3 idx=2,bamboo-9 idx=8,dots-7 idx=6,dragons-green idx=0,characters-3 idx=2
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-8 idx=7,dragons-white idx=2,dragons-white idx=2,characters-3 idx=2,bamboo-9 idx=8,dots-7 idx=6,dragons-green idx=0,characters-3 idx=2
+right now, the last state added to history had 42 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: dots-8 ; last cards:  []
+=> pre play card:  dots-8 hand:  ['dots-8', 'dragons-white', 'dragons-white', 'characters-3', 'bamboo-9', 'dots-7', 'dragons-green', 'characters-3']
+==> post play card:  dots-8 hand:  ['dragons-white', 'dragons-white', 'characters-3', 'bamboo-9', 'dots-7', 'dragons-green', 'characters-3']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  40
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8
+=> dealer: cards left40
+=> player: 3
+=> current_hand: dots-2 idx=1,dots-2 idx=1,dots-6 idx=5,dragons-red idx=1,dots-7 idx=6,dots-4 idx=3,dots-3 idx=2,characters-3 idx=2
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-2 idx=1,dots-2 idx=1,dots-6 idx=5,dragons-red idx=1,dots-7 idx=6,dots-4 idx=3,dots-3 idx=2,characters-3 idx=2
+right now, the last state added to history had 41 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: dots-2 ; last cards:  []
+=> pre play card:  dots-2 hand:  ['dots-2', 'dots-2', 'dots-6', 'dragons-red', 'dots-7', 'dots-4', 'dots-3', 'characters-3']
+==> post play card:  dots-2 hand:  ['dots-2', 'dots-6', 'dragons-red', 'dots-7', 'dots-4', 'dots-3', 'characters-3']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  39
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2
+=> dealer: cards left39
+=> player: 0
+=> current_hand: characters-8 idx=7,characters-9 idx=8,bamboo-6 idx=5,dragons-red idx=1,characters-4 idx=3,dragons-white idx=2,characters-8 idx=7,characters-6 idx=5
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-8 idx=7,characters-9 idx=8,bamboo-6 idx=5,dragons-red idx=1,characters-4 idx=3,dragons-white idx=2,characters-8 idx=7,characters-6 idx=5
+right now, the last state added to history had 40 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: characters-8 ; last cards:  []
+=> pre play card:  characters-8 hand:  ['characters-8', 'characters-9', 'bamboo-6', 'dragons-red', 'characters-4', 'dragons-white', 'characters-8', 'characters-6']
+==> post play card:  characters-8 hand:  ['characters-9', 'bamboo-6', 'dragons-red', 'characters-4', 'dragons-white', 'characters-8', 'characters-6']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  38
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8
+=> dealer: cards left38
+=> player: 1
+=> current_hand: dots-6 idx=5,bamboo-4 idx=3,dots-1 idx=0,bamboo-4 idx=3,dots-6 idx=5,bamboo-9 idx=8,characters-8 idx=7,bamboo-8 idx=7
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-6 idx=5,bamboo-4 idx=3,dots-1 idx=0,bamboo-4 idx=3,dots-6 idx=5,bamboo-9 idx=8,characters-8 idx=7,bamboo-8 idx=7
+right now, the last state added to history had 39 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: dots-6 ; last cards:  []
+=> pre play card:  dots-6 hand:  ['dots-6', 'bamboo-4', 'dots-1', 'bamboo-4', 'dots-6', 'bamboo-9', 'characters-8', 'bamboo-8']
+==> post play card:  dots-6 hand:  ['bamboo-4', 'dots-1', 'bamboo-4', 'dots-6', 'bamboo-9', 'characters-8', 'bamboo-8']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  37
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6
+=> dealer: cards left37
+=> player: 2
+=> current_hand: dragons-white idx=2,dragons-white idx=2,characters-3 idx=2,bamboo-9 idx=8,dots-7 idx=6,dragons-green idx=0,characters-3 idx=2,dots-7 idx=6
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dragons-white idx=2,dragons-white idx=2,characters-3 idx=2,bamboo-9 idx=8,dots-7 idx=6,dragons-green idx=0,characters-3 idx=2,dots-7 idx=6
+right now, the last state added to history had 38 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: dragons-white ; last cards:  []
+=> pre play card:  dragons-white hand:  ['dragons-white', 'dragons-white', 'characters-3', 'bamboo-9', 'dots-7', 'dragons-green', 'characters-3', 'dots-7']
+==> post play card:  dragons-white hand:  ['dragons-white', 'characters-3', 'bamboo-9', 'dots-7', 'dragons-green', 'characters-3', 'dots-7']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  36
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white
+=> dealer: cards left36
+=> player: 3
+=> current_hand: dots-2 idx=1,dots-6 idx=5,dragons-red idx=1,dots-7 idx=6,dots-4 idx=3,dots-3 idx=2,characters-3 idx=2,bamboo-5 idx=4
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-2 idx=1,dots-6 idx=5,dragons-red idx=1,dots-7 idx=6,dots-4 idx=3,dots-3 idx=2,characters-3 idx=2,bamboo-5 idx=4
+right now, the last state added to history had 37 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: dots-2 ; last cards:  []
+=> pre play card:  dots-2 hand:  ['dots-2', 'dots-6', 'dragons-red', 'dots-7', 'dots-4', 'dots-3', 'characters-3', 'bamboo-5']
+==> post play card:  dots-2 hand:  ['dots-6', 'dragons-red', 'dots-7', 'dots-4', 'dots-3', 'characters-3', 'bamboo-5']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  35
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2
+=> dealer: cards left35
+=> player: 0
+=> current_hand: characters-9 idx=8,bamboo-6 idx=5,dragons-red idx=1,characters-4 idx=3,dragons-white idx=2,characters-8 idx=7,characters-6 idx=5,characters-5 idx=4
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-9 idx=8,bamboo-6 idx=5,dragons-red idx=1,characters-4 idx=3,dragons-white idx=2,characters-8 idx=7,characters-6 idx=5,characters-5 idx=4
+right now, the last state added to history had 36 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: characters-9 ; last cards:  []
+=> pre play card:  characters-9 hand:  ['characters-9', 'bamboo-6', 'dragons-red', 'characters-4', 'dragons-white', 'characters-8', 'characters-6', 'characters-5']
+==> post play card:  characters-9 hand:  ['bamboo-6', 'dragons-red', 'characters-4', 'dragons-white', 'characters-8', 'characters-6', 'characters-5']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  34
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9
+=> dealer: cards left34
+=> player: 1
+=> current_hand: bamboo-4 idx=3,dots-1 idx=0,bamboo-4 idx=3,dots-6 idx=5,bamboo-9 idx=8,characters-8 idx=7,bamboo-8 idx=7,bamboo-6 idx=5
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-4 idx=3,dots-1 idx=0,bamboo-4 idx=3,dots-6 idx=5,bamboo-9 idx=8,characters-8 idx=7,bamboo-8 idx=7,bamboo-6 idx=5
+right now, the last state added to history had 35 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: bamboo-4 ; last cards:  []
+=> pre play card:  bamboo-4 hand:  ['bamboo-4', 'dots-1', 'bamboo-4', 'dots-6', 'bamboo-9', 'characters-8', 'bamboo-8', 'bamboo-6']
+==> post play card:  bamboo-4 hand:  ['dots-1', 'bamboo-4', 'dots-6', 'bamboo-9', 'characters-8', 'bamboo-8', 'bamboo-6']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  33
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4
+=> dealer: cards left33
+=> player: 2
+=> current_hand: dragons-white idx=2,characters-3 idx=2,bamboo-9 idx=8,dots-7 idx=6,dragons-green idx=0,characters-3 idx=2,dots-7 idx=6,bamboo-9 idx=8
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dragons-white idx=2,characters-3 idx=2,bamboo-9 idx=8,dots-7 idx=6,dragons-green idx=0,characters-3 idx=2,dots-7 idx=6,bamboo-9 idx=8
+right now, the last state added to history had 34 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: dragons-white ; last cards:  []
+=> pre play card:  dragons-white hand:  ['dragons-white', 'characters-3', 'bamboo-9', 'dots-7', 'dragons-green', 'characters-3', 'dots-7', 'bamboo-9']
+==> post play card:  dragons-white hand:  ['characters-3', 'bamboo-9', 'dots-7', 'dragons-green', 'characters-3', 'dots-7', 'bamboo-9']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  32
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white
+=> dealer: cards left32
+=> player: 3
+=> current_hand: dots-6 idx=5,dragons-red idx=1,dots-7 idx=6,dots-4 idx=3,dots-3 idx=2,characters-3 idx=2,bamboo-5 idx=4,dots-5 idx=4
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-6 idx=5,dragons-red idx=1,dots-7 idx=6,dots-4 idx=3,dots-3 idx=2,characters-3 idx=2,bamboo-5 idx=4,dots-5 idx=4
+right now, the last state added to history had 33 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: dots-6 ; last cards:  []
+=> pre play card:  dots-6 hand:  ['dots-6', 'dragons-red', 'dots-7', 'dots-4', 'dots-3', 'characters-3', 'bamboo-5', 'dots-5']
+==> post play card:  dots-6 hand:  ['dragons-red', 'dots-7', 'dots-4', 'dots-3', 'characters-3', 'bamboo-5', 'dots-5']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  31
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6
+=> dealer: cards left31
+=> player: 0
+=> current_hand: bamboo-6 idx=5,dragons-red idx=1,characters-4 idx=3,dragons-white idx=2,characters-8 idx=7,characters-6 idx=5,characters-5 idx=4,bamboo-1 idx=0
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-6 idx=5,dragons-red idx=1,characters-4 idx=3,dragons-white idx=2,characters-8 idx=7,characters-6 idx=5,characters-5 idx=4,bamboo-1 idx=0
+right now, the last state added to history had 32 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: bamboo-6 ; last cards:  []
+=> pre play card:  bamboo-6 hand:  ['bamboo-6', 'dragons-red', 'characters-4', 'dragons-white', 'characters-8', 'characters-6', 'characters-5', 'bamboo-1']
+==> post play card:  bamboo-6 hand:  ['dragons-red', 'characters-4', 'dragons-white', 'characters-8', 'characters-6', 'characters-5', 'bamboo-1']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  30
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6
+=> dealer: cards left30
+=> player: 1
+=> current_hand: dots-1 idx=0,bamboo-4 idx=3,dots-6 idx=5,bamboo-9 idx=8,characters-8 idx=7,bamboo-8 idx=7,bamboo-6 idx=5,bamboo-8 idx=7
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-1 idx=0,bamboo-4 idx=3,dots-6 idx=5,bamboo-9 idx=8,characters-8 idx=7,bamboo-8 idx=7,bamboo-6 idx=5,bamboo-8 idx=7
+right now, the last state added to history had 31 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: dots-1 ; last cards:  []
+=> pre play card:  dots-1 hand:  ['dots-1', 'bamboo-4', 'dots-6', 'bamboo-9', 'characters-8', 'bamboo-8', 'bamboo-6', 'bamboo-8']
+==> post play card:  dots-1 hand:  ['bamboo-4', 'dots-6', 'bamboo-9', 'characters-8', 'bamboo-8', 'bamboo-6', 'bamboo-8']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  29
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1
+=> dealer: cards left29
+=> player: 2
+=> current_hand: characters-3 idx=2,bamboo-9 idx=8,dots-7 idx=6,dragons-green idx=0,characters-3 idx=2,dots-7 idx=6,bamboo-9 idx=8,dots-1 idx=0
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: characters-3 idx=2,bamboo-9 idx=8,dots-7 idx=6,dragons-green idx=0,characters-3 idx=2,dots-7 idx=6,bamboo-9 idx=8,dots-1 idx=0
+right now, the last state added to history had 30 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: characters-3 ; last cards:  []
+=> pre play card:  characters-3 hand:  ['characters-3', 'bamboo-9', 'dots-7', 'dragons-green', 'characters-3', 'dots-7', 'bamboo-9', 'dots-1']
+==> post play card:  characters-3 hand:  ['bamboo-9', 'dots-7', 'dragons-green', 'characters-3', 'dots-7', 'bamboo-9', 'dots-1']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  28
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3
+=> dealer: cards left28
+=> player: 3
+=> current_hand: dragons-red idx=1,dots-7 idx=6,dots-4 idx=3,dots-3 idx=2,characters-3 idx=2,bamboo-5 idx=4,dots-5 idx=4,characters-1 idx=0
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dragons-red idx=1,dots-7 idx=6,dots-4 idx=3,dots-3 idx=2,characters-3 idx=2,bamboo-5 idx=4,dots-5 idx=4,characters-1 idx=0
+right now, the last state added to history had 29 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: dragons-red ; last cards:  []
+=> pre play card:  dragons-red hand:  ['dragons-red', 'dots-7', 'dots-4', 'dots-3', 'characters-3', 'bamboo-5', 'dots-5', 'characters-1']
+==> post play card:  dragons-red hand:  ['dots-7', 'dots-4', 'dots-3', 'characters-3', 'bamboo-5', 'dots-5', 'characters-1']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  27
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red
+=> dealer: cards left27
+=> player: 0
+=> current_hand: dragons-red idx=1,characters-4 idx=3,dragons-white idx=2,characters-8 idx=7,characters-6 idx=5,characters-5 idx=4,bamboo-1 idx=0,bamboo-5 idx=4
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dragons-red idx=1,characters-4 idx=3,dragons-white idx=2,characters-8 idx=7,characters-6 idx=5,characters-5 idx=4,bamboo-1 idx=0,bamboo-5 idx=4
+right now, the last state added to history had 28 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: dragons-red ; last cards:  []
+=> pre play card:  dragons-red hand:  ['dragons-red', 'characters-4', 'dragons-white', 'characters-8', 'characters-6', 'characters-5', 'bamboo-1', 'bamboo-5']
+==> post play card:  dragons-red hand:  ['characters-4', 'dragons-white', 'characters-8', 'characters-6', 'characters-5', 'bamboo-1', 'bamboo-5']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  26
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red
+=> dealer: cards left26
+=> player: 1
+=> current_hand: bamboo-4 idx=3,dots-6 idx=5,bamboo-9 idx=8,characters-8 idx=7,bamboo-8 idx=7,bamboo-6 idx=5,bamboo-8 idx=7,bamboo-7 idx=6
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-4 idx=3,dots-6 idx=5,bamboo-9 idx=8,characters-8 idx=7,bamboo-8 idx=7,bamboo-6 idx=5,bamboo-8 idx=7,bamboo-7 idx=6
+right now, the last state added to history had 27 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: bamboo-4 ; last cards:  []
+=> pre play card:  bamboo-4 hand:  ['bamboo-4', 'dots-6', 'bamboo-9', 'characters-8', 'bamboo-8', 'bamboo-6', 'bamboo-8', 'bamboo-7']
+==> post play card:  bamboo-4 hand:  ['dots-6', 'bamboo-9', 'characters-8', 'bamboo-8', 'bamboo-6', 'bamboo-8', 'bamboo-7']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  25
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4
+=> dealer: cards left25
+=> player: 2
+=> current_hand: bamboo-9 idx=8,dots-7 idx=6,dragons-green idx=0,characters-3 idx=2,dots-7 idx=6,bamboo-9 idx=8,dots-1 idx=0,bamboo-1 idx=0
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: bamboo-9 idx=8,dots-7 idx=6,dragons-green idx=0,characters-3 idx=2,dots-7 idx=6,bamboo-9 idx=8,dots-1 idx=0,bamboo-1 idx=0
+right now, the last state added to history had 26 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: bamboo-9 ; last cards:  []
+=> pre play card:  bamboo-9 hand:  ['bamboo-9', 'dots-7', 'dragons-green', 'characters-3', 'dots-7', 'bamboo-9', 'dots-1', 'bamboo-1']
+==> post play card:  bamboo-9 hand:  ['dots-7', 'dragons-green', 'characters-3', 'dots-7', 'bamboo-9', 'dots-1', 'bamboo-1']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  24
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9
+=> dealer: cards left24
+=> player: 3
+=> current_hand: dots-7 idx=6,dots-4 idx=3,dots-3 idx=2,characters-3 idx=2,bamboo-5 idx=4,dots-5 idx=4,characters-1 idx=0,dots-8 idx=7
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-7 idx=6,dots-4 idx=3,dots-3 idx=2,characters-3 idx=2,bamboo-5 idx=4,dots-5 idx=4,characters-1 idx=0,dots-8 idx=7
+right now, the last state added to history had 25 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: dots-7 ; last cards:  []
+=> pre play card:  dots-7 hand:  ['dots-7', 'dots-4', 'dots-3', 'characters-3', 'bamboo-5', 'dots-5', 'characters-1', 'dots-8']
+==> post play card:  dots-7 hand:  ['dots-4', 'dots-3', 'characters-3', 'bamboo-5', 'dots-5', 'characters-1', 'dots-8']
+Calculated valid_acts:  pong 2 ['dots-7', 'dots-7', 'dots-7']
+END OF ROUND. NOW: cur player:  2  ; last:  3  DECK LEN  24
+
+NEW GAME STATE: 
+=> valid_act: ['pong', 'stand']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7
+=> dealer: cards left24
+=> player: 2
+=> current_hand: dots-7 idx=6,dragons-green idx=0,characters-3 idx=2,dots-7 idx=6,bamboo-9 idx=8,dots-1 idx=0,bamboo-1 idx=0
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: []
+==> 3: []
+=> action-cards: dots-7 idx=6,dots-7 idx=6,dots-7 idx=6
+right now, the last state added to history had 24 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: pong ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre pong:  ['dots-7', 'dots-7', 'dots-7']  hand:  ['dots-7', 'dragons-green', 'characters-3', 'dots-7', 'bamboo-9', 'dots-1', 'bamboo-1']  pile:  []
+==> post pong:  ['dots-7', 'dots-7', 'dots-7']  hand:  ['dragons-green', 'characters-3', 'bamboo-9', 'dots-1', 'bamboo-1']  pile:  [['dots-7', 'dots-7', 'dots-7']]
+END OF ROUND. NOW: cur player:  2  ; last:  2  DECK LEN  24
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7
+=> dealer: cards left24
+=> player: 2
+=> current_hand: dragons-green idx=0,characters-3 idx=2,bamboo-9 idx=8,dots-1 idx=0,bamboo-1 idx=0
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: dragons-green idx=0,characters-3 idx=2,bamboo-9 idx=8,dots-1 idx=0,bamboo-1 idx=0
+right now, the last state added to history had 24 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: dragons-green ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  dragons-green hand:  ['dragons-green', 'characters-3', 'bamboo-9', 'dots-1', 'bamboo-1']
+==> post play card:  dragons-green hand:  ['characters-3', 'bamboo-9', 'dots-1', 'bamboo-1']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  23
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green
+=> dealer: cards left23
+=> player: 3
+=> current_hand: dots-4 idx=3,dots-3 idx=2,characters-3 idx=2,bamboo-5 idx=4,dots-5 idx=4,characters-1 idx=0,dots-8 idx=7,characters-7 idx=6
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: dots-4 idx=3,dots-3 idx=2,characters-3 idx=2,bamboo-5 idx=4,dots-5 idx=4,characters-1 idx=0,dots-8 idx=7,characters-7 idx=6
+right now, the last state added to history had 24 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: dots-4 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  dots-4 hand:  ['dots-4', 'dots-3', 'characters-3', 'bamboo-5', 'dots-5', 'characters-1', 'dots-8', 'characters-7']
+==> post play card:  dots-4 hand:  ['dots-3', 'characters-3', 'bamboo-5', 'dots-5', 'characters-1', 'dots-8', 'characters-7']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  22
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4
+=> dealer: cards left22
+=> player: 0
+=> current_hand: characters-4 idx=3,dragons-white idx=2,characters-8 idx=7,characters-6 idx=5,characters-5 idx=4,bamboo-1 idx=0,bamboo-5 idx=4,dragons-green idx=0
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: characters-4 idx=3,dragons-white idx=2,characters-8 idx=7,characters-6 idx=5,characters-5 idx=4,bamboo-1 idx=0,bamboo-5 idx=4,dragons-green idx=0
+right now, the last state added to history had 23 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: characters-4 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  characters-4 hand:  ['characters-4', 'dragons-white', 'characters-8', 'characters-6', 'characters-5', 'bamboo-1', 'bamboo-5', 'dragons-green']
+==> post play card:  characters-4 hand:  ['dragons-white', 'characters-8', 'characters-6', 'characters-5', 'bamboo-1', 'bamboo-5', 'dragons-green']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  21
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4
+=> dealer: cards left21
+=> player: 1
+=> current_hand: dots-6 idx=5,bamboo-9 idx=8,characters-8 idx=7,bamboo-8 idx=7,bamboo-6 idx=5,bamboo-8 idx=7,bamboo-7 idx=6,bamboo-8 idx=7
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: dots-6 idx=5,bamboo-9 idx=8,characters-8 idx=7,bamboo-8 idx=7,bamboo-6 idx=5,bamboo-8 idx=7,bamboo-7 idx=6,bamboo-8 idx=7
+right now, the last state added to history had 22 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: dots-6 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  dots-6 hand:  ['dots-6', 'bamboo-9', 'characters-8', 'bamboo-8', 'bamboo-6', 'bamboo-8', 'bamboo-7', 'bamboo-8']
+==> post play card:  dots-6 hand:  ['bamboo-9', 'characters-8', 'bamboo-8', 'bamboo-6', 'bamboo-8', 'bamboo-7', 'bamboo-8']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  20
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6
+=> dealer: cards left20
+=> player: 2
+=> current_hand: characters-3 idx=2,bamboo-9 idx=8,dots-1 idx=0,bamboo-1 idx=0,dots-6 idx=5
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: characters-3 idx=2,bamboo-9 idx=8,dots-1 idx=0,bamboo-1 idx=0,dots-6 idx=5
+right now, the last state added to history had 21 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: characters-3 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  characters-3 hand:  ['characters-3', 'bamboo-9', 'dots-1', 'bamboo-1', 'dots-6']
+==> post play card:  characters-3 hand:  ['bamboo-9', 'dots-1', 'bamboo-1', 'dots-6']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  19
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3
+=> dealer: cards left19
+=> player: 3
+=> current_hand: dots-3 idx=2,characters-3 idx=2,bamboo-5 idx=4,dots-5 idx=4,characters-1 idx=0,dots-8 idx=7,characters-7 idx=6,dots-3 idx=2
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: dots-3 idx=2,characters-3 idx=2,bamboo-5 idx=4,dots-5 idx=4,characters-1 idx=0,dots-8 idx=7,characters-7 idx=6,dots-3 idx=2
+right now, the last state added to history had 20 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: dots-3 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  dots-3 hand:  ['dots-3', 'characters-3', 'bamboo-5', 'dots-5', 'characters-1', 'dots-8', 'characters-7', 'dots-3']
+==> post play card:  dots-3 hand:  ['characters-3', 'bamboo-5', 'dots-5', 'characters-1', 'dots-8', 'characters-7', 'dots-3']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  18
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3
+=> dealer: cards left18
+=> player: 0
+=> current_hand: dragons-white idx=2,characters-8 idx=7,characters-6 idx=5,characters-5 idx=4,bamboo-1 idx=0,bamboo-5 idx=4,dragons-green idx=0,dots-5 idx=4
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: dragons-white idx=2,characters-8 idx=7,characters-6 idx=5,characters-5 idx=4,bamboo-1 idx=0,bamboo-5 idx=4,dragons-green idx=0,dots-5 idx=4
+right now, the last state added to history had 19 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: dragons-white ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  dragons-white hand:  ['dragons-white', 'characters-8', 'characters-6', 'characters-5', 'bamboo-1', 'bamboo-5', 'dragons-green', 'dots-5']
+==> post play card:  dragons-white hand:  ['characters-8', 'characters-6', 'characters-5', 'bamboo-1', 'bamboo-5', 'dragons-green', 'dots-5']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  17
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white
+=> dealer: cards left17
+=> player: 1
+=> current_hand: bamboo-9 idx=8,characters-8 idx=7,bamboo-8 idx=7,bamboo-6 idx=5,bamboo-8 idx=7,bamboo-7 idx=6,bamboo-8 idx=7,characters-6 idx=5
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: bamboo-9 idx=8,characters-8 idx=7,bamboo-8 idx=7,bamboo-6 idx=5,bamboo-8 idx=7,bamboo-7 idx=6,bamboo-8 idx=7,characters-6 idx=5
+right now, the last state added to history had 18 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: bamboo-9 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  bamboo-9 hand:  ['bamboo-9', 'characters-8', 'bamboo-8', 'bamboo-6', 'bamboo-8', 'bamboo-7', 'bamboo-8', 'characters-6']
+==> post play card:  bamboo-9 hand:  ['characters-8', 'bamboo-8', 'bamboo-6', 'bamboo-8', 'bamboo-7', 'bamboo-8', 'characters-6']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  16
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9
+=> dealer: cards left16
+=> player: 2
+=> current_hand: bamboo-9 idx=8,dots-1 idx=0,bamboo-1 idx=0,dots-6 idx=5,dots-9 idx=8
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: bamboo-9 idx=8,dots-1 idx=0,bamboo-1 idx=0,dots-6 idx=5,dots-9 idx=8
+right now, the last state added to history had 17 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: bamboo-9 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  bamboo-9 hand:  ['bamboo-9', 'dots-1', 'bamboo-1', 'dots-6', 'dots-9']
+==> post play card:  bamboo-9 hand:  ['dots-1', 'bamboo-1', 'dots-6', 'dots-9']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  15
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9,bamboo-9
+=> dealer: cards left15
+=> player: 3
+=> current_hand: characters-3 idx=2,bamboo-5 idx=4,dots-5 idx=4,characters-1 idx=0,dots-8 idx=7,characters-7 idx=6,dots-3 idx=2,bamboo-1 idx=0
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: characters-3 idx=2,bamboo-5 idx=4,dots-5 idx=4,characters-1 idx=0,dots-8 idx=7,characters-7 idx=6,dots-3 idx=2,bamboo-1 idx=0
+right now, the last state added to history had 16 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: characters-3 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  characters-3 hand:  ['characters-3', 'bamboo-5', 'dots-5', 'characters-1', 'dots-8', 'characters-7', 'dots-3', 'bamboo-1']
+==> post play card:  characters-3 hand:  ['bamboo-5', 'dots-5', 'characters-1', 'dots-8', 'characters-7', 'dots-3', 'bamboo-1']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  14
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9,bamboo-9,characters-3
+=> dealer: cards left14
+=> player: 0
+=> current_hand: characters-8 idx=7,characters-6 idx=5,characters-5 idx=4,bamboo-1 idx=0,bamboo-5 idx=4,dragons-green idx=0,dots-5 idx=4,dots-8 idx=7
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: characters-8 idx=7,characters-6 idx=5,characters-5 idx=4,bamboo-1 idx=0,bamboo-5 idx=4,dragons-green idx=0,dots-5 idx=4,dots-8 idx=7
+right now, the last state added to history had 15 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: characters-8 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  characters-8 hand:  ['characters-8', 'characters-6', 'characters-5', 'bamboo-1', 'bamboo-5', 'dragons-green', 'dots-5', 'dots-8']
+==> post play card:  characters-8 hand:  ['characters-6', 'characters-5', 'bamboo-1', 'bamboo-5', 'dragons-green', 'dots-5', 'dots-8']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  13
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9,bamboo-9,characters-3,characters-8
+=> dealer: cards left13
+=> player: 1
+=> current_hand: characters-8 idx=7,bamboo-8 idx=7,bamboo-6 idx=5,bamboo-8 idx=7,bamboo-7 idx=6,bamboo-8 idx=7,characters-6 idx=5,dots-9 idx=8
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: characters-8 idx=7,bamboo-8 idx=7,bamboo-6 idx=5,bamboo-8 idx=7,bamboo-7 idx=6,bamboo-8 idx=7,characters-6 idx=5,dots-9 idx=8
+right now, the last state added to history had 14 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: characters-8 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  characters-8 hand:  ['characters-8', 'bamboo-8', 'bamboo-6', 'bamboo-8', 'bamboo-7', 'bamboo-8', 'characters-6', 'dots-9']
+==> post play card:  characters-8 hand:  ['bamboo-8', 'bamboo-6', 'bamboo-8', 'bamboo-7', 'bamboo-8', 'characters-6', 'dots-9']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  12
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9,bamboo-9,characters-3,characters-8,characters-8
+=> dealer: cards left12
+=> player: 2
+=> current_hand: dots-1 idx=0,bamboo-1 idx=0,dots-6 idx=5,dots-9 idx=8,dots-9 idx=8
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: dots-1 idx=0,bamboo-1 idx=0,dots-6 idx=5,dots-9 idx=8,dots-9 idx=8
+right now, the last state added to history had 13 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: dots-1 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  dots-1 hand:  ['dots-1', 'bamboo-1', 'dots-6', 'dots-9', 'dots-9']
+==> post play card:  dots-1 hand:  ['bamboo-1', 'dots-6', 'dots-9', 'dots-9']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  11
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9,bamboo-9,characters-3,characters-8,characters-8,dots-1
+=> dealer: cards left11
+=> player: 3
+=> current_hand: bamboo-5 idx=4,dots-5 idx=4,characters-1 idx=0,dots-8 idx=7,characters-7 idx=6,dots-3 idx=2,bamboo-1 idx=0,dragons-red idx=1
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: bamboo-5 idx=4,dots-5 idx=4,characters-1 idx=0,dots-8 idx=7,characters-7 idx=6,dots-3 idx=2,bamboo-1 idx=0,dragons-red idx=1
+right now, the last state added to history had 12 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: bamboo-5 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  bamboo-5 hand:  ['bamboo-5', 'dots-5', 'characters-1', 'dots-8', 'characters-7', 'dots-3', 'bamboo-1', 'dragons-red']
+==> post play card:  bamboo-5 hand:  ['dots-5', 'characters-1', 'dots-8', 'characters-7', 'dots-3', 'bamboo-1', 'dragons-red']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  10
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9,bamboo-9,characters-3,characters-8,characters-8,dots-1,bamboo-5
+=> dealer: cards left10
+=> player: 0
+=> current_hand: characters-6 idx=5,characters-5 idx=4,bamboo-1 idx=0,bamboo-5 idx=4,dragons-green idx=0,dots-5 idx=4,dots-8 idx=7,characters-7 idx=6
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: characters-6 idx=5,characters-5 idx=4,bamboo-1 idx=0,bamboo-5 idx=4,dragons-green idx=0,dots-5 idx=4,dots-8 idx=7,characters-7 idx=6
+right now, the last state added to history had 11 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: characters-6 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  characters-6 hand:  ['characters-6', 'characters-5', 'bamboo-1', 'bamboo-5', 'dragons-green', 'dots-5', 'dots-8', 'characters-7']
+==> post play card:  characters-6 hand:  ['characters-5', 'bamboo-1', 'bamboo-5', 'dragons-green', 'dots-5', 'dots-8', 'characters-7']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  9
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9,bamboo-9,characters-3,characters-8,characters-8,dots-1,bamboo-5,characters-6
+=> dealer: cards left9
+=> player: 1
+=> current_hand: bamboo-8 idx=7,bamboo-6 idx=5,bamboo-8 idx=7,bamboo-7 idx=6,bamboo-8 idx=7,characters-6 idx=5,dots-9 idx=8,bamboo-6 idx=5
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: bamboo-8 idx=7,bamboo-6 idx=5,bamboo-8 idx=7,bamboo-7 idx=6,bamboo-8 idx=7,characters-6 idx=5,dots-9 idx=8,bamboo-6 idx=5
+right now, the last state added to history had 10 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: bamboo-8 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  bamboo-8 hand:  ['bamboo-8', 'bamboo-6', 'bamboo-8', 'bamboo-7', 'bamboo-8', 'characters-6', 'dots-9', 'bamboo-6']
+==> post play card:  bamboo-8 hand:  ['bamboo-6', 'bamboo-8', 'bamboo-7', 'bamboo-8', 'characters-6', 'dots-9', 'bamboo-6']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  8
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9,bamboo-9,characters-3,characters-8,characters-8,dots-1,bamboo-5,characters-6,bamboo-8
+=> dealer: cards left8
+=> player: 2
+=> current_hand: bamboo-1 idx=0,dots-6 idx=5,dots-9 idx=8,dots-9 idx=8,bamboo-2 idx=1
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: bamboo-1 idx=0,dots-6 idx=5,dots-9 idx=8,dots-9 idx=8,bamboo-2 idx=1
+right now, the last state added to history had 9 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: bamboo-1 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  bamboo-1 hand:  ['bamboo-1', 'dots-6', 'dots-9', 'dots-9', 'bamboo-2']
+==> post play card:  bamboo-1 hand:  ['dots-6', 'dots-9', 'dots-9', 'bamboo-2']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  7
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9,bamboo-9,characters-3,characters-8,characters-8,dots-1,bamboo-5,characters-6,bamboo-8,bamboo-1
+=> dealer: cards left7
+=> player: 3
+=> current_hand: dots-5 idx=4,characters-1 idx=0,dots-8 idx=7,characters-7 idx=6,dots-3 idx=2,bamboo-1 idx=0,dragons-red idx=1,dragons-green idx=0
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: dots-5 idx=4,characters-1 idx=0,dots-8 idx=7,characters-7 idx=6,dots-3 idx=2,bamboo-1 idx=0,dragons-red idx=1,dragons-green idx=0
+right now, the last state added to history had 8 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: dots-5 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  dots-5 hand:  ['dots-5', 'characters-1', 'dots-8', 'characters-7', 'dots-3', 'bamboo-1', 'dragons-red', 'dragons-green']
+==> post play card:  dots-5 hand:  ['characters-1', 'dots-8', 'characters-7', 'dots-3', 'bamboo-1', 'dragons-red', 'dragons-green']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  6
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9,bamboo-9,characters-3,characters-8,characters-8,dots-1,bamboo-5,characters-6,bamboo-8,bamboo-1,dots-5
+=> dealer: cards left6
+=> player: 0
+=> current_hand: characters-5 idx=4,bamboo-1 idx=0,bamboo-5 idx=4,dragons-green idx=0,dots-5 idx=4,dots-8 idx=7,characters-7 idx=6,bamboo-6 idx=5
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: characters-5 idx=4,bamboo-1 idx=0,bamboo-5 idx=4,dragons-green idx=0,dots-5 idx=4,dots-8 idx=7,characters-7 idx=6,bamboo-6 idx=5
+right now, the last state added to history had 7 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: characters-5 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  characters-5 hand:  ['characters-5', 'bamboo-1', 'bamboo-5', 'dragons-green', 'dots-5', 'dots-8', 'characters-7', 'bamboo-6']
+==> post play card:  characters-5 hand:  ['bamboo-1', 'bamboo-5', 'dragons-green', 'dots-5', 'dots-8', 'characters-7', 'bamboo-6']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  5
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9,bamboo-9,characters-3,characters-8,characters-8,dots-1,bamboo-5,characters-6,bamboo-8,bamboo-1,dots-5,characters-5
+=> dealer: cards left5
+=> player: 1
+=> current_hand: bamboo-6 idx=5,bamboo-8 idx=7,bamboo-7 idx=6,bamboo-8 idx=7,characters-6 idx=5,dots-9 idx=8,bamboo-6 idx=5,characters-4 idx=3
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: bamboo-6 idx=5,bamboo-8 idx=7,bamboo-7 idx=6,bamboo-8 idx=7,characters-6 idx=5,dots-9 idx=8,bamboo-6 idx=5,characters-4 idx=3
+right now, the last state added to history had 6 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: bamboo-6 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  bamboo-6 hand:  ['bamboo-6', 'bamboo-8', 'bamboo-7', 'bamboo-8', 'characters-6', 'dots-9', 'bamboo-6', 'characters-4']
+==> post play card:  bamboo-6 hand:  ['bamboo-8', 'bamboo-7', 'bamboo-8', 'characters-6', 'dots-9', 'bamboo-6', 'characters-4']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  4
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9,bamboo-9,characters-3,characters-8,characters-8,dots-1,bamboo-5,characters-6,bamboo-8,bamboo-1,dots-5,characters-5,bamboo-6
+=> dealer: cards left4
+=> player: 2
+=> current_hand: dots-6 idx=5,dots-9 idx=8,dots-9 idx=8,bamboo-2 idx=1,bamboo-3 idx=2
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: dots-6 idx=5,dots-9 idx=8,dots-9 idx=8,bamboo-2 idx=1,bamboo-3 idx=2
+right now, the last state added to history had 5 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: dots-6 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  dots-6 hand:  ['dots-6', 'dots-9', 'dots-9', 'bamboo-2', 'bamboo-3']
+==> post play card:  dots-6 hand:  ['dots-9', 'dots-9', 'bamboo-2', 'bamboo-3']
+END OF ROUND. NOW: cur player:  3  ; last:  2  DECK LEN  3
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9,bamboo-9,characters-3,characters-8,characters-8,dots-1,bamboo-5,characters-6,bamboo-8,bamboo-1,dots-5,characters-5,bamboo-6,dots-6
+=> dealer: cards left3
+=> player: 3
+=> current_hand: characters-1 idx=0,dots-8 idx=7,characters-7 idx=6,dots-3 idx=2,bamboo-1 idx=0,dragons-red idx=1,dragons-green idx=0,characters-3 idx=2
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: characters-1 idx=0,dots-8 idx=7,characters-7 idx=6,dots-3 idx=2,bamboo-1 idx=0,dragons-red idx=1,dragons-green idx=0,characters-3 idx=2
+right now, the last state added to history had 4 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 3 ; action: characters-1 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  characters-1 hand:  ['characters-1', 'dots-8', 'characters-7', 'dots-3', 'bamboo-1', 'dragons-red', 'dragons-green', 'characters-3']
+==> post play card:  characters-1 hand:  ['dots-8', 'characters-7', 'dots-3', 'bamboo-1', 'dragons-red', 'dragons-green', 'characters-3']
+END OF ROUND. NOW: cur player:  0  ; last:  3  DECK LEN  2
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9,bamboo-9,characters-3,characters-8,characters-8,dots-1,bamboo-5,characters-6,bamboo-8,bamboo-1,dots-5,characters-5,bamboo-6,dots-6,characters-1
+=> dealer: cards left2
+=> player: 0
+=> current_hand: bamboo-1 idx=0,bamboo-5 idx=4,dragons-green idx=0,dots-5 idx=4,dots-8 idx=7,characters-7 idx=6,bamboo-6 idx=5,characters-6 idx=5
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: bamboo-1 idx=0,bamboo-5 idx=4,dragons-green idx=0,dots-5 idx=4,dots-8 idx=7,characters-7 idx=6,bamboo-6 idx=5,characters-6 idx=5
+right now, the last state added to history had 3 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 0 ; action: bamboo-1 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  bamboo-1 hand:  ['bamboo-1', 'bamboo-5', 'dragons-green', 'dots-5', 'dots-8', 'characters-7', 'bamboo-6', 'characters-6']
+==> post play card:  bamboo-1 hand:  ['bamboo-5', 'dragons-green', 'dots-5', 'dots-8', 'characters-7', 'bamboo-6', 'characters-6']
+END OF ROUND. NOW: cur player:  1  ; last:  0  DECK LEN  1
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9,bamboo-9,characters-3,characters-8,characters-8,dots-1,bamboo-5,characters-6,bamboo-8,bamboo-1,dots-5,characters-5,bamboo-6,dots-6,characters-1,bamboo-1
+=> dealer: cards left1
+=> player: 1
+=> current_hand: bamboo-8 idx=7,bamboo-7 idx=6,bamboo-8 idx=7,characters-6 idx=5,dots-9 idx=8,bamboo-6 idx=5,characters-4 idx=3,dots-2 idx=1
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: bamboo-8 idx=7,bamboo-7 idx=6,bamboo-8 idx=7,characters-6 idx=5,dots-9 idx=8,bamboo-6 idx=5,characters-4 idx=3,dots-2 idx=1
+right now, the last state added to history had 2 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 1 ; action: bamboo-8 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  bamboo-8 hand:  ['bamboo-8', 'bamboo-7', 'bamboo-8', 'characters-6', 'dots-9', 'bamboo-6', 'characters-4', 'dots-2']
+==> post play card:  bamboo-8 hand:  ['bamboo-7', 'bamboo-8', 'characters-6', 'dots-9', 'bamboo-6', 'characters-4', 'dots-2']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  0
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9,bamboo-9,characters-3,characters-8,characters-8,dots-1,bamboo-5,characters-6,bamboo-8,bamboo-1,dots-5,characters-5,bamboo-6,dots-6,characters-1,bamboo-1,bamboo-8
+=> dealer: cards left0
+=> player: 2
+=> current_hand: dots-9 idx=8,dots-9 idx=8,bamboo-2 idx=1,bamboo-3 idx=2,dots-1 idx=0
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: dots-9 idx=8,dots-9 idx=8,bamboo-2 idx=1,bamboo-3 idx=2,dots-1 idx=0
+right now, the last state added to history had 1 cards left in deck
+done.
+stepped!!
+[0, 1, 1, 0]
+
+WINNER: player 3
+['dots-8', 'characters-7', 'dots-3', 'bamboo-1', 'dragons-red', 'dragons-green', 'characters-3']
+[]
+ALL PLAYERS' HANDS & PILES: 
+player id:  0
+['bamboo-5', 'dragons-green', 'dots-5', 'dots-8', 'characters-7', 'bamboo-6', 'characters-6']
+[]
+player id:  1
+['bamboo-7', 'bamboo-8', 'characters-6', 'dots-9', 'bamboo-6', 'characters-4', 'dots-2']
+[]
+player id:  2
+['dots-9', 'dots-9', 'bamboo-2', 'bamboo-3', 'dots-1']
+[['dots-7', 'dots-7', 'dots-7']]
+player id:  3
+['dots-8', 'characters-7', 'dots-3', 'bamboo-1', 'dragons-red', 'dragons-green', 'characters-3']
+[]
+checking if over and the result is  True
+[0, 1, 1, 0]
+
+WINNER: player 3
+['dots-8', 'characters-7', 'dots-3', 'bamboo-1', 'dragons-red', 'dragons-green', 'characters-3']
+[]
+ALL PLAYERS' HANDS & PILES: 
+player id:  0
+['bamboo-5', 'dragons-green', 'dots-5', 'dots-8', 'characters-7', 'bamboo-6', 'characters-6']
+[]
+player id:  1
+['bamboo-7', 'bamboo-8', 'characters-6', 'dots-9', 'bamboo-6', 'characters-4', 'dots-2']
+[]
+player id:  2
+['dots-9', 'dots-9', 'bamboo-2', 'bamboo-3', 'dots-1']
+[['dots-7', 'dots-7', 'dots-7']]
+player id:  3
+['dots-8', 'characters-7', 'dots-3', 'bamboo-1', 'dragons-red', 'dragons-green', 'characters-3']
+[]
+[0, 1, 1, 0]
+finally stepping back
+in stepped back version, self dealer has 1 cards in the deck
+stepped back
+PROCEEDING ROUND: player: 1 ; action: bamboo-7 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  bamboo-7 hand:  ['bamboo-8', 'bamboo-7', 'bamboo-8', 'characters-6', 'dots-9', 'bamboo-6', 'characters-4', 'dots-2']
+==> post play card:  bamboo-7 hand:  ['bamboo-8', 'bamboo-8', 'characters-6', 'dots-9', 'bamboo-6', 'characters-4', 'dots-2']
+END OF ROUND. NOW: cur player:  2  ; last:  1  DECK LEN  0
+
+NEW GAME STATE: 
+=> valid_act: ['play']
+=> table: characters-5,characters-4,characters-9,characters-1,characters-1,dots-7,dragons-red,bamboo-1,bamboo-2,characters-9,bamboo-5,characters-5,dragons-white,dots-4,bamboo-5,dots-5,dots-2,characters-4,characters-1,characters-6,dragons-green,characters-2,dots-3,bamboo-3,bamboo-4,dots-8,characters-2,characters-2,characters-9,bamboo-3,dots-3,dots-1,bamboo-7,characters-7,dots-4,characters-5,dots-9,bamboo-7,bamboo-2,bamboo-3,bamboo-9,characters-2,bamboo-8,bamboo-2,characters-7,dots-4,dots-5,characters-8,bamboo-7,bamboo-4,dots-8,dots-2,characters-8,dots-6,dragons-white,dots-2,characters-9,bamboo-4,dragons-white,dots-6,bamboo-6,dots-1,characters-3,dragons-red,dragons-red,bamboo-4,bamboo-9,dots-7,dragons-green,dots-4,characters-4,dots-6,characters-3,dots-3,dragons-white,bamboo-9,bamboo-9,characters-3,characters-8,characters-8,dots-1,bamboo-5,characters-6,bamboo-8,bamboo-1,dots-5,characters-5,bamboo-6,dots-6,characters-1,bamboo-1,bamboo-7
+=> dealer: cards left1
+=> player: 2
+=> current_hand: dots-9 idx=8,dots-9 idx=8,bamboo-2 idx=1,bamboo-3 idx=2,dots-1 idx=0
+=> players_pile: 
+==> 0: []
+==> 1: []
+==> 2: [['dots-7 idx=6', 'dots-7 idx=6', 'dots-7 idx=6']]
+==> 3: []
+=> action-cards: dots-9 idx=8,dots-9 idx=8,bamboo-2 idx=1,bamboo-3 idx=2,dots-1 idx=0
+right now, the last state added to history had 1 cards left in deck
+done.
+stepped!!
+checking if over and the result is  False
+PROCEEDING ROUND: player: 2 ; action: dots-9 ; last cards:  ['dots-7', 'dots-7', 'dots-7']
+=> pre play card:  dots-9 hand:  ['dots-9', 'dots-9', 'bamboo-2', 'bamboo-3', 'dots-1']
+==> post play card:  dots-9 hand:  ['dots-9', 'bamboo-2', 'bamboo-3', 'dots-1']
+
+Logs saved in experiments/azure_test_result/
