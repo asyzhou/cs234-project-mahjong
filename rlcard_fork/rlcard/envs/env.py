@@ -133,6 +133,9 @@ class Env(object):
         Note: The trajectories are 3-dimension list. The first dimension is for different players.
               The second dimension is for different transitions. The third dimension is for the contents of each transiton
         '''
+        print("========================================================================================================")
+        print("Running the game...")
+
         trajectories = [[] for _ in range(self.num_players)]
         state, player_id = self.reset()
 
@@ -145,7 +148,10 @@ class Env(object):
             else:
                 action = self.agents[player_id].step(state)
 
-            # Environment steps
+            # Environment steps            
+            print("========================================================================================================")
+            print("NEXT selected action: ", self._decode_action(action), " now stepping into env...")
+
             next_state, next_player_id = self.step(action, self.agents[player_id].use_raw)
             # Save action
             trajectories[player_id].append(action)

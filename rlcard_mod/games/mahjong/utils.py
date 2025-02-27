@@ -1,5 +1,5 @@
 import numpy as np
-from rlcard.games.mahjong.card import MahjongCard as Card
+from rlcard_mod.games.mahjong.card import MahjongCard as Card
 
 
 card_encoding_dict = {}

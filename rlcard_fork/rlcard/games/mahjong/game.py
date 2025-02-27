@@ -11,6 +11,8 @@ class MahjongGame:
     def __init__(self, allow_step_back=False):
         '''Initialize the class MajongGame
         '''
+        print("In MahjongGame Init")
+
         self.allow_step_back = allow_step_back
         self.np_random = np.random.RandomState()
         self.num_players = 4
@@ -26,6 +28,8 @@ class MahjongGame:
                 (dict): The first state of the game
                 (int): Current player's id
         '''
+        print("In MahjongGame init_game()")
+
         # Initialize a dealer that can deal cards
         self.dealer = Dealer(self.np_random)
 
@@ -35,9 +39,10 @@ class MahjongGame:
         self.judger = Judger(self.np_random)
         self.round = Round(self.judger, self.dealer, self.num_players, self.np_random)
 
-        # Deal 13 cards to each player to prepare for the game
+        #### SHORT MAHJONG MODIFIED ####
+        # Deal 7 cards to each player to prepare for the game 
         for player in self.players:
-            self.dealer.deal_cards(player, 13)
+            self.dealer.deal_cards(player, 7)
 
         # Save the hisory for stepping back to the last state.
         self.history = []
@@ -45,6 +50,10 @@ class MahjongGame:
         self.dealer.deal_cards(self.players[self.round.current_player], 1)
         state = self.get_state(self.round.current_player)
         self.cur_state = state
+
+        print("INITIAL GAME STATE: ")
+        self.print_game_state()
+
         return state, self.round.current_player
 
     def step(self, action):
@@ -68,7 +77,26 @@ class MahjongGame:
         self.round.proceed_round(self.players, action)
         state = self.get_state(self.round.current_player)
         self.cur_state = state
+
+        print("\nNEW GAME STATE: ")
+        self.print_game_state()
+
         return state, self.round.current_player
+
+    def print_game_state(self):
+        result = ""
+
+        result += ("=> valid_act: " + str(self.cur_state["valid_act"]) + "\n")
+        result += ("=> table: " + ",".join([c.get_str() for c in self.cur_state['table']]) + "\n")
+        result += ("=> player: " + str(self.cur_state["player"]) + "\n")
+        result += ("=> current_hand: " + ",".join([c.get_str() + " " + str(c.index_num) for c in self.cur_state['current_hand']]) + "\n")
+        result += ("=> players_pile: \n")
+        for player in self.cur_state["players_pile"]:
+            result += ("==> " + str(player) + ": ") + str([[c.get_str() + " " + str(c.index_num) for c in s ] for s in self.cur_state["players_pile"][player]]) + "\n"
+        result += ("=> action-cards: " + ",".join([c.get_str() + " " + str(c.index_num) for c in self.cur_state["action_cards"]]))
+    
+        print(result) 
+
 
     def step_back(self):
         ''' Return to the previous state of the game
@@ -138,10 +166,11 @@ class MahjongGame:
             (boolean): True if the game is over
         '''
         win, player, _ = self.judger.judge_game(self)
-        #pile =[sorted([c.get_str() for c in s ]) for s in self.players[player].pile if self.players[player].pile != None]
-        #cards = sorted([c.get_str() for c in self.players[player].hand])
-        #count = len(cards) + sum([len(p) for p in pile])
         self.winner = player
-        #print(win, player, players_val)
-        #print(win, self.round.current_player, player, cards, pile, count)
+        
+        if win:
+            print("WINNER: ", self.players[self.winner].get_player_id())
+            self.players[self.winner].print_hand()
+            self.players[self.winner].print_pile()
+
         return win
