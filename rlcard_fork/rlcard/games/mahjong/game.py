@@ -69,7 +69,6 @@ class MahjongGame:
                 (int): next plater's id
         '''
         # First snapshot the current state
-        azure_hist_dealer = deepcopy(self.dealer)
         if self.allow_step_back:
             hist_dealer = deepcopy(self.dealer)
             hist_round = deepcopy(self.round)
@@ -81,7 +80,7 @@ class MahjongGame:
 
         print("\nNEW GAME STATE: ")
         self.print_game_state()
-        print("right now, the last state added to history had", len(azure_hist_dealer.deck), "cards left in deck")
+        print("right now, the deck length that we have is", len(self.dealer.deck), "cards left in deck")
         print("done.")
 
         return state, self.round.current_player
@@ -111,9 +110,10 @@ class MahjongGame:
         if not self.history:
             return False
         self.dealer, self.players, self.round = self.history.pop()
+        self.round.dealer = self.dealer
         print("in stepped back version, self dealer has", len(self.dealer.deck), "cards in the deck")
-        # print("in fact --")
-        # self.print_game_state()
+        print("in fact --")
+        self.print_game_state()
         return True
 
     def get_state(self, player_id):
