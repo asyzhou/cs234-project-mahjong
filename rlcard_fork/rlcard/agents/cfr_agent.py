@@ -117,6 +117,7 @@ class CFRAgent():
             for action in range(self.env.num_actions):
                 action_probs[action] = max(0.0, regret[action] / positive_regret_sum)
         else:
+            # reset action prob to random
             for action in range(self.env.num_actions):
                 action_probs[action] = 1.0 / self.env.num_actions
         return action_probs
@@ -143,6 +144,8 @@ class CFRAgent():
         action_probs = remove_illegal(action_probs, legal_actions)
         return action_probs
 
+
+    ## azure: where is this even used ??? when running cfr agent?
     def eval_step(self, state):
         ''' Given a state, predict action based on average policy
 
