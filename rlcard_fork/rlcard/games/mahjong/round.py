@@ -84,7 +84,7 @@ class MahjongRound:
                 self.last_player = self.current_player
                 self.current_player = (self.current_player + 1) % 4
                 self.dealer.deal_cards(players[self.current_player], 1)
-        print("END OF ROUND. NOW: cur player: ", self.current_player, " ; last: ", self.last_player)
+        print("END OF ROUND. NOW: cur player: ", self.current_player, " ; last: ", self.last_player, " DECK LEN ", len(self.dealer.deck))
 
         #hand_len = [len(p.hand) for p in players]
         #pile_len = [sum([len([c for c in p]) for p in pp.pile]) for pp in players]

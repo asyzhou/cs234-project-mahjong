@@ -111,7 +111,9 @@ class MahjongJudger:
             players_val.append(val)
             if win:
                 win_player = player.player_id
+                print("SOMEONE WON! : ", win_player)
         if win_player != -1 or len(game.dealer.deck) == 0:
+            print(players_val)
             return True, win_player, players_val
         else:
             #player_id = players_val.index(max(players_val))
@@ -143,8 +145,8 @@ class MahjongJudger:
                 # update max sets
                 if temp_set_count + set_count > max_set_count:
                     max_set_count = temp_set_count + set_count
-                if max_set_count >= 2:
-                    return True, max_set_count
+                    if max_set_count >= 2:
+                        return True, max_set_count
         
         # check max sets possible with no pair tile (in the case of no winning hand)
         temp_set_count, _ = self.cal_set(hand)
@@ -213,7 +215,7 @@ class MahjongJudger:
                         if counts[check[0]] > 0 and counts[check[1]] > 0 and counts[check[2]] > 0:
                             temp_hand = cards.copy()
                             for i in check:
-                                temp_hand.pop(temp_hand.index(target_type + "-"+str(i)))
+                                temp_hand.pop(temp_hand.index(target_type + "-"+str(i + 1)))
                             set_count, sets = self.cal_set(temp_hand)
                             if set_count + 1 > max_set_count:
                                 max_set_count = set_count + 1
