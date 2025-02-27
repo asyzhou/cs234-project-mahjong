@@ -16,7 +16,7 @@ class MahjongEnv(Env):
         self.name = 'mahjong'
         self.game = Game()
         super().__init__(config)
-        print("CARD ENCODING DICT!", card_encoding_dict)
+        # print("CARD ENCODING DICT!", card_encoding_dict)
         self.action_id = card_encoding_dict
         self.de_action_id = {self.action_id[key]: key for key in self.action_id.keys()}
         self.state_shape = [[6, 34, 4] for _ in range(self.num_players)]
@@ -103,12 +103,12 @@ class MahjongEnv(Env):
                     action = action.get_str()
                 action_id = self.action_id[action]
                 legal_action_id[action_id] = None
-        else:
-            print("##########################")
-            print("No Legal Actions")
-            print(self.game.judger.judge_game(self.game))
-            print(self.game.is_over())
-            print([len(p.pile) for p in self.game.players])
+        # else:
+            # print("##########################")
+            # print("No Legal Actions")
+            # print(self.game.judger.judge_game(self.game))
+            # print(self.game.is_over())
+            # print([len(p.pile) for p in self.game.players])
             #print(self.game.get_state(self.game.round.current_player))
             #exit()
         return OrderedDict(legal_action_id)

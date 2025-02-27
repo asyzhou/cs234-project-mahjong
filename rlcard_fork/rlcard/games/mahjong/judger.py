@@ -111,9 +111,9 @@ class MahjongJudger:
             players_val.append(val)
             if win:
                 win_player = player.player_id
-                print("SOMEONE WON! : ", win_player)
+                # print("SOMEONE WON! : ", win_player)
         if win_player != -1 or len(game.dealer.deck) == 0:
-            print(players_val)
+            # print(players_val)
             return True, win_player, players_val
         else:
             #player_id = players_val.index(max(players_val))
