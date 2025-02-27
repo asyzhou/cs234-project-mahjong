@@ -191,6 +191,7 @@ class MahjongJudger:
         target_card = cards[0]
         target_type, target_trait = target_card.split("-") #[0] <= why's this here 
         max_set_count, max_sets = 0, []
+        
         # check triplet (pong)
         if _dict[target_card] >= 3:
             temp_hand = cards.copy()
@@ -200,33 +201,33 @@ class MahjongJudger:
             if set_count + 1 > max_set_count:
                 max_set_count = set_count + 1
                 max_sets = [[target_card]*3] + sets
+
         # check sequences (chow)
-        counts = _dict_by_type[target_type]
-        if counts >= 3:
-            possible_sequences = [[-2, -1, 0], [-1, 0, 1], [0, 1, 2]]
-            for sequence in possible_sequences:
-                check = [target_trait + i for i in sequence]
-                if check[0] >= 0 and check[2] <= 9:
-                    if counts[check[0]] > 0 and counts[check[1]] > 0 and counts[check[2]] > 0:
-                        temp_hand = cards.copy()
-                        for i in check:
-                            temp_hand.pop(temp_hand.index(target_type + "-"+str(i)))
-                        set_count, sets = self.cal_set(temp_hand)
-                        if set_count + 1 > max_set_count:
-                            max_set_count = set_count + 1
-                            max_sets = [target_type + "-"+str(check[0]), 
-                                        target_type + "-"+str(check[1]), 
-                                        target_type + "-"+str(check[2])] + sets
+        if target_type in _dict_by_type: # only consider sequences for dots, bamboos, chars
+            counts = _dict_by_type[target_type]
+            if sum(counts) >= 3:
+                possible_sequences = [[-2, -1, 0], [-1, 0, 1], [0, 1, 2]]
+                for sequence in possible_sequences:
+                    check = [int(target_trait) + i - 1 for i in sequence] # -1 for indices
+                    if check[0] >= 0 and check[2] < 9:
+                        if counts[check[0]] > 0 and counts[check[1]] > 0 and counts[check[2]] > 0:
+                            temp_hand = cards.copy()
+                            for i in check:
+                                temp_hand.pop(temp_hand.index(target_type + "-"+str(i)))
+                            set_count, sets = self.cal_set(temp_hand)
+                            if set_count + 1 > max_set_count:
+                                max_set_count = set_count + 1
+                                max_sets = [target_type + "-"+str(check[0]), 
+                                            target_type + "-"+str(check[1]), 
+                                            target_type + "-"+str(check[2])] + sets
 
         # check without first card
         temp_hand = cards.copy()
         temp_hand.pop(temp_hand.index(target_card))
         set_count, sets = self.cal_set(temp_hand)
-        if set_count + 1 > max_set_count:
-            max_set_count = set_count + 1
-            max_sets = [target_type + "-"+str(check[0]), 
-                        target_type + "-"+str(check[1]), 
-                        target_type + "-"+str(check[2])] + sets
+        if set_count > max_set_count:
+            max_set_count = set_count
+            max_sets = sets
         return max_set_count, max_sets
 
         
