@@ -71,7 +71,9 @@ class CFRAgent():
             # Keep traversing the child state
             self.env.step(action)
             utility = self.traverse_tree(new_probs, player_id)
+            print("finally stepping back")
             self.env.step_back()
+            print("stepped back")
 
             state_utility += action_prob * utility
             action_utilities[action] = utility
@@ -117,6 +119,7 @@ class CFRAgent():
             for action in range(self.env.num_actions):
                 action_probs[action] = max(0.0, regret[action] / positive_regret_sum)
         else:
+            # reset action prob to random
             for action in range(self.env.num_actions):
                 action_probs[action] = 1.0 / self.env.num_actions
         return action_probs
@@ -142,6 +145,7 @@ class CFRAgent():
             action_probs = policy[obs]
         action_probs = remove_illegal(action_probs, legal_actions)
         return action_probs
+
 
     def eval_step(self, state):
         ''' Given a state, predict action based on average policy

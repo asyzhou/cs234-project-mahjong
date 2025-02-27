@@ -14,14 +14,15 @@ def run(args):
     env = rlcard.make(
         args.env,
         config={
-            'seed': 40,
+            'seed': 0,
+            'allow_step_back': True,
         }
     )
 
     print("MahjongEnv vars: ", vars(env))
 
     # Seed numpy, torch, random
-    set_seed(40)
+    set_seed(0)
 
     # Set agents
     agent = RandomAgent(num_actions=env.num_actions)
@@ -29,6 +30,7 @@ def run(args):
 
     # Generate data from the environment
     trajectories, player_wins = env.run(is_training=False)
+    env.step_back()
     # Print out the trajectories
     '''
     print('\nTrajectories:')
