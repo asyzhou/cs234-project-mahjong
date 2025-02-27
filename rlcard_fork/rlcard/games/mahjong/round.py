@@ -35,7 +35,7 @@ class MahjongRound:
         #pile_len = [sum([len([c for c in p]) for p in pp.pile]) for pp in players]
         #total_len = [i + j for i, j in zip(hand_len, pile_len)]
         cards = [c.get_str() for c in self.last_cards]
-        print("PROCEEDING ROUND: player:", self.current_player, "; action:" , action, "; last cards: ", cards)
+        print("PROCEEDING ROUND: player:", self.current_player, "; action:", action, "; last cards: ", cards)
 
         if action == 'stand':
             # STAND: if the player has the option to PONG/GONG, but does not act upon it.

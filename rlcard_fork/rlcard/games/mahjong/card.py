@@ -16,6 +16,9 @@ class MahjongCard:
         self.trait = trait
         self.index_num = 0
 
+    def __str__(self):
+        return self.get_str()
+
     def get_str(self):
         ''' Get the string representation of card
 

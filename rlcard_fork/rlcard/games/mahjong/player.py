@@ -47,10 +47,11 @@ class MahjongPlayer:
             dealer (object): Dealer
             Cards (object): The cards to be Chow.
         '''
+
+        last_card = dealer.table.pop(-1)
         print("=> pre chow: ", last_card, " hand: ", [c.get_str() for c in self.hand], 
               " pile: ", [[c.get_str() for c in s] for s in self.pile])
 
-        last_card = dealer.table.pop(-1)
         for card in cards:
             if card in self.hand and card != last_card:
                 self.hand.pop(self.hand.index(card))

@@ -149,8 +149,10 @@ class Env(object):
                 action = self.agents[player_id].step(state)
 
             # Environment steps            
-            print("========================================================================================================")
-            print("NEXT selected action: ", self._decode_action(action), " now stepping into env...")
+            print("\n========================================================================================================")
+            decoded =  self._decode_action(action)
+            action_str = decoded if isinstance(decoded, str) else decoded.get_str()
+            print("NEXT selected action: ", action_str, " now stepping into env...")
 
             next_state, next_player_id = self.step(action, self.agents[player_id].use_raw)
             # Save action

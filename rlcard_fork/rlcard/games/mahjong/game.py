@@ -89,11 +89,11 @@ class MahjongGame:
         result += ("=> valid_act: " + str(self.cur_state["valid_act"]) + "\n")
         result += ("=> table: " + ",".join([c.get_str() for c in self.cur_state['table']]) + "\n")
         result += ("=> player: " + str(self.cur_state["player"]) + "\n")
-        result += ("=> current_hand: " + ",".join([c.get_str() + " " + str(c.index_num) for c in self.cur_state['current_hand']]) + "\n")
+        result += ("=> current_hand: " + ",".join([c.get_str() + " idx=" + str(c.index_num) for c in self.cur_state['current_hand']]) + "\n")
         result += ("=> players_pile: \n")
         for player in self.cur_state["players_pile"]:
-            result += ("==> " + str(player) + ": ") + str([[c.get_str() + " " + str(c.index_num) for c in s ] for s in self.cur_state["players_pile"][player]]) + "\n"
-        result += ("=> action-cards: " + ",".join([c.get_str() + " " + str(c.index_num) for c in self.cur_state["action_cards"]]))
+            result += ("==> " + str(player) + ": ") + str([[c.get_str() + " idx=" + str(c.index_num) for c in s ] for s in self.cur_state["players_pile"][player]]) + "\n"
+        result += ("=> action-cards: " + ",".join([c.get_str() + " idx=" + str(c.index_num) for c in self.cur_state["action_cards"]]))
     
         print(result) 
 
@@ -169,8 +169,14 @@ class MahjongGame:
         self.winner = player
         
         if win:
-            print("WINNER: ", self.players[self.winner].get_player_id())
+            print("\nWINNER: player", self.players[self.winner].get_player_id())
             self.players[self.winner].print_hand()
             self.players[self.winner].print_pile()
+
+            print("ALL PLAYERS' HANDS & PILES: ")
+            for player in self.players:
+                print("player id: ", player.get_player_id())
+                player.print_hand()
+                player.print_pile()
 
         return win
