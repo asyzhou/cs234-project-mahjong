@@ -229,8 +229,12 @@ class NFSPAgent(object):
         Returns:
             action_probs (numpy.array): The predicted action probability.
         '''
+        # print("in _act: info_state", info_state.shape)
+
         info_state = np.expand_dims(info_state, axis=0)
         info_state = torch.from_numpy(info_state).float().to(self.device)
+
+        # print("in _act after expand: info_state", info_state.shape)
 
         with torch.no_grad():
             log_action_probs = self.policy_network(info_state).cpu().numpy()
@@ -265,9 +269,9 @@ class NFSPAgent(object):
         if (len(self._reservoir_buffer) < self._batch_size or
                 len(self._reservoir_buffer) < self._min_buffer_size_to_learn):
             return None
-
         transitions = self._reservoir_buffer.sample(self._batch_size)
         info_states = [t.info_state for t in transitions]
+        # print("from buffer", info_states[0])
         action_probs = [t.action_probs for t in transitions]
 
         self.policy_network_optimizer.zero_grad()
@@ -280,6 +284,7 @@ class NFSPAgent(object):
         eval_action_probs = torch.from_numpy(np.array(action_probs)).float().to(self.device)
 
         # (batch, num_actions)
+        # print('train_sl, info_states shape', info_states.shape)
         log_forecast_action_probs = self.policy_network(info_states)
 
         ce_loss = - (eval_action_probs * log_forecast_action_probs).sum(dim=-1).mean()
@@ -398,6 +403,7 @@ class AveragePolicyNetwork(nn.Module):
         self.mlp_layers = mlp_layers
 
         # set up mlp w/ relu activations
+        # print("slehfijiw", self.state_shape, self.mlp_layers)
         layer_dims = [np.prod(self.state_shape)] + self.mlp_layers
         mlp = [nn.Flatten()]
         mlp.append(nn.BatchNorm1d(layer_dims[0]))
@@ -416,6 +422,7 @@ class AveragePolicyNetwork(nn.Module):
         Returns:
             log_action_probs (Tensor): (batch, num_actions)
         '''
+        # print('FORWARD', s.shape)
         logits = self.mlp(s)
         log_action_probs = F.log_softmax(logits, dim=-1)
         return log_action_probs

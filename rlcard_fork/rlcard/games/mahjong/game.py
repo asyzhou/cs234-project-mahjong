@@ -15,7 +15,7 @@ class MahjongGame:
 
         self.allow_step_back = allow_step_back
         self.np_random = np.random.RandomState()
-        self.num_players = 4
+        self.num_players = 2 # 4
 
     def init_game(self):
         ''' Initialilze the game of Mahjong
