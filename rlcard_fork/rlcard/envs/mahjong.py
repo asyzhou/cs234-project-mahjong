@@ -11,7 +11,7 @@ class MahjongEnv(Env):
     '''
 
     def __init__(self, config):
-        print("In MahjongEnv init")
+        print("In MahjongEnv init, num players: ")
 
         self.name = 'mahjong'
         self.game = Game()
@@ -19,7 +19,20 @@ class MahjongEnv(Env):
         # print("CARD ENCODING DICT!", card_encoding_dict)
         self.action_id = card_encoding_dict
         self.de_action_id = {self.action_id[key]: key for key in self.action_id.keys()}
-        self.state_shape = [[6, 34, 4] for _ in range(self.num_players)]
+        self.state_shape = [[self.num_players + 2, 34, 4] for _ in range(self.num_players)] # [6, 34, 4]
+        '''
+        state_shape represents all the sets of tiles that the player can see.
+        each set of tiles is a one-hot encoding of a [34, 4] matrix
+            => there are 34 tiles, and 4 copies of each
+
+        for 2 players, we have 4 sets of cards:
+        => your own hand
+        => cards in the table
+        => your pile
+        => other player's pile
+
+        for 4 players, there would be 4 sets for all 4 players' sets. 
+        '''
         self.action_shape = [None for _ in range(self.num_players)]
 
     def _extract_state(self, state):
