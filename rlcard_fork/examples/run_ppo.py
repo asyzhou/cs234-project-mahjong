@@ -14,6 +14,9 @@ from torchrl.objectives.value import GAE
 from rlcard.envs.mahjong import MahjongEnv
 
 from rlcard.envs.mahjong_envwrap import MahjongTorchEnv
+from torchrl.data.replay_buffers.storages import LazyTensorStorage
+from tensordict.nn import TensorDictModule, ProbabilisticTensorDictModule, ProbabilisticTensorDictSequential
+from torch.distributions import Categorical
 
 class PPOActorCritic(nn.Module):
     def __init__(self, obs_shape, num_actions):
@@ -23,7 +26,7 @@ class PPOActorCritic(nn.Module):
         input_size = np.prod(obs_shape)
         
         self.features = nn.Sequential(
-            nn.Flatten(),
+            nn.Flatten(start_dim=0, end_dim=-1),
             nn.Linear(input_size, 512),
             nn.ReLU(),
             nn.Linear(512, 256),
@@ -42,13 +45,18 @@ class PPOActorCritic(nn.Module):
             nn.Linear(128, 1),
         )
     
-    def get_value(self, obs):
-        features = self.features(obs)
+    def get_value(self, observation):
+        features = self.features(observation)
         return self.value(features)
     
-    def get_action_and_value(self, obs, action=None):
-        features = self.features(obs)
+    def get_action_and_value(self, tensordict, action=None):
+        observation = tensordict["observation"]        
+        legal_mask = tensordict["legal_mask"]
+        print(observation.shape)
+        print(observation.flatten().shape)
+        features = self.features(observation)
         logits = self.policy(features)
+        logits[~legal_mask] = float('-inf')
         
         probs = Categorical(logits=logits)
         
@@ -77,13 +85,16 @@ class SelfPlayMahjongEnv(EnvBase):
         self.reward_spec = self.env.reward_spec
         self.done_spec = self.env.done_spec
         self.batch_size = self.env.batch_size
+        print('wrapper device init,', self.device)
     
     def _reset(self, input_dict=None):
+        print('CALLING RESET_')
         state = self.env._reset(input_dict)
         self.current_player_id = 0 
-        return state
+        return state.to(self.device)
     
     def _step(self, input_dict):
+        print("CALLIGN _STEP")
         action = input_dict["action"]
         
         next_state = self.env._step(TensorDict({"action": action}, batch_size=[]))
@@ -97,25 +108,33 @@ class SelfPlayMahjongEnv(EnvBase):
                 dtype=torch.int64,
                 device=self.device
             )
+            legal_actions = self.env.mahjong_env.get_state(self.env.mahjong_env.game.round.current_player)["legal_actions"]
             
             with torch.no_grad():
-                policy_action, _, _, _ = self.policy.get_action_and_value(current_obs.unsqueeze(0))
+                policy_action, _, _, _ = self.policy.get_action_and_value(current_obs.unsqueeze(0), legal_actions)
                 policy_action = policy_action.cpu()
             
             next_state = self.env._step(TensorDict({"action": policy_action}, batch_size=[]))
             
             if next_state["done"].item():
                 break
-        
-        return next_state
+        return next_state.to(self.device)
     
     def _set_seed(self, seed):
         self.env._set_seed(seed)
 
+    '''@property
+    def _has_dynamic_specs(self):
+        return self.env._has_dynamic_specs
+    
+    @property
+    def action_keys(self):
+        return self.env.action_keys'''
+
 
 def train_ppo(args):
-    device = torch.device(f"cuda:{args.cuda}" if args.cuda != "" and torch.cuda.is_available() else "cpu")
-    print(f"Using device: {device}")
+    device = torch.device("cuda:"+str(args.cuda))
+    print("device,", device)
     torch.manual_seed(args.seed)
     if device.type == 'cuda':
         torch.cuda.manual_seed(args.seed)
@@ -123,15 +142,18 @@ def train_ppo(args):
     
     mahjong_config = {
         'allow_step_back': False,
+        'num_players': 4,
         'seed': args.seed,
+        'device': 'cuda:7'
     }
     mahjong_env = MahjongEnv(mahjong_config)
     base_env = MahjongTorchEnv(mahjong_env, device=device)
     obs_shape = base_env.observation_spec["observation"].shape
-    num_actions = base_env.action_spec["action"].space.n
+    print(base_env.action_spec)
+    num_actions = base_env.action_spec['action'].n
     
-    print(f"Observation shape: {obs_shape}")
-    print(f"Number of actions: {num_actions}")
+    print("Observation shape,",  obs_shape)
+    print("Number of actions,", num_actions)
     
     policy = PPOActorCritic(obs_shape, num_actions).to(device)
     optimizer = torch.optim.Adam(policy.parameters(), lr=args.learning_rate)
@@ -140,18 +162,8 @@ def train_ppo(args):
         policy,
         device=device
     )
-    
-    collector = SyncDataCollector(
-        create_env_fn=env_creator,
-        create_env_kwargs={},
-        policy=policy.get_action_and_value,
-        frames_per_batch=args.num_steps,
-        total_frames=args.total_timesteps,
-        device=device,
-        storing_device=device,
-    )
     replay_buffer = ReplayBuffer(
-        storage=TensorDict({}, batch_size=[args.num_steps]),
+        storage=LazyTensorStorage(args.num_steps),
         sampler=None,
     )
     
@@ -160,10 +172,72 @@ def train_ppo(args):
         lmbda=args.gae_lambda,
         value_network=policy.get_value,
     )
+    critic_module = TensorDictModule(
+        module=policy.value,  
+        in_keys=["observation"],
+        out_keys=["state_value"],
+    )
+
+    feature_module = TensorDictModule(
+        module=policy.features,        
+        in_keys=["observation"],       
+        out_keys=["hidden"],          
+    )
+
+    logits_module = TensorDictModule(
+        module=policy.policy,          
+        in_keys=["hidden"],
+        out_keys=["logits"],          
+    )
+
+    class MaskLogitsModule(nn.Module):
+        def forward(self, tensordict_in, tensordict_out, **kwargs): # idk why but torchrl finicky needs 2
+            logits = tensordict_in["logits"]
+            legal_mask = tensordict_in["legal_mask"]
+            logits[~legal_mask] = float("-inf")
+            tensordict_in.set("logits", logits)
+            return tensordict_in
+
+
+    mask_module = TensorDictModule(
+        module=MaskLogitsModule(),
+        in_keys=["logits", "legal_mask"], 
+        out_keys=["logits"],
+    )
+
+    
+    prob_module = ProbabilisticTensorDictModule(
+        in_keys=["logits"],            
+        out_keys=["action", "log_prob"],
+        distribution_class=Categorical, 
+        distribution_kwargs={}
+    )
+
+    actor_network = ProbabilisticTensorDictSequential(
+        TensorDictModule(
+            module=policy.features,
+            in_keys=["observation"],
+            out_keys=["hidden"],
+        ),
+        feature_module,
+        logits_module,
+        mask_module,
+        prob_module
+    )
+
+    collector = SyncDataCollector(
+        create_env_fn=env_creator,
+        create_env_kwargs={},
+        policy=actor_network,
+        frames_per_batch=args.num_steps,
+        total_frames=args.total_timesteps,
+        device=device,
+        storing_device=device,
+    )
 
     ppo_loss = ClipPPOLoss(
-        actor_network=policy.get_action_and_value,
-        critic_network=policy.get_value,
+        actor_network=actor_network,
+        critic_network=critic_module,
         clip_epsilon=args.clip_coef,
         entropy_coef=args.ent_coef,
         value_coef=args.vf_coef,
@@ -176,8 +250,8 @@ def train_ppo(args):
     episode_rewards = []
     episode_lengths = []
     
-    print(f"Starting training for {args.total_timesteps} timesteps")
-    print(f"Number of updates: {num_updates}")
+    print("Starting training for" + str(args.total_timesteps) + " timesteps")
+    print("Number of updates"+ str(num_updates))
     
     global_step = 0
     

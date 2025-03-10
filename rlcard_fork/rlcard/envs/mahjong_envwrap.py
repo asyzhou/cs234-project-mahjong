@@ -6,10 +6,9 @@ from rlcard.envs.mahjong import MahjongEnv
 from torchrl.data import TensorSpec, Composite, Bounded, DiscreteTensorSpec
 from tensordict import TensorDict
 
-class MahjongTorchEnv(EnvBase):
+class MahjongTorchEnv:
     def __init__(self, mahjong_env, device="cpu"):
-        super().__init__()
-        
+        self.device = device
         # Store the underlying environment
         self.mahjong_env = mahjong_env
         self.batch_size = torch.Size([])
@@ -62,9 +61,13 @@ class MahjongTorchEnv(EnvBase):
         Returns a dictionary containing at least "observation".
         """
         obs, _ = self.mahjong_env.reset()
-        obs_t = torch.tensor(obs["obs"], dtype=torch.int64)
+        obs_t = torch.tensor(obs["obs"], dtype=torch.float)
+        stupidass_dict = obs["legal_actions"]
+        legal_mask = torch.zeros(self.action_spec["action"].n, dtype=torch.bool)
+        for act_id in stupidass_dict:
+            legal_mask[act_id] = True
         #obs_t = obs_t.unsqueeze(0)
-        return TensorDict({"observation": obs_t})
+        return TensorDict({"observation": obs_t, 'legal_mask': legal_mask})
     
     def _step(self, inputDict: TensorDict): # -> Tuple[Dict[str, Tensor], Dict[str, Tensor], Dict[str, Tensor], Dict[str, Any]]:
         """
@@ -84,7 +87,11 @@ class MahjongTorchEnv(EnvBase):
 
         next_state_dict, _ = self.mahjong_env.step(action_val)
         
-        obs_t = torch.tensor(next_state_dict['obs'], dtype=torch.int64)  # look at _extract state function in mahjong
+        obs_t = torch.tensor(next_state_dict['obs'], dtype=torch.float)  # look at _extract state function in mahjong
+        stupidass_dict = obs["legal_actions"]
+        legal_mask = torch.zeros(self.action_spec["action"].n, dtype=torch.bool)
+        for act_id in stupidass_dict:
+            legal_mask[act_id] = True
         done = self.mahjong_env.is_over()
         done_t = torch.tensor([done], dtype=torch.bool)
         reward = torch.tensor([0], dtype=torch.int6)
@@ -102,6 +109,7 @@ class MahjongTorchEnv(EnvBase):
                 "done": done_t,
                 "reward": reward_t,
                 "observation": obs_t,
+                "legal_mask": legal_mask,
         }, batch_size=self.batch_size)
         
         return result
