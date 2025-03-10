@@ -26,7 +26,7 @@ class PPOActorCritic(nn.Module):
         input_size = np.prod(obs_shape)
         
         self.features = nn.Sequential(
-            nn.Flatten(),
+            nn.Flatten(start_dim=0, end_dim=-1),
             nn.Linear(input_size, 512),
             nn.ReLU(),
             nn.Linear(512, 256),
@@ -46,12 +46,10 @@ class PPOActorCritic(nn.Module):
         )
     
     def get_value(self, observation):
-        print("GET CALUSFSF")
         features = self.features(observation)
         return self.value(features)
     
     def get_action_and_value(self, tensordict, action=None):
-        print("GETACIONTO VALUE")
         observation = tensordict["observation"]        
         legal_mask = tensordict["legal_mask"]
         print(observation.shape)
@@ -193,17 +191,18 @@ def train_ppo(args):
     )
 
     class MaskLogitsModule(nn.Module):
-        def forward(self, tensordict):
-            logits = tensordict["logits"]
-            legal_mask = tensordict["legal_mask"]
+        def forward(self, tensordict_in, tensordict_out, **kwargs): # idk why but torchrl finicky needs 2
+            logits = tensordict_in["logits"]
+            legal_mask = tensordict_in["legal_mask"]
             logits[~legal_mask] = float("-inf")
-            tensordict.set("logits", logits)
-            return tensordict
+            tensordict_in.set("logits", logits)
+            return tensordict_in
+
 
     mask_module = TensorDictModule(
         module=MaskLogitsModule(),
-        in_keys=["logits", "legal_mask"],  
-        out_keys=["logits"],                # override logits
+        in_keys=["logits", "legal_mask"], 
+        out_keys=["logits"],
     )
 
     
