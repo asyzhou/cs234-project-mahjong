@@ -6,10 +6,9 @@ from rlcard.envs.mahjong import MahjongEnv
 from torchrl.data import TensorSpec, Composite, Bounded, DiscreteTensorSpec
 from tensordict import TensorDict
 
-class MahjongTorchEnv(EnvBase):
+class MahjongTorchEnv:
     def __init__(self, mahjong_env, device="cpu"):
-        super().__init__()
-        
+        self.device = device
         # Store the underlying environment
         self.mahjong_env = mahjong_env
         self.batch_size = torch.Size([])
