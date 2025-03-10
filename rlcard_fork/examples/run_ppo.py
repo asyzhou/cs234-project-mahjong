@@ -24,7 +24,6 @@ class PPOActorCritic(nn.Module):
         
         # Mahjong observation: (num_players + 2, 34, 4)
         input_size = np.prod(obs_shape)
-        print(input_size)
         
         self.features = nn.Sequential(
             nn.Flatten(),
@@ -47,12 +46,19 @@ class PPOActorCritic(nn.Module):
         )
     
     def get_value(self, observation):
+        print("GET CALUSFSF")
         features = self.features(observation)
         return self.value(features)
     
-    def get_action_and_value(self, observation, action=None):
-        features = self.features(observation.to(torch.float).flatten().unsqueeze(dim=0))
+    def get_action_and_value(self, tensordict, action=None):
+        print("GETACIONTO VALUE")
+        observation = tensordict["observation"]        
+        legal_mask = tensordict["legal_mask"]
+        print(observation.shape)
+        print(observation.flatten().shape)
+        features = self.features(observation)
         logits = self.policy(features)
+        logits[~legal_mask] = float('-inf')
         
         probs = Categorical(logits=logits)
         
@@ -104,10 +110,10 @@ class SelfPlayMahjongEnv(EnvBase):
                 dtype=torch.int64,
                 device=self.device
             )
-            print("CURRENT OBS", current_obs)
+            legal_actions = self.env.mahjong_env.get_state(self.env.mahjong_env.game.round.current_player)["legal_actions"]
             
             with torch.no_grad():
-                policy_action, _, _, _ = self.policy.get_action_and_value(current_obs.unsqueeze(0))
+                policy_action, _, _, _ = self.policy.get_action_and_value(current_obs.unsqueeze(0), legal_actions)
                 policy_action = policy_action.cpu()
             
             next_state = self.env._step(TensorDict({"action": policy_action}, batch_size=[]))
@@ -158,15 +164,6 @@ def train_ppo(args):
         policy,
         device=device
     )
-    collector = SyncDataCollector(
-        create_env_fn=env_creator,
-        create_env_kwargs={},
-        policy=policy.get_action_and_value,
-        frames_per_batch=args.num_steps,
-        total_frames=args.total_timesteps,
-        device=device,
-        storing_device=device,
-    )
     replay_buffer = ReplayBuffer(
         storage=LazyTensorStorage(args.num_steps),
         sampler=None,
@@ -178,7 +175,7 @@ def train_ppo(args):
         value_network=policy.get_value,
     )
     critic_module = TensorDictModule(
-        module=policy,  
+        module=policy.value,  
         in_keys=["observation"],
         out_keys=["state_value"],
     )
@@ -194,6 +191,21 @@ def train_ppo(args):
         in_keys=["hidden"],
         out_keys=["logits"],          
     )
+
+    class MaskLogitsModule(nn.Module):
+        def forward(self, tensordict):
+            logits = tensordict["logits"]
+            legal_mask = tensordict["legal_mask"]
+            logits[~legal_mask] = float("-inf")
+            tensordict.set("logits", logits)
+            return tensordict
+
+    mask_module = TensorDictModule(
+        module=MaskLogitsModule(),
+        in_keys=["logits", "legal_mask"],  
+        out_keys=["logits"],                # override logits
+    )
+
     
     prob_module = ProbabilisticTensorDictModule(
         in_keys=["logits"],            
@@ -202,7 +214,28 @@ def train_ppo(args):
         distribution_kwargs={}
     )
 
-    actor_network = ProbabilisticTensorDictSequential(feature_module, logits_module, prob_module)
+    actor_network = ProbabilisticTensorDictSequential(
+        TensorDictModule(
+            module=policy.features,
+            in_keys=["observation"],
+            out_keys=["hidden"],
+        ),
+        feature_module,
+        logits_module,
+        mask_module,
+        prob_module
+    )
+
+    collector = SyncDataCollector(
+        create_env_fn=env_creator,
+        create_env_kwargs={},
+        policy=actor_network,
+        frames_per_batch=args.num_steps,
+        total_frames=args.total_timesteps,
+        device=device,
+        storing_device=device,
+    )
+
     ppo_loss = ClipPPOLoss(
         actor_network=actor_network,
         critic_network=critic_module,
