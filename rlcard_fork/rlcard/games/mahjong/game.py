@@ -74,6 +74,9 @@ class MahjongGame:
                 (int): next plater's id
         '''
         #print("STEPPING.... action: ", action)
+        # print("\nBEFORE STEPPING IN STATE: ")
+        # self.print_game_state()
+
         # First snapshot the current state
         if self.allow_step_back:
             hist_dealer = deepcopy(self.dealer)
@@ -83,6 +86,9 @@ class MahjongGame:
         self.round.proceed_round(self.players, action)
         state = self.get_state(self.round.current_player)
         self.cur_state = state
+
+        # print("\nSTEPPED IN STATE: ")
+        # self.print_game_state()
 
         #print("\nNEW GAME STATE: ")
         # self.print_game_state()
@@ -135,8 +141,11 @@ class MahjongGame:
             return False
         self.dealer, self.players, self.round = self.history.pop()
         self.round.dealer = self.dealer
+        state = self.get_state(self.round.current_player)
+        self.cur_state = state
         # print("in fact --")
-        self.print_game_state()
+        # print("\nSTEPPED BACK STATE: ")
+        # self.print_game_state()
         return True
 
     def get_state(self, player_id):

@@ -104,7 +104,8 @@ class Env(object):
             return False
 
         player_id = self.get_player_id()
-        state = self.get_state(player_id)
+        state = self.game.get_state(player_id)
+        # print("STEP BACK IN ENV", state)
 
         return self._extract_state(state), player_id
 

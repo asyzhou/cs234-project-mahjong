@@ -99,6 +99,7 @@ class MahjongRound:
         Return:
             state (dict): The information of the state
         '''
+        # print(">>getting state in round.py")
         state = {}
         #(valid_act, player, cards) = self.judger.judge_pong_gong(self.dealer, players, self.last_player)
         if self.valid_act: # PONG/GONG/CHOW
@@ -115,5 +116,6 @@ class MahjongRound:
             state['current_hand'] = players[player_id].hand
             state['players_pile'] = {p.player_id: p.pile for p in players}
             state['action_cards'] = players[player_id].hand # For doing action (pong, chow, gong)
+        # print("cur state is", state)
         return state
 
