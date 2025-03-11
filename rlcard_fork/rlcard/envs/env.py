@@ -106,7 +106,7 @@ class Env(object):
         player_id = self.get_player_id()
         state = self.get_state(player_id)
 
-        return state, player_id
+        return self._extract_state(state), player_id
 
     def set_agents(self, agents):
         '''
