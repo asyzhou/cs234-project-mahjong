@@ -126,81 +126,36 @@ class RegretMatch:
             if legal_mask[action] == 0:
                 continue
                 
-            # Set environment to the original state
-            if env_state is not None:
-                env.set_state(copy.deepcopy(env_state))
-            else:
-                # If env doesn't support get_state/set_state, we skip this action
-                # This is a fallback to avoid errors, but won't give true counterfactuals
-                with torch.no_grad():
-                    if isinstance(state, TensorDict) and 'observation' in state:
-                        state_tensor = state['observation']
-                    elif isinstance(state, np.ndarray):
-                        state_tensor = torch.FloatTensor(state)
-                    elif isinstance(state, torch.Tensor):
-                        state_tensor = state
-                    else:
-                        continue  # Skip if we can't handle the state type
-                        
-                    # Ensure state tensor has batch dimension
-                    if state_tensor.dim() == 1:
-                        state_tensor = state_tensor.unsqueeze(0)
-                    
-                    # Use PPO's value function as an estimate
-                    action_probs = self.ppo_model.actor(state_tensor)
-                    state_value = self.ppo_model.critic(state_tensor).item()
-                    
-                    # Higher probability actions from PPO are assumed to have higher value
-                    action_prob = action_probs[0, action].item()
-                    counterfactual_values[action] = state_value * (1.0 + action_prob)
-                continue
-            
             # Take the action
             next_state = env.step(action)
             
             # Extract reward and done from TensorDict
-            if isinstance(next_state, TensorDict):
-                reward = next_state.get('reward', 0.0)
-                if isinstance(reward, torch.Tensor):
-                    reward = reward.item()
-                
-                done = next_state.get('done', False)
-                if isinstance(done, torch.Tensor):
-                    done = done.item()
-            else:
-                # Fallback for non-TensorDict environments
-                reward = 0.0
-                done = False
-            
-            # Calculate value: immediate reward + discounted future value
+            reward = next_state['reward', 0.0]
+            if isinstance(reward, torch.Tensor):
+                reward = reward.item()
+            done = next_state['done']
+            if isinstance(done, torch.Tensor):
+                done = done.item()
+
+            # Calculate counterfactual value
             if done:
                 counterfactual_values[action] = reward
             else:
                 with torch.no_grad():
-                    if isinstance(next_state, TensorDict) and 'observation' in next_state:
-                        next_state_tensor = next_state['observation']
-                    elif isinstance(next_state, np.ndarray):
-                        next_state_tensor = torch.FloatTensor(next_state)
-                    elif isinstance(next_state, torch.Tensor):
-                        next_state_tensor = next_state
-                    else:
-                        counterfactual_values[action] = reward  # Can't compute future value
-                        continue
-                    
+                    next_state_tensor = next_state['observation']
                     # Ensure state tensor has batch dimension
                     if next_state_tensor.dim() == 1:
                         next_state_tensor = next_state_tensor.unsqueeze(0)
                     
                     next_state_value = self.ppo_model.critic(next_state_tensor).item()
                     counterfactual_values[action] = reward + next_state_value
-        
-        # Restore environment to original state
-        if env_state is not None:
-            env.set_state(env_state)
+            
+            # Step back
+            env.step_back()
             
         return counterfactual_values
     
-    def update_regrets(self, env, state, action_taken, next_state):
+    def update_regrets(self, env, state, action_taken, next_state, counterfactual_values):
         """
         Update regrets based on the observed reward and true counterfactual values
         
@@ -212,45 +167,27 @@ class RegretMatch:
         """
         state_key = self.get_state_key(state)
         self.initialize_regrets(state)
-        
-        # Extract reward from TensorDict
-        if isinstance(next_state, TensorDict):
-            reward = next_state.get('reward', 0.0)
-            if isinstance(reward, torch.Tensor):
-                reward = reward.item()
-            
-            done = next_state.get('done', False)
-            if isinstance(done, torch.Tensor):
-                done = done.item()
-        else:
-            # Fallback for non-TensorDict environments
-            reward = 0.0
-            done = False
-        
-        # Get value of the action that was taken
+
+        # Calculate the observed reward for the next state
+        reward = next_state['reward', 0.0]
+        if isinstance(reward, torch.Tensor):
+            reward = reward.item()
+        done = next_state['done']
+        if isinstance(done, torch.Tensor):
+            done = done.item()
+
+        # Update actual next state value in counterfactual dict jic
         if done:
-            actual_value = reward
+            counterfactual_values[action_taken] = reward
         else:
             with torch.no_grad():
-                if isinstance(next_state, TensorDict) and 'observation' in next_state:
-                    next_state_tensor = next_state['observation']
-                elif isinstance(next_state, np.ndarray):
-                    next_state_tensor = torch.FloatTensor(next_state)
-                elif isinstance(next_state, torch.Tensor):
-                    next_state_tensor = next_state
-                else:
-                    actual_value = reward
-                    return
-                
+                next_state_tensor = next_state['observation']
                 # Ensure state tensor has batch dimension
                 if next_state_tensor.dim() == 1:
                     next_state_tensor = next_state_tensor.unsqueeze(0)
-                
+                    
                 next_state_value = self.ppo_model.critic(next_state_tensor).item()
-                actual_value = reward + 0.99 * next_state_value
-        
-        # Compute true counterfactual values for all actions
-        counterfactual_values = self.compute_true_counterfactual_values(env, state)
+                counterfactual_values[action_taken] = reward + next_state_value
         
         # Update regrets for all actions
         for action in range(self.action_space_size):
@@ -258,11 +195,11 @@ class RegretMatch:
                 continue  # Skip the taken action and illegal actions
             
             # Regret is the difference between counterfactual value and actual value
-            regret = counterfactual_values[action] - actual_value
+            regret = counterfactual_values[action] - counterfactual_values[action_taken]
             self.cumulative_regrets[state_key][action] += self.learning_rate * regret
-        
         # Apply regret discount
         self.cumulative_regrets[state_key] *= self.regret_discount
+
     
     def train(self, env, num_episodes=1000, max_steps_per_episode=1000, 
               eval_interval=100, eval_episodes=10, save_path=None, verbose=True):
@@ -299,28 +236,23 @@ class RegretMatch:
             
             done = False
             while not done and steps < max_steps_per_episode:
+                # Compute true counterfactual values for all actions
+                counterfactual_values = self.compute_true_counterfactual_values(env, state)
+
                 # Select action using regret matching
                 action = self.select_action(state)
-                
                 # Take action in environment
                 next_state = env.step(action)
-                
-                # Extract reward and done from TensorDict
-                if isinstance(next_state, TensorDict):
-                    reward = next_state.get('reward', 0.0)
-                    if isinstance(reward, torch.Tensor):
-                        reward = reward.item()
-                    
-                    done = next_state.get('done', False)
-                    if isinstance(done, torch.Tensor):
-                        done = done.item()
-                else:
-                    # Fallback for non-TensorDict environments
-                    reward = 0.0
-                    done = False
+                # Calculate the observed reward for the next state
+                reward = next_state['reward', 0.0]
+                if isinstance(reward, torch.Tensor):
+                    reward = reward.item()
+                done = next_state['done']
+                if isinstance(done, torch.Tensor):
+                    done = done.item()
                 
                 # Update regrets using true counterfactual values
-                self.update_regrets(env, state, action, next_state)
+                self.update_regrets(env, state, action, next_state, counterfactual_values)
                 
                 state = next_state
                 episode_reward += reward
@@ -378,10 +310,8 @@ class RegretMatch:
             done = False
             
             while not done:
-                # Extract legal mask if available
-                legal_mask = None
-                if isinstance(state, TensorDict) and 'legal_mask' in state:
-                    legal_mask = state['legal_mask']
+                # Extract legal mask
+                legal_mask = state['legal_mask']
                 
                 # Select action using current policy (greedy for evaluation)
                 policy = self.get_regret_matching_policy(state, legal_mask)
@@ -391,18 +321,12 @@ class RegretMatch:
                 next_state = env.step(action)
                 
                 # Extract reward and done from TensorDict
-                if isinstance(next_state, TensorDict):
-                    reward = next_state.get('reward', 0.0)
-                    if isinstance(reward, torch.Tensor):
-                        reward = reward.item()
-                    
-                    done = next_state.get('done', False)
-                    if isinstance(done, torch.Tensor):
-                        done = done.item()
-                else:
-                    # Fallback for non-TensorDict environments
-                    reward = 0.0
-                    done = False
+                reward = next_state['reward']
+                if isinstance(reward, torch.Tensor):
+                    reward = reward.item()
+                done = next_state['done']
+                if isinstance(done, torch.Tensor):
+                    done = done.item()
                 
                 if render:
                     env.render()
@@ -421,9 +345,6 @@ class RegretMatch:
     def load(self, path):
         """Load the regret table from a file"""
         self.cumulative_regrets = np.load(path, allow_pickle=True).item()
-
-
-
 
 
 # Basically a train wrapper
