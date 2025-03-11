@@ -137,7 +137,7 @@ class MahjongTorchEnv:
             legal_mask[act_id] = True
         done = False
         done_t = torch.tensor([done], dtype=torch.bool)
-        reward = torch.tensor([0], dtype=torch.int6)
+        reward = torch.tensor([0], dtype=torch.int64)
         reward_t = torch.tensor([reward], dtype=torch.float32)
         result = TensorDict(
             {

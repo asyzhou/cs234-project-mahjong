@@ -48,6 +48,10 @@ class MahjongEnv(Env):
                              the recent three actions
                              the union of all played cards
         '''
+        # print("i'm being extracted in mahjong.py")
+        # print("THIS IS THE STATE BEFORE", state)
+        # print("THE KEYS ARE", state.keys())
+
         players_pile = state['players_pile']
         hand_rep = encode_cards(state['current_hand'])
         piles_rep = []
