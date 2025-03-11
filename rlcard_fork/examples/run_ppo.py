@@ -15,8 +15,21 @@ from rlcard.envs.mahjong import MahjongEnv
 
 from rlcard.envs.mahjong_envwrap import MahjongTorchEnv
 from torchrl.data.replay_buffers.storages import LazyTensorStorage
-from tensordict.nn import TensorDictModule, ProbabilisticTensorDictModule, ProbabilisticTensorDictSequential
+from tensordict.nn import TensorDictModule, ProbabilisticTensorDictModule, TensorDictSequential
 from torch.distributions import Categorical
+from torchrl.modules import ProbabilisticActor
+import wandb
+
+class BatchedPolicyWrapper(nn.Module):
+    def __init__(self, policy_net):
+        super().__init__()
+        self.policy_net = policy_net
+
+    def forward(self, observation):
+        if observation.dim() == 3:  # Single observation case (6, 36, 4)
+            observation = observation.unsqueeze(0)  # Convert to (1, 6, 36, 4)
+        return self.policy_net(observation)
+
 
 class PPOActorCritic(nn.Module):
     def __init__(self, obs_shape, num_actions):
@@ -25,38 +38,64 @@ class PPOActorCritic(nn.Module):
         # Mahjong observation: (num_players + 2, 34, 4)
         input_size = np.prod(obs_shape)
         
-        self.features = nn.Sequential(
-            nn.Flatten(start_dim=0, end_dim=-1),
+        # self.features = nn.Sequential(
+        #     nn.Flatten(start_dim=0, end_dim=-1),
+        #     nn.Linear(input_size, 512),
+        #     nn.ReLU(),
+        #     nn.Linear(512, 256),
+        #     nn.ReLU(),
+        # )
+        
+        self.raw_policy = nn.Sequential(
+            nn.Flatten(start_dim=1),
             nn.Linear(input_size, 512),
             nn.ReLU(),
             nn.Linear(512, 256),
             nn.ReLU(),
-        )
-        
-        self.policy = nn.Sequential(
             nn.Linear(256, 128),
             nn.ReLU(),
             nn.Linear(128, num_actions),
         )
+
+        self.policy = BatchedPolicyWrapper(self.raw_policy)
         
         self.value = nn.Sequential(
+            nn.Flatten(start_dim=1),
+            nn.Linear(input_size, 512),
+            nn.ReLU(),
+            nn.Linear(512, 256),
+            nn.ReLU(),
             nn.Linear(256, 128),
             nn.ReLU(),
             nn.Linear(128, 1),
         )
     
     def get_value(self, observation):
-        features = self.features(observation)
-        return self.value(features)
+        # features = self.features(observation)
+        if observation.dim() == 3: 
+            observation = observation.unsqueeze(0)
+        return self.value(observation)
     
-    def get_action_and_value(self, tensordict, action=None):
-        observation = tensordict["observation"]        
-        legal_mask = tensordict["legal_mask"]
-        print(observation.shape)
-        print(observation.flatten().shape)
-        features = self.features(observation)
-        logits = self.policy(features)
-        logits[~legal_mask] = float('-inf')
+    def get_action_and_value(self, observation, action=None):
+        if isinstance(observation, dict) or isinstance(observation, TensorDict):
+            obs_tensor = observation["observation"]
+            legal_mask = observation.get("legal_mask", None)
+        else:
+            obs_tensor = observation
+            legal_mask = None
+        
+        # features = self.features(obs_tensor)
+        if obs_tensor.dim() == 3:
+            obs_tensor = obs_tensor.unsqueeze(0)
+
+        logits = self.policy(obs_tensor)
+        
+        if legal_mask is not None:
+            if not legal_mask.dtype == torch.bool:
+                legal_mask = legal_mask.bool()
+            logits = logits.clone()
+            legal_mask = legal_mask.unsqueeze(0)
+            logits[~legal_mask] = float('-inf')
         
         probs = Categorical(logits=logits)
         
@@ -65,12 +104,13 @@ class PPOActorCritic(nn.Module):
         
         log_prob = probs.log_prob(action)
         entropy = probs.entropy().mean()
-        value = self.value(features)
+
+        value = self.value(obs_tensor)
         
         return action, log_prob, entropy, value
 
 
-# Self play wrapper?
+# Self play wrapper
 class SelfPlayMahjongEnv(EnvBase):
     def __init__(self, mahjong_env, policy, device="cpu"):
         super().__init__()
@@ -88,13 +128,11 @@ class SelfPlayMahjongEnv(EnvBase):
         print('wrapper device init,', self.device)
     
     def _reset(self, input_dict=None):
-        print('CALLING RESET_')
         state = self.env._reset(input_dict)
         self.current_player_id = 0 
         return state.to(self.device)
     
     def _step(self, input_dict):
-        print("CALLIGN _STEP")
         action = input_dict["action"]
         
         next_state = self.env._step(TensorDict({"action": action}, batch_size=[]))
@@ -103,37 +141,49 @@ class SelfPlayMahjongEnv(EnvBase):
             return next_state
         
         while self.env.mahjong_env.game.round.current_player != self.current_player_id:
+            current_player_id = self.env.mahjong_env.game.round.current_player
+            player_state = self.env.mahjong_env.get_state(current_player_id)
+            
             current_obs = torch.tensor(
-                self.env.mahjong_env.get_state(self.env.mahjong_env.game.round.current_player)["obs"], 
-                dtype=torch.int64,
+                player_state["obs"], 
+                dtype=torch.float,  
                 device=self.device
             )
-            legal_actions = self.env.mahjong_env.get_state(self.env.mahjong_env.game.round.current_player)["legal_actions"]
+            
+            legal_actions = player_state["legal_actions"]
+            legal_mask = torch.zeros(self.env.action_spec["action"].n, dtype=torch.bool, device=self.device)
+            for act_id in legal_actions:
+                legal_mask[act_id] = True
+                
+            obs_dict = TensorDict({
+                "observation": current_obs,
+                "legal_mask": legal_mask
+            }, batch_size=[])
+            
             
             with torch.no_grad():
-                policy_action, _, _, _ = self.policy.get_action_and_value(current_obs.unsqueeze(0), legal_actions)
+                policy_action, _, _, _ = self.policy.get_action_and_value(obs_dict)
                 policy_action = policy_action.cpu()
             
             next_state = self.env._step(TensorDict({"action": policy_action}, batch_size=[]))
             
             if next_state["done"].item():
                 break
+        
         return next_state.to(self.device)
     
     def _set_seed(self, seed):
         self.env._set_seed(seed)
 
-    '''@property
-    def _has_dynamic_specs(self):
-        return self.env._has_dynamic_specs
-    
-    @property
-    def action_keys(self):
-        return self.env.action_keys'''
 
 
 def train_ppo(args):
-    device = torch.device("cuda:"+str(args.cuda))
+    wandb.init(
+        project="ppo-mahjong",  
+        config=vars(args) 
+    )
+    device = torch.device("cuda:"+str(args.cuda) if args.cuda else "cpu")
+
     print("device,", device)
     torch.manual_seed(args.seed)
     if device.type == 'cuda':
@@ -144,8 +194,9 @@ def train_ppo(args):
         'allow_step_back': False,
         'num_players': 4,
         'seed': args.seed,
-        'device': 'cuda:7'
+        'device': str(device)
     }
+    
     mahjong_env = MahjongEnv(mahjong_config)
     base_env = MahjongTorchEnv(mahjong_env, device=device)
     obs_shape = base_env.observation_spec["observation"].shape
@@ -157,72 +208,85 @@ def train_ppo(args):
     
     policy = PPOActorCritic(obs_shape, num_actions).to(device)
     optimizer = torch.optim.Adam(policy.parameters(), lr=args.learning_rate)
+    
     env_creator = lambda: SelfPlayMahjongEnv(
         MahjongTorchEnv(MahjongEnv(mahjong_config), device=device),
         policy,
         device=device
     )
+    
     replay_buffer = ReplayBuffer(
         storage=LazyTensorStorage(args.num_steps),
         sampler=None,
+    )
+
+    value_module = TensorDictModule(
+        policy.value, in_keys=["observation"], out_keys=["state_value"]
     )
     
     gae = GAE(
         gamma=args.gamma,
         lmbda=args.gae_lambda,
-        value_network=policy.get_value,
+        value_network=value_module,
     )
+    
+    class CriticNetwork(nn.Module):
+        def __init__(self, value): # features, 
+            super().__init__()
+            # self.features = features
+            self.value = value
+        
+        def forward(self, obs):
+            value = self.value(obs)
+            return value
+    
     critic_module = TensorDictModule(
-        module=policy.value,  
+        module=CriticNetwork(policy.value), # policy.features,
         in_keys=["observation"],
         out_keys=["state_value"],
     )
 
-    feature_module = TensorDictModule(
-        module=policy.features,        
-        in_keys=["observation"],       
-        out_keys=["hidden"],          
-    )
+    # feature_module = TensorDictModule(
+    #     module=policy.features,
+    #     in_keys=["observation"],
+    #     out_keys=["hidden"],
+    # )
 
     logits_module = TensorDictModule(
-        module=policy.policy,          
-        in_keys=["hidden"],
-        out_keys=["logits"],          
-    )
-
-    class MaskLogitsModule(nn.Module):
-        def forward(self, tensordict_in, tensordict_out, **kwargs): # idk why but torchrl finicky needs 2
-            logits = tensordict_in["logits"]
-            legal_mask = tensordict_in["legal_mask"]
-            logits[~legal_mask] = float("-inf")
-            tensordict_in.set("logits", logits)
-            return tensordict_in
-
-
-    mask_module = TensorDictModule(
-        module=MaskLogitsModule(),
-        in_keys=["logits", "legal_mask"], 
+        module=policy.policy,
+        in_keys=["observation"],
         out_keys=["logits"],
     )
 
+    class SimpleMaskModule(nn.Module):
+        def forward(self, logits, legal_mask):
+            if legal_mask.dtype != torch.bool:
+                legal_mask = legal_mask.bool()
+            if legal_mask.dim() == 1:  
+                legal_mask = legal_mask.unsqueeze(0)
+            
+            masked_logits = logits.clone()
+            masked_logits[~legal_mask] = float('-inf')
+            return masked_logits
     
-    prob_module = ProbabilisticTensorDictModule(
-        in_keys=["logits"],            
-        out_keys=["action", "log_prob"],
-        distribution_class=Categorical, 
-        distribution_kwargs={}
+    mask_module = TensorDictModule(
+        module=SimpleMaskModule(),
+        in_keys=["logits", "legal_mask"],
+        out_keys=["logits"],
     )
 
-    actor_network = ProbabilisticTensorDictSequential(
-        TensorDictModule(
-            module=policy.features,
-            in_keys=["observation"],
-            out_keys=["hidden"],
-        ),
-        feature_module,
+    actor_module = TensorDictSequential(
         logits_module,
         mask_module,
-        prob_module
+    )
+    
+    
+    actor_network = ProbabilisticActor(
+        module=actor_module,
+        distribution_class=Categorical,
+        in_keys=["logits"],
+        out_keys=["action"],
+        return_log_prob=True,
     )
 
     collector = SyncDataCollector(
@@ -250,10 +314,11 @@ def train_ppo(args):
     episode_rewards = []
     episode_lengths = []
     
-    print("Starting training for" + str(args.total_timesteps) + " timesteps")
-    print("Number of updates"+ str(num_updates))
+    print(f"Starting training for {args.total_timesteps} timesteps")
+    print(f"Number of updates: {num_updates}")
     
     global_step = 0
+    best_reward = float('-inf')
     
     for i, tensordict_data in enumerate(collector):
         tensordict_data = tensordict_data.clone()
@@ -273,18 +338,36 @@ def train_ppo(args):
                 minibatch = tensordict_data[mb_indices]
                 loss_vals = ppo_loss(minibatch)
                 optimizer.zero_grad()
-                loss_vals["loss"].backward()
+                loss_vals["loss_objective"].backward()
                 nn.utils.clip_grad_norm_(policy.parameters(), args.max_grad_norm)
                 optimizer.step()
+
+                wandb.log({
+                    "loss_objective": loss_vals["loss_objective"].item(),
+                    "entropy": loss_vals["entropy"].item(),
+                    "kl_approx": loss_vals["kl_approx"].item(),  
+                    "loss_critic": loss_vals["loss_critic"].item(),
+                    "loss_entropy": loss_vals["loss_entropy"].item(),
+                    "global_step": global_step
+                })
         
-        if "episode_reward" in tensordict_data:
-            episode_rewards.extend(tensordict_data["episode_reward"].tolist())
-            episode_lengths.extend(tensordict_data["episode_length"].tolist())
-            
-            if len(episode_rewards) > 0:
-                print(f"Update {i+1}/{num_updates}, Episode Reward: {np.mean(episode_rewards[-10:]):.2f}, Episode Length: {np.mean(episode_lengths[-10:]):.2f}")
-        
+        total_reward = tensordict_data['next']['reward'].sum()
+        wandb.log({
+                "total_episode_reward": total_reward
+            })
+    
         global_step += args.num_steps
+
+        if (i+1) > 100 and total_reward > best_reward:
+            best_reward = total_reward
+            best_model_path = os.path.join(args.log_dir, "best_model.pt")
+            torch.save({
+                'model_state_dict': policy.state_dict(),
+                'optimizer_state_dict': optimizer.state_dict(),
+                'global_step': global_step,
+                'best_reward': best_reward
+            }, best_model_path)
+            print(f"Best model saved with reward {best_reward} at {best_model_path}")
         
         if (i + 1) % args.save_every == 0 or i == num_updates - 1:
             checkpoint_path = os.path.join(args.log_dir, f"model_{i+1}.pt")
@@ -295,7 +378,7 @@ def train_ppo(args):
             }, checkpoint_path)
             print(f"Model saved at {checkpoint_path}")
     
-    final_model_path = os.path.join(args.log_dir, "final_model_PPO.pt") # edit
+    final_model_path = os.path.join(args.log_dir, "final_model_PPO.pt")
     torch.save({
         'model_state_dict': policy.state_dict(),
         'optimizer_state_dict': optimizer.state_dict(),
@@ -307,10 +390,9 @@ def train_ppo(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("PPO Mahjong Self-Play Training")
     
-    # Make config files?
     parser.add_argument('--seed', type=int, default=42, help='Random seed')
     parser.add_argument('--learning_rate', type=float, default=3e-4, help='Learning rate')
-    parser.add_argument('--num_steps', type=int, default=2048, help='Number of steps to collect per batch')
+    parser.add_argument('--num_steps', type=int, default=2000, help='Number of steps to collect per batch')
     parser.add_argument('--batch_size', type=int, default=2048, help='Batch size')
     parser.add_argument('--minibatch_size', type=int, default=256, help='Minibatch size')
     parser.add_argument('--update_epochs', type=int, default=10, help='Number of epochs to update')
@@ -324,7 +406,7 @@ if __name__ == "__main__":
     
     parser.add_argument('--cuda', type=str, default='', help='CUDA device index, empty for CPU')
     parser.add_argument('--log_dir', type=str, default='experiments/mahjong_ppo_results/', help='Directory to save logs and models')
-    parser.add_argument('--save_every', type=int, default=10, help='Save model every N updates')
+    parser.add_argument('--save_every', type=int, default=100, help='Save model every N updates')
     
     args = parser.parse_args()
     

@@ -20,8 +20,14 @@ class MahjongTorchEnv:
                 low=0,
                 high=1,
                 shape=obs_shape,
-                dtype=torch.int64,
+                dtype=torch.float,
                 device=self.device,
+            ),
+            "legal_mask": DiscreteTensorSpec(
+                n=2,  # Binary mask (0 or 1)
+                shape=(34,),  # Match your action space size
+                dtype=torch.bool,
+                device=self.device
             )
         })
         # If your actions are discrete with M possible actions:
@@ -88,17 +94,17 @@ class MahjongTorchEnv:
         next_state_dict, _ = self.mahjong_env.step(action_val)
         
         obs_t = torch.tensor(next_state_dict['obs'], dtype=torch.float)  # look at _extract state function in mahjong
-        stupidass_dict = obs["legal_actions"]
+        stupidass_dict = next_state_dict["legal_actions"]
         legal_mask = torch.zeros(self.action_spec["action"].n, dtype=torch.bool)
         for act_id in stupidass_dict:
             legal_mask[act_id] = True
         done = self.mahjong_env.is_over()
         done_t = torch.tensor([done], dtype=torch.bool)
-        reward = torch.tensor([0], dtype=torch.int6)
+        reward = torch.tensor([0], dtype=torch.int64)
         if done:
             payoffs = self.mahjong_env.get_payoffs()
             reward = payoffs[cur_player]   
-        reward_t = torch.tensor([reward], dtype=torch.float32)
+        reward_t = torch.tensor([reward], dtype=torch.int64)
         '''
         TODO: 
         - check for multi agent: how do we return rewards/actions/observations

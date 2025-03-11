@@ -24,7 +24,7 @@ class Env(object):
                 'rlcard/envs/blackjack.py'
                 TODO: Support more game configurations in the future.
         '''
-        print("in env.init")
+        #print("in env.init")
         self.allow_step_back = self.game.allow_step_back = config['allow_step_back']
         self.action_recorder = []
 
@@ -134,8 +134,8 @@ class Env(object):
         Note: The trajectories are 3-dimension list. The first dimension is for different players.
               The second dimension is for different transitions. The third dimension is for the contents of each transiton
         '''
-        print("========================================================================================================")
-        print("Running the game...")
+        #print("========================================================================================================")
+        #print("Running the game...")
 
         trajectories = [[] for _ in range(self.num_players)]
         state, player_id = self.reset()
@@ -150,10 +150,11 @@ class Env(object):
                 action = self.agents[player_id].step(state)
 
             # Environment steps            
-            print("\n========================================================================================================")
+            #print("\n========================================================================================================")
             decoded =  self._decode_action(action)
             action_str = decoded if isinstance(decoded, str) else decoded.get_str()
-            print("NEXT selected action: ", action_str, " now stepping into env...")
+            #
+            #print("NEXT selected action: ", action_str, " now stepping into env...")
 
             next_state, next_player_id = self.step(action, self.agents[player_id].use_raw)
             # Save action

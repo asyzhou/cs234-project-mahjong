@@ -5,13 +5,14 @@ from rlcard.games.mahjong import Dealer
 from rlcard.games.mahjong import Player
 from rlcard.games.mahjong import Round
 from rlcard.games.mahjong import Judger
+from rlcard.games.mahjong.utils import card_encoding_dict
 
 class MahjongGame:
 
     def __init__(self, allow_step_back=False):
         '''Initialize the class MajongGame
         '''
-        print("In MahjongGame Init")
+        #print("In MahjongGame Init")
 
         self.allow_step_back = allow_step_back
         self.np_random = np.random.RandomState()
@@ -28,7 +29,7 @@ class MahjongGame:
                 (dict): The first state of the game
                 (int): Current player's id
         '''
-        print("In MahjongGame init_game()")
+        #print("In MahjongGame init_game()")
 
         # Initialize a dealer that can deal cards
         self.dealer = Dealer(self.np_random)
@@ -51,8 +52,12 @@ class MahjongGame:
         state = self.get_state(self.round.current_player)
         self.cur_state = state
 
-        print("INITIAL GAME STATE: ")
-        self.print_game_state()
+        #print("INITIAL GAME STATE: ")
+        # self.print_game_state()
+
+        # extras for print statements in step
+        self.action_id = card_encoding_dict
+        self.de_action_id = {self.action_id[key]: key for key in self.action_id.keys()}
 
         return state, self.round.current_player
 
@@ -68,6 +73,7 @@ class MahjongGame:
                 (dict): next player's state
                 (int): next plater's id
         '''
+        #print("STEPPING.... action: ", action)
         # First snapshot the current state
         if self.allow_step_back:
             hist_dealer = deepcopy(self.dealer)
@@ -78,12 +84,30 @@ class MahjongGame:
         state = self.get_state(self.round.current_player)
         self.cur_state = state
 
-        # print("\nNEW GAME STATE: ")
+        #print("\nNEW GAME STATE: ")
         # self.print_game_state()
         # print("right now, the deck length that we have is", len(self.dealer.deck), "cards left in deck")
         # print("done.")
 
         return state, self.round.current_player
+
+    def _decode_action(self, action_id):
+            ''' Action id -> the action in the game. Must be implemented in the child class.
+
+            Args:
+                action_id (int): the id of the action
+
+            Returns:
+                action (string): the action that will be passed to the game engine.
+            '''
+            action = self.de_action_id[action_id]
+            if action_id < 30: # discarded some cards
+                candidates = self.get_legal_actions(self.get_state(self.round.current_player))
+                for card in candidates:
+                    if card.get_str() == action:
+                        action = card
+                        break
+            return action
 
     def print_game_state(self):
         result = ""
@@ -112,7 +136,7 @@ class MahjongGame:
         self.dealer, self.players, self.round = self.history.pop()
         self.round.dealer = self.dealer
         # print("in fact --")
-        # self.print_game_state()
+        self.print_game_state()
         return True
 
     def get_state(self, player_id):
