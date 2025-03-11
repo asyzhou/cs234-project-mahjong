@@ -88,7 +88,7 @@ class MahjongTorchEnv:
         next_state_dict, _ = self.mahjong_env.step(action_val)
         
         obs_t = torch.tensor(next_state_dict['obs'], dtype=torch.float)  # look at _extract state function in mahjong
-        stupidass_dict = obs["legal_actions"]
+        stupidass_dict = next_state_dict["legal_actions"]
         legal_mask = torch.zeros(self.action_spec["action"].n, dtype=torch.bool)
         for act_id in stupidass_dict:
             legal_mask[act_id] = True
@@ -104,6 +104,35 @@ class MahjongTorchEnv:
         - check for multi agent: how do we return rewards/actions/observations
         - how to return losing (-1) rewards for other agents, if trajectories end once someone wins 
         '''
+        result = TensorDict(
+            {
+                "done": done_t,
+                "reward": reward_t,
+                "observation": obs_t,
+                "legal_mask": legal_mask,
+        }, batch_size=self.batch_size)
+        
+        return result
+    
+    def _step_back(self): # -> Tuple[Dict[str, Tensor], Dict[str, Tensor], Dict[str, Tensor], Dict[str, Any]]:
+        """
+        _step_back takes one step back through the game, user must make sure to allow step back in the orig mahjong env
+        """
+        state_dict, player_id = self.mahjong_env.step_back()
+        cur_player = self.mahjong_env.game.round.current_player
+        if cur_player != player_id:
+            print("SOMETHING IS WRONG")
+            return
+        
+        obs_t = torch.tensor(state_dict['obs'], dtype=torch.float)  # look at _extract state function in mahjong
+        legal_actions = state_dict["legal_actions"]
+        legal_mask = torch.zeros(self.action_spec["action"].n, dtype=torch.bool)
+        for act_id in legal_actions:
+            legal_mask[act_id] = True
+        done = False
+        done_t = torch.tensor([done], dtype=torch.bool)
+        reward = torch.tensor([0], dtype=torch.int6)
+        reward_t = torch.tensor([reward], dtype=torch.float32)
         result = TensorDict(
             {
                 "done": done_t,

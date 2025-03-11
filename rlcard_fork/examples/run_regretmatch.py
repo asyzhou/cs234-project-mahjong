@@ -1,11 +1,17 @@
 import numpy as np
 import torch
 from tqdm import tqdm
+from tensordict import TensorDict
+from rlcard.envs.mahjong import MahjongEnv
+from rlcard.envs.mahjong_envwrap import MahjongTorchEnv
+from run_ppo import PPOActorCritic
+import copy
+
 
 class RegretMatch:
     def __init__(self, ppo_model, action_space_size, learning_rate=0.01, regret_discount=0.95):
         """
-        Initialize the Regret Matching agent that uses a PPO model for base policy
+        Initialize the Regret Matching obj with pretrained PPO model's value function
         
         Args:
             ppo_model: The trained PPO model (assumed to have actor and critic networks)
@@ -28,13 +34,12 @@ class RegretMatch:
     def get_state_key(self, state):
         """
         Convert state to a hashable key for the regret table.
-        Customize this based on your state representation.
         """
-        '''TODO: fix this once ppo is goods'''
-        if isinstance(state, np.ndarray):
-            return hash(state.tobytes())
-        elif isinstance(state, torch.Tensor):
-            return hash(state.cpu().numpy().tobytes())
+        # ideally state is always a tensordict, hash the observation tensor
+        if isinstance(state, TensorDict):  
+            if 'observation' in state:
+                return hash(state['observation'].cpu().detach().numpy().tobytes())
+        # else try to hash the entire state
         return hash(str(state))
     
     def initialize_regrets(self, state):
@@ -45,19 +50,36 @@ class RegretMatch:
         if state_key not in self.cumulative_regrets:
             self.cumulative_regrets[state_key] = np.zeros(self.action_space_size)
     
-    def get_regret_matching_policy(self, state):
+    def get_regret_matching_policy(self, state, legal_mask=None):
         """
         Compute a policy based on positive regrets using regret matching
+        
+        Args:
+            state: Current state
+            legal_mask: Binary mask of legal actions (1 for legal, 0 for illegal)
         """
         state_key = self.get_state_key(state)
         self.initialize_regrets(state)
         
         # Get positive regrets
         positive_regrets = np.maximum(self.cumulative_regrets[state_key], 0)
+        # Apply legal action mask if provided
+        if legal_mask is not None:
+            if isinstance(legal_mask, torch.Tensor):
+                legal_mask = legal_mask.cpu().numpy()
+            # Zero out regrets for illegal actions
+            positive_regrets = positive_regrets * legal_mask
         regret_sum = np.sum(positive_regrets)
         
-        # If sum of positive regrets is zero, use uniform strategy
+        # If sum of positive regrets is zero, use uniform strategy over legal actions
         if regret_sum <= 0:
+            if legal_mask is not None:
+                # Uniform distribution over legal actions
+                legal_count = np.sum(legal_mask)
+                if legal_count > 0:
+                    policy = np.zeros(self.action_space_size)
+                    policy = legal_mask / legal_count
+                    return policy
             return np.ones(self.action_space_size) / self.action_space_size
         
         # Return regret-matching strategy
@@ -66,74 +88,174 @@ class RegretMatch:
     def select_action(self, state):
         """
         Select an action based on the regret matching policy
+        
+        Args:
+            state: Current state (can be TensorDict)
         """
-        policy = self.get_regret_matching_policy(state)
+        # Extract legal mask in TensorDict
+        legal_mask = state['legal_mask']
+        policy = self.get_regret_matching_policy(state, legal_mask)
+        
+        # Ensure the policy sums to 1 jic
+        policy = policy / np.sum(policy)
         action = np.random.choice(self.action_space_size, p=policy)
         return action
     
-    def prepare_state(self, state):
-        if isinstance(state, np.ndarray):
-            state_tensor = torch.FloatTensor(state).unsqueeze(0)
-        elif isinstance(state, torch.Tensor):
-            state_tensor = state.unsqueeze(0) if state.dim() == 1 else state
-        return state_tensor
-
-    # def compute_counterfactual_values(self, env, state, action_taken):
-    #     """
-    #     Compute counterfactual values for all actions using PPO's value function
-    #     """
-    #     with torch.no_grad():
-    #         # Get action probabilities from PPO's actor
-    #         action_probs = self.ppo_model.actor(state_tensor)
-            
-    #         # Compute advantage for each action based on PPO's actor probabilities
-    #         # This is a heuristic as we don't have true counterfactual values
-    #         counterfactual_values = np.zeros(self.action_space_size)
-            
-    #         for action in range(self.action_space_size):
-    #             if action == action_taken:
-    #                 continue  # Skip the taken action
-                
-    #             next_state, reward, done, info = env.step(action)
-    #             # Prepare state for PPO model if needed
-    #             state_tensor = self.prepare_state(next_state)
-    #             # Get value estimate for the state
-    #             state_value = self.ppo_model.critic(state_tensor).item()
-
-    #             action_prob = action_probs[0, action].item()
-    #             # Scale the state value by the action probability
-    #             counterfactual_values[action] = state_value * (1.0 + action_prob)
-                
-    #         return counterfactual_values
-    
-    def update_regrets(self, state, action_taken, reward, next_state, done):
+    def compute_true_counterfactual_values(self, env, state):
         """
-        Update regrets based on the observed reward and counterfactual values
+        Compute true counterfactual values by taking each action in the environment then restoring the original state.
+        
+        Args:
+            env: Environment to use for simulation
+            state: Current state
+            
+        Returns:
+            np.ndarray: Array of values for each action
+        """
+        # Extract legal mask
+        legal_mask = None
+        legal_mask = state['legal_mask']
+        if isinstance(legal_mask, torch.Tensor):
+            legal_mask = legal_mask.cpu().numpy()
+        
+        counterfactual_values = np.full(self.action_space_size, float('-inf'))
+        
+        # Try each action
+        for action in range(self.action_space_size):
+            # Skip illegal actions
+            if legal_mask[action] == 0:
+                continue
+                
+            # Set environment to the original state
+            if env_state is not None:
+                env.set_state(copy.deepcopy(env_state))
+            else:
+                # If env doesn't support get_state/set_state, we skip this action
+                # This is a fallback to avoid errors, but won't give true counterfactuals
+                with torch.no_grad():
+                    if isinstance(state, TensorDict) and 'observation' in state:
+                        state_tensor = state['observation']
+                    elif isinstance(state, np.ndarray):
+                        state_tensor = torch.FloatTensor(state)
+                    elif isinstance(state, torch.Tensor):
+                        state_tensor = state
+                    else:
+                        continue  # Skip if we can't handle the state type
+                        
+                    # Ensure state tensor has batch dimension
+                    if state_tensor.dim() == 1:
+                        state_tensor = state_tensor.unsqueeze(0)
+                    
+                    # Use PPO's value function as an estimate
+                    action_probs = self.ppo_model.actor(state_tensor)
+                    state_value = self.ppo_model.critic(state_tensor).item()
+                    
+                    # Higher probability actions from PPO are assumed to have higher value
+                    action_prob = action_probs[0, action].item()
+                    counterfactual_values[action] = state_value * (1.0 + action_prob)
+                continue
+            
+            # Take the action
+            next_state = env.step(action)
+            
+            # Extract reward and done from TensorDict
+            if isinstance(next_state, TensorDict):
+                reward = next_state.get('reward', 0.0)
+                if isinstance(reward, torch.Tensor):
+                    reward = reward.item()
+                
+                done = next_state.get('done', False)
+                if isinstance(done, torch.Tensor):
+                    done = done.item()
+            else:
+                # Fallback for non-TensorDict environments
+                reward = 0.0
+                done = False
+            
+            # Calculate value: immediate reward + discounted future value
+            if done:
+                counterfactual_values[action] = reward
+            else:
+                with torch.no_grad():
+                    if isinstance(next_state, TensorDict) and 'observation' in next_state:
+                        next_state_tensor = next_state['observation']
+                    elif isinstance(next_state, np.ndarray):
+                        next_state_tensor = torch.FloatTensor(next_state)
+                    elif isinstance(next_state, torch.Tensor):
+                        next_state_tensor = next_state
+                    else:
+                        counterfactual_values[action] = reward  # Can't compute future value
+                        continue
+                    
+                    # Ensure state tensor has batch dimension
+                    if next_state_tensor.dim() == 1:
+                        next_state_tensor = next_state_tensor.unsqueeze(0)
+                    
+                    next_state_value = self.ppo_model.critic(next_state_tensor).item()
+                    counterfactual_values[action] = reward + next_state_value
+        
+        # Restore environment to original state
+        if env_state is not None:
+            env.set_state(env_state)
+            
+        return counterfactual_values
+    
+    def update_regrets(self, env, state, action_taken, next_state):
+        """
+        Update regrets based on the observed reward and true counterfactual values
+        
+        Args:
+            env: Environment to use for simulation
+            state: Current state
+            action_taken: Action that was actually taken
+            next_state: Resulting state after taking action_taken
         """
         state_key = self.get_state_key(state)
         self.initialize_regrets(state)
         
-        # Compute counterfactual values for all actions
-        counterfactual_values = self.compute_counterfactual_values(state, action_taken)
+        # Extract reward from TensorDict
+        if isinstance(next_state, TensorDict):
+            reward = next_state.get('reward', 0.0)
+            if isinstance(reward, torch.Tensor):
+                reward = reward.item()
+            
+            done = next_state.get('done', False)
+            if isinstance(done, torch.Tensor):
+                done = done.item()
+        else:
+            # Fallback for non-TensorDict environments
+            reward = 0.0
+            done = False
         
-        # Value of the chosen action is the observed reward plus discounted next state value
-        # For terminal states, next state value is 0
+        # Get value of the action that was taken
         if done:
             actual_value = reward
         else:
             with torch.no_grad():
-                if isinstance(next_state, np.ndarray):
-                    next_state_tensor = torch.FloatTensor(next_state).unsqueeze(0)
+                if isinstance(next_state, TensorDict) and 'observation' in next_state:
+                    next_state_tensor = next_state['observation']
+                elif isinstance(next_state, np.ndarray):
+                    next_state_tensor = torch.FloatTensor(next_state)
                 elif isinstance(next_state, torch.Tensor):
-                    next_state_tensor = next_state.unsqueeze(0) if next_state.dim() == 1 else next_state
+                    next_state_tensor = next_state
+                else:
+                    actual_value = reward
+                    return
+                
+                # Ensure state tensor has batch dimension
+                if next_state_tensor.dim() == 1:
+                    next_state_tensor = next_state_tensor.unsqueeze(0)
                 
                 next_state_value = self.ppo_model.critic(next_state_tensor).item()
-                actual_value = reward + next_state_value 
+                actual_value = reward + 0.99 * next_state_value
+        
+        # Compute true counterfactual values for all actions
+        counterfactual_values = self.compute_true_counterfactual_values(env, state)
         
         # Update regrets for all actions
         for action in range(self.action_space_size):
-            if action == action_taken:
-                continue  # Skip the taken action
+            if action == action_taken or counterfactual_values[action] == float('-inf'):
+                continue  # Skip the taken action and illegal actions
             
             # Regret is the difference between counterfactual value and actual value
             regret = counterfactual_values[action] - actual_value
@@ -142,7 +264,7 @@ class RegretMatch:
         # Apply regret discount
         self.cumulative_regrets[state_key] *= self.regret_discount
     
-    def train(self, env, num_episodes=1000, max_steps_per_episode=100, 
+    def train(self, env, num_episodes=1000, max_steps_per_episode=1000, 
               eval_interval=100, eval_episodes=10, save_path=None, verbose=True):
         """
         Train the regret matching algorithm for a specified number of episodes
@@ -169,22 +291,36 @@ class RegretMatch:
         progress_bar = tqdm(range(num_episodes)) if verbose else range(num_episodes)
         for episode in progress_bar:
             state = env.reset()
-            done = False
             episode_reward = 0
             steps = 0
             
             # Track unique states
             stats['unique_states_visited'].add(self.get_state_key(state))
             
+            done = False
             while not done and steps < max_steps_per_episode:
                 # Select action using regret matching
                 action = self.select_action(state)
                 
                 # Take action in environment
-                next_state, reward, done, info = env.step(action)
+                next_state = env.step(action)
                 
-                # Update regrets
-                self.update_regrets(state, action, reward, next_state, done)
+                # Extract reward and done from TensorDict
+                if isinstance(next_state, TensorDict):
+                    reward = next_state.get('reward', 0.0)
+                    if isinstance(reward, torch.Tensor):
+                        reward = reward.item()
+                    
+                    done = next_state.get('done', False)
+                    if isinstance(done, torch.Tensor):
+                        done = done.item()
+                else:
+                    # Fallback for non-TensorDict environments
+                    reward = 0.0
+                    done = False
+                
+                # Update regrets using true counterfactual values
+                self.update_regrets(env, state, action, next_state)
                 
                 state = next_state
                 episode_reward += reward
@@ -235,17 +371,38 @@ class RegretMatch:
             float: Average reward across evaluation episodes
         """
         total_rewards = []
+        
         for _ in range(num_episodes):
             state = env.reset()
-            done = False
             episode_reward = 0
+            done = False
             
             while not done:
-                # Select action using current policy (no exploration)
-                policy = self.get_regret_matching_policy(state)
+                # Extract legal mask if available
+                legal_mask = None
+                if isinstance(state, TensorDict) and 'legal_mask' in state:
+                    legal_mask = state['legal_mask']
+                
+                # Select action using current policy (greedy for evaluation)
+                policy = self.get_regret_matching_policy(state, legal_mask)
                 action = np.argmax(policy)  # Greedy action selection for evaluation
+                
                 # Take action in environment
-                next_state, reward, done, _ = env.step(action)
+                next_state = env.step(action)
+                
+                # Extract reward and done from TensorDict
+                if isinstance(next_state, TensorDict):
+                    reward = next_state.get('reward', 0.0)
+                    if isinstance(reward, torch.Tensor):
+                        reward = reward.item()
+                    
+                    done = next_state.get('done', False)
+                    if isinstance(done, torch.Tensor):
+                        done = done.item()
+                else:
+                    # Fallback for non-TensorDict environments
+                    reward = 0.0
+                    done = False
                 
                 if render:
                     env.render()
@@ -254,7 +411,7 @@ class RegretMatch:
                 episode_reward += reward
             
             total_rewards.append(episode_reward)
-
+        
         return np.mean(total_rewards)
     
     def save(self, path):
@@ -266,13 +423,14 @@ class RegretMatch:
         self.cumulative_regrets = np.load(path, allow_pickle=True).item()
 
 
-# Example usage
-def example_usage(ppo_model, env):
-    action_space_size = env.action_space.n
+
+
+
+# Basically a train wrapper
+def train_example(ppo_model, env):
+    action_space_size = env.action_spec['action'].n
     rm_agent = RegretMatch(ppo_model, action_space_size)
-    
-    # Train the agent
-    stats = rm_agent.train(
+    rm_agent.train(
         env=env,
         num_episodes=500,
         eval_interval=50,
@@ -285,3 +443,22 @@ def example_usage(ppo_model, env):
     
     # Save the final model
     rm_agent.save("regret_matching_final.npy")
+
+if __name__ == "__main__":
+    # load ppo model, initialize environment
+    mahjong_config = {
+        'allow_step_back': True,
+        'num_players': 4,
+        'seed': 0, # manually add seed here perhap
+        'device': 'cpu'
+    }
+    mahjong_env = MahjongEnv(mahjong_config)
+    base_env = MahjongTorchEnv(mahjong_env, device='cpu')
+    obs_shape = base_env.observation_spec["observation"].shape
+    num_actions = base_env.action_spec['action'].n
+    
+    ppo = PPOActorCritic(obs_shape, num_actions)
+    ppo.load_state_dict(torch.load("model.pth", map_location="cpu"))
+    ppo.to("cpu") 
+    
+    train_example(ppo, base_env) # do i need to wrap this with self play to evaluate ppo on it???
