@@ -274,7 +274,7 @@ class RegretMatch:
                 
                 # Track unique states
                 stats['unique_states_visited'].add(self.get_state_key(state))
-            print(self.count)
+            # print(self.count)
 
             # Record episode statistics
             stats['episode_rewards'].append(episode_reward)
