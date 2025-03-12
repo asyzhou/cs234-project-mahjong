@@ -100,7 +100,9 @@ class MahjongJudger:
 
 
     def get_handcrafted_reward(self, action_val, cur_hand):
+       
         decoded_action = card_decoding_dict[action_val]
+        # print(decoded_action)
         if decoded_action == "pong":
             return 0.2
         if decoded_action == "chow":
@@ -113,6 +115,7 @@ class MahjongJudger:
         last_dealt = cur_hand[-1].get_str()
         last_type, last_trait = last_dealt.split("-")
         hand = [card.get_str() for card in cur_hand]
+        # print(hand)
         _dict = {card: hand.count(card) for card in hand}
         # first check if last card made a triplet
         if _dict[last_dealt] == 3:
