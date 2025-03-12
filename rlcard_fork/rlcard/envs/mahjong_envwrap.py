@@ -45,7 +45,7 @@ class MahjongTorchEnv:
                 low=-1,
                 high=1,
                 shape=(1,),
-                dtype=torch.int64
+                dtype=torch.float32
             )
         })
         
@@ -90,7 +90,8 @@ class MahjongTorchEnv:
         action_val = inputDict["action"].item()
 
         cur_player = self.mahjong_env.game.round.current_player
-        cur_hand = self.mahjong_env.game.players[cur_player].hand
+        cur_hand = self.mahjong_env.game.players[cur_player].hand.copy()
+        # print("In mahjong env", [card.get_str() for card in cur_hand])
 
         next_state_dict, _ = self.mahjong_env.step(action_val)
         
@@ -101,14 +102,18 @@ class MahjongTorchEnv:
             legal_mask[act_id] = True
         done = self.mahjong_env.is_over()
         done_t = torch.tensor([done], dtype=torch.bool)
-        reward = torch.tensor([0], dtype=torch.int64)
+        reward = torch.tensor([0], dtype=torch.float32)
         if done:
             payoffs = self.mahjong_env.get_payoffs()
             reward = payoffs[cur_player]   
         if not done:
+            # print("handcrafted for player: ", cur_player)
             reward = self.mahjong_env.game.judger.get_handcrafted_reward(action_val, cur_hand)
-            
-        reward_t = torch.tensor([reward], dtype=torch.int64)
+            # print("reward is: ", reward)
+
+        reward_t = torch.tensor([reward], dtype=torch.float32)
+        # if reward > 0:
+        #     print("HERE REWARD_T", reward_t)
         '''
         TODO: 
         - check for multi agent: how do we return rewards/actions/observations
@@ -141,7 +146,7 @@ class MahjongTorchEnv:
             legal_mask[act_id] = True
         done = False
         done_t = torch.tensor([done], dtype=torch.bool)
-        reward = torch.tensor([0], dtype=torch.int64)
+        reward = torch.tensor([0], dtype=torch.float32)
         reward_t = torch.tensor([reward], dtype=torch.float32)
         result = TensorDict(
             {

@@ -13,7 +13,7 @@ from tqdm import tqdm
 def evaluate_vs_agent(args, model, env, opponent_agents, model_type="PPO", num_model=1, opp_type="DQN"):
     num_players = env.mahjong_env.num_players
     print("\n-----------------------------------------------------------------------")
-    print(f"Evaluating {num_model} {model_type} against {num_players - num_model} DQN agents...")
+    print(f"Evaluating {num_model} {model_type} against {num_players - num_model} {opp_type} agents...")
     print("-----------------------------------------------------------------------")
     num_episodes = args.num_eval_games
     num_wins = np.zeros(num_players)
@@ -54,6 +54,8 @@ def evaluate_vs_agent(args, model, env, opponent_agents, model_type="PPO", num_m
             done = next_state["done"].item()
             reward = next_state["reward"].item()
             if not done:
+                # if reward > 0:
+                #     print("HERE REWARD", reward)
                 episode_reward[current_player] += reward
 
         # Update end game payoffs
@@ -62,6 +64,7 @@ def evaluate_vs_agent(args, model, env, opponent_agents, model_type="PPO", num_m
             winner = np.argmax(payoffs)
             num_wins[winner] += 1
         total_reward += episode_reward
+        total_reward += payoffs
 
         # Log progress
         progress_bar.set_description(f"Episode {episode+1}/{num_episodes}")
