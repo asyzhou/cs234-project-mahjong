@@ -30,6 +30,16 @@ class BatchedPolicyWrapper(nn.Module):
             observation = observation.unsqueeze(0)  # Convert to (1, 6, 36, 4)
         return self.policy_net(observation)
 
+# sparse observation and no reward in the beginning
+# policy - mlp to predict action - which tile to throw away and which to take
+# Maybe too hard in the beginning for model to learn
+# 150 is too long trajectory - a lot of actions are redundant/not correct at all
+# really noisy trajectories can impact ppo training
+# insert some intermediate reward signal - check number of pairs are matched to give partial rewards
+# Other way - try to create hand-craft data to see if its data or model problem
+# See if ppo on hand-crafted games to see if the data is wrong
+# self-play - need some searching - add heuristic in action planning/policy
+# 
 
 class PPOActorCritic(nn.Module):
     def __init__(self, obs_shape, num_actions):
@@ -48,7 +58,7 @@ class PPOActorCritic(nn.Module):
         
         self.raw_policy = nn.Sequential(
             nn.Flatten(start_dim=1),
-            nn.Linear(input_size, 512),
+            nn.Linear(input_size, 512),  # Increase from 512
             nn.ReLU(),
             nn.Linear(512, 256),
             nn.ReLU(),
@@ -63,7 +73,7 @@ class PPOActorCritic(nn.Module):
             nn.Flatten(start_dim=1),
             nn.Linear(input_size, 512),
             nn.ReLU(),
-            nn.Linear(512, 256),
+            nn.Linear(512,  256),
             nn.ReLU(),
             nn.Linear(256, 128),
             nn.ReLU(),
@@ -338,10 +348,10 @@ def train_ppo(args):
                 minibatch = tensordict_data[mb_indices]
                 loss_vals = ppo_loss(minibatch)
                 optimizer.zero_grad()
-                loss_vals["loss_objective"].backward()
+                #loss_vals.backward()
+                total_loss = (loss_vals["loss_objective"] + args.vf_coef * loss_vals["loss_critic"] + args.ent_coef * loss_vals["loss_entropy"])
                 nn.utils.clip_grad_norm_(policy.parameters(), args.max_grad_norm)
                 optimizer.step()
-
                 wandb.log({
                     "loss_objective": loss_vals["loss_objective"].item(),
                     "entropy": loss_vals["entropy"].item(),
@@ -389,7 +399,7 @@ def train_ppo(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("PPO Mahjong Self-Play Training")
-    
+
     parser.add_argument('--seed', type=int, default=42, help='Random seed')
     parser.add_argument('--learning_rate', type=float, default=3e-4, help='Learning rate')
     parser.add_argument('--num_steps', type=int, default=2000, help='Number of steps to collect per batch')
@@ -406,7 +416,25 @@ if __name__ == "__main__":
     
     parser.add_argument('--cuda', type=str, default='', help='CUDA device index, empty for CPU')
     parser.add_argument('--log_dir', type=str, default='experiments/mahjong_ppo_results/', help='Directory to save logs and models')
-    parser.add_argument('--save_every', type=int, default=100, help='Save model every N updates')
+    parser.add_argument('--save_every', type=int, default=50, help='Save model every N updates')
+    
+    '''parser.add_argument('--seed', type=int, default=42, help='Random seed')
+    parser.add_argument('--learning_rate', type=float, default=5e-5, help='Learning rate')
+    parser.add_argument('--num_steps', type=int, default=5000, help='Number of steps to collect per batch')
+    parser.add_argument('--batch_size', type=int, default=2048, help='Batch size')
+    parser.add_argument('--minibatch_size', type=int, default=256, help='Minibatch size')
+    parser.add_argument('--update_epochs', type=int, default=7, help='Number of epochs to update')
+    parser.add_argument('--gamma', type=float, default=0.97, help='Discount factor')
+    parser.add_argument('--gae_lambda', type=float, default=0.9, help='GAE lambda parameter')
+    parser.add_argument('--clip_coef', type=float, default=0.1, help='PPO clip coefficient')
+    parser.add_argument('--ent_coef', type=float, default=0.07, help='Entropy coefficient')
+    parser.add_argument('--vf_coef', type=float, default=0.25, help='Value function coefficient')
+    parser.add_argument('--max_grad_norm', type=float, default=0.5, help='Maximum gradient norm')
+    parser.add_argument('--total_timesteps', type=int, default=1000000, help='Total timesteps to train for')
+    
+    parser.add_argument('--cuda', type=str, default='', help='CUDA device index, empty for CPU')
+    parser.add_argument('--log_dir', type=str, default='experiments/mahjong_ppo_results/', help='Directory to save logs and models')
+    parser.add_argument('--save_every', type=int, default=100, help='Save model every N updates')'''
     
     args = parser.parse_args()
     
