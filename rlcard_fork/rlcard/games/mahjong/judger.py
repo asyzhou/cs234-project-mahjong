@@ -2,6 +2,7 @@
 ''' Implement Mahjong Judger class
 '''
 from collections import defaultdict
+from rlcard.games.mahjong.utils import card_decoding_dict
 import numpy as np
 
 class MahjongJudger:
@@ -96,6 +97,35 @@ class MahjongJudger:
                     cards.append(last_card)
                     return 'chow', player, cards
         return False, None, None
+
+
+    def get_handcrafted_reward(self, action_val, cur_hand):
+        decoded_action = card_decoding_dict[action_val]
+        if decoded_action == "pong":
+            return 0.2
+        if decoded_action == "chow":
+            return 0.2
+        if decoded_action == "stand":
+            return # not super sure what to do here oops
+        
+        # otherwise check if the action_val was made a triplet with the hand
+        # this assumes that last card in cur_hand was the card dealt by table
+        last_dealt = cur_hand[-1].get_str()
+        last_type, last_trait = last_dealt.split("-")
+        hand = [card.get_str() for card in cur_hand]
+        _dict = {card: hand.count(card) for card in hand}
+        # first check if last card made a triplet
+        if _dict[last_dealt] == 3:
+            if decoded_action != last_dealt:
+                return 0.2
+        # next check if last card made a sequence
+        possible_sequences = [[-2, -1, 0], [-1, 0, 1], [0, 1, 2]]
+        for sequence in possible_sequences:
+            check = [last_type+"-"+str(int(last_trait) + i) for i in sequence]
+            if hand[check[0]] > 0 and hand[check[1]] > 0 and hand[check[2]] > 0:
+                if decoded_action not in check:
+                    return 0.2
+
 
     def judge_game(self, game):
         ''' Judge which player has win the game

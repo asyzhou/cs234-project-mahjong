@@ -90,6 +90,7 @@ class MahjongTorchEnv:
         action_val = inputDict["action"].item()
 
         cur_player = self.mahjong_env.game.round.current_player
+        cur_hand = self.mahjong_env.game.players[cur_player].hand
 
         next_state_dict, _ = self.mahjong_env.step(action_val)
         
@@ -104,6 +105,9 @@ class MahjongTorchEnv:
         if done:
             payoffs = self.mahjong_env.get_payoffs()
             reward = payoffs[cur_player]   
+        if not done:
+            reward = self.mahjong_env.game.judger.get_handcrafted_reward(action_val, cur_hand)
+            
         reward_t = torch.tensor([reward], dtype=torch.int64)
         '''
         TODO: 

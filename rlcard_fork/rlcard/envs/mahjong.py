@@ -69,8 +69,9 @@ class MahjongEnv(Env):
         extracted_state['action_record'] = self.action_recorder
 
         return extracted_state
+    
 
-    def get_payoffs(self):
+    def get_payoffs(self, action=None):
         ''' Get the payoffs of players. Must be implemented in the child class.
 
         Returns:
