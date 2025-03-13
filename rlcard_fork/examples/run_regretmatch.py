@@ -36,14 +36,21 @@ class RegretMatch:
         self.ppo_model.policy.eval() # actor
         self.ppo_model.value.eval() # critic
     
-    def get_state_key(self, state):
+    def get_state_key(self, state, reduced=True):
         """
         Convert state to a hashable key for the regret table.
         """
         # ideally state is always a tensordict, hash the observation tensor
         # if isinstance(state, TensorDict):  
         #     if 'observation' in state:
-        return hash(state['observation'].cpu().detach().numpy().tobytes())
+        obs = state['observation'].cpu().detach().numpy()
+        if reduced:
+            hand = obs[:1, :, :]
+            remaining = np.sum(obs[1:, :, :], axis=0, keepdims=True)
+            reduced_state = np.concatenate([hand, remaining], axis=0)
+            reduced_state = reduced_state.sum(axis=2)
+            return hash(reduced_state.tobytes())
+        return hash(obs.tobytes())
         # # else try to hash the entire state
         # return hash(str(state))
     
