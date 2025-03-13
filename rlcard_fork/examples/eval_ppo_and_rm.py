@@ -10,7 +10,9 @@ from run_regretmatch import RegretMatch
 from rlcard.agents import DQNAgent, RandomAgent
 from tqdm import tqdm
 
-def evaluate_vs_agent(args, model, env, opponent_agents, model_type="PPO", num_model=1, opp_type="DQN"):
+def evaluate_vs_agent(args, env, model_tuple, opp_tuple, num_model):
+    model_type, model = model_tuple
+    opp_type, opp_agent = opp_tuple
     num_players = env.mahjong_env.num_players
     print("\n-----------------------------------------------------------------------")
     print(f"Evaluating {num_model} {model_type} against {num_players - num_model} {opp_type} agents...")
@@ -26,25 +28,23 @@ def evaluate_vs_agent(args, model, env, opponent_agents, model_type="PPO", num_m
 
         done = False
         while not done:
+            # specify if it is model's turn  OR opponent agent's turn
             current_player = env.mahjong_env.game.round.current_player
-            if current_player < num_model:  # PPO or RM agent's turn
-                if model_type == "PPO":
-                    obs_dict = TensorDict({
-                        "observation": state['observation'],
-                        "legal_mask": state['legal_mask']
-                    }, batch_size=[])
-                    with torch.no_grad():
-                        action, _, _, _ = model.get_action_and_value(obs_dict)
-                        action = action.cpu().item()
-                elif model_type == "RM":
-                    action = model.select_action(state, greedy=True)  # can change this!!!
-            else: # opponent (DQN/Random) agent's turn
-                if opp_type == "DQN":
-                    player_state = env.mahjong_env.get_state(current_player)
-                    action, _ = opponent_agents[current_player].eval_step(player_state)
-                elif opp_type == "RANDOM":
-                    player_state = env.mahjong_env.get_state(current_player)
-                    action = opponent_agents[current_player].step(player_state)
+            
+            cur_model_type = model_type if current_player < num_model else opp_type
+            cur_model = model if current_player < num_model else opp_agent
+
+            # get next action
+            if cur_model_type == "PPO":
+                obs_dict = TensorDict({"observation": state['observation'],"legal_mask": state['legal_mask']}, batch_size=[])
+                with torch.no_grad():
+                    action, _, _, _ = cur_model.get_action_and_value(obs_dict)
+                    action = action.cpu().item()
+            elif cur_model_type == "RM":
+                action = cur_model.select_action(state, greedy=True)  # can change this!!!
+            elif cur_model_type in ["DQN", "NFSP", "RANDOM"]:
+                player_state = env.mahjong_env.get_state(current_player)
+                action, _ = cur_model.eval_step(player_state)
             
             # Take action
             tensordict = TensorDict({"action": torch.tensor([action], dtype=torch.long)}, batch_size=[])
@@ -54,8 +54,6 @@ def evaluate_vs_agent(args, model, env, opponent_agents, model_type="PPO", num_m
             done = next_state["done"].item()
             reward = next_state["reward"].item()
             if not done:
-                # if reward > 0:
-                #     print("HERE REWARD", reward)
                 episode_reward[current_player] += reward
 
         # Update end game payoffs
@@ -75,12 +73,46 @@ def evaluate_vs_agent(args, model, env, opponent_agents, model_type="PPO", num_m
     win_rate = num_wins / num_episodes
     avg_reward = total_reward / num_episodes
     for i in range(num_players):
-        print(f"- Player {i}: Win Rate - {win_rate[i]:.4f} ({num_wins[i]}/{num_episodes}), Average Reward - {avg_reward[i]:.4f} ({total_reward[i]}/{num_episodes})")
-    ppo_avg_win = np.mean(win_rate[:num_model])
-    dqn_avg_win = np.mean(win_rate[num_model:])
-    print(f"{model_type} Agent Average Win Rate: {ppo_avg_win}")
-    print(f"{opp_type} Agent Average Win Rate: {dqn_avg_win}")
+        player_type = model_type if i < num_model else opp_type
+        print(f"- Player {i} ({player_type}): Win Rate - {win_rate[i]:.4f} ({num_wins[i]}/{num_episodes}), Average Reward - {avg_reward[i]:.4f} ({total_reward[i]}/{num_episodes})")
+    model_avg_win = np.mean(win_rate[:num_model])
+    opp_avg_win = np.mean(win_rate[num_model:])
+    print(f"{model_type} Agent Average Win Rate: {model_avg_win}")
+    print(f"{opp_type} Agent Average Win Rate: {opp_avg_win}")
 
+
+def load(args, env, model_type):
+    if model_type == "PPO" or model_type == "RM": # Load PPO model
+        obs_shape = env.observation_spec["observation"].shape
+        num_actions = env.action_spec['action'].n
+        ppo_model = PPOActorCritic(obs_shape, num_actions)
+        checkpoint = torch.load(args.ppo_model_path, map_location=args.device)
+        ppo_model.load_state_dict(checkpoint['model_state_dict'])
+        ppo_model.to("cpu")
+        print(f"Loaded PPO model from {args.ppo_model_path}")
+
+        if model_type == "RM":
+            action_space_size = env.action_spec['action'].n
+            rm_model = RegretMatch(ppo_model, action_space_size)
+            rm_model.load(args.rm_model_path)
+            print(f"Loaded RM model from {args.rm_model_path}")
+            return rm_model
+        else:
+            return ppo_model
+
+    elif model_type == "DQN": # Load DQN model
+        dqn_agent = torch.load(args.dqn_model_path, weights_only=False, map_location=args.device) #for _ in range(num_players)]
+        dqn_agent.q_estimator.device = torch.device("cpu")
+        print(f"Loaded DQN agents from {args.dqn_model_path}")
+        print("DQN Agent requires state shape:", dqn_agent.q_estimator.qnet.state_shape)
+        return dqn_agent
+        
+    elif model_type == "RANDOM": # Load RANDOM model
+        num_actions = env.action_spec['action'].n
+        random_agent = RandomAgent(num_actions=num_actions)
+        print(f"Loaded RANDOM agents")
+        return random_agent
+    
 def evaluate(args):
     device = torch.device(args.device)
     print(f"Using device: {device}")
@@ -98,53 +130,25 @@ def evaluate(args):
     mahjong_env = MahjongEnv(mahjong_config)
     env = MahjongTorchEnv(mahjong_env, device=device)
 
-    # Load PPO model
-    obs_shape = env.observation_spec["observation"].shape
-    num_actions = env.action_spec['action'].n
-    ppo_model = PPOActorCritic(obs_shape, num_actions)
-    checkpoint = torch.load(args.model_path, map_location=args.device)
-    ppo_model.load_state_dict(checkpoint['model_state_dict'])
-    ppo_model.to("cpu")
-    print(f"Loaded PPO model from {args.model_path}")
-
-    # Load opponent model
-    opp_type = args.opponent_agent
-    num_players = env.mahjong_env.num_players
-    if opp_type == "DQN":
-        opponent_agents = [torch.load(args.dqn_model_path, weights_only=False, map_location=args.device) for _ in range(num_players)]
-        print(f"Loaded DQN agents from {args.dqn_model_path}")
-        for agent in opponent_agents:
-            agent.q_estimator.device = torch.device("cpu")
-        print("DQN Agent requires state shape:", opponent_agents[0].q_estimator.qnet.state_shape)
-    elif opp_type == "RANDOM":
-        opponent_agents = [RandomAgent(num_actions=num_actions) for _ in range(num_players)]
-        print(f"Loaded RANDOM agents")
-
-    # Evaluate model
-    if args.model_to_eval == "PPO":
-        evaluate_vs_agent(args, ppo_model, env, opponent_agents, num_model=1, opp_type=opp_type)
-        evaluate_vs_agent(args, ppo_model, env, opponent_agents, num_model=3, opp_type=opp_type)
-    if args.model_to_eval == "RM":
-        action_space_size = env.action_spec['action'].n
-        rm_model = RegretMatch(ppo_model, action_space_size)
-        rm_model.load(args.rm_model_path)
-        print(f"Loaded RM model from {args.rm_model_path}")
-        evaluate_vs_agent(args, rm_model, env, opponent_agents, model_type="RM", num_model=1, opp_type=opp_type)
-        evaluate_vs_agent(args, rm_model, env, opponent_agents, model_type="RM", num_model=3, opp_type=opp_type)
+    model_type, opp_type = args.model_to_eval, args.opponent_agent
+    model, opp_agent = load(args, env, model_type), load(args, env, opp_type)
+    evaluate_vs_agent(args, env, (model_type, model), (opp_type, opp_agent), args.num_models)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Evaluate PPO Mahjong Agent")
-    parser.add_argument('--model_path', type=str,default="rlcard_fork/examples/experiments/mahjong_ppo/best_model.pt", help='Path to the saved model checkpoint')
     parser.add_argument('--model_to_eval', type=str, default="PPO", help='Model being evaluated (either PPO or RM)')
     parser.add_argument('--opponent_agent', type=str, default="DQN", help='Opponent model being evaluated against (either DQN or RANDOM)')
+    parser.add_argument('--num_models', type=int, default=1, help="Number of models to eval against opponent agent, e.g. 1 (1v3) or 3 (3v1)")
+
+    parser.add_argument('--ppo_model_path', type=str,default="rlcard_fork/examples/experiments/mahjong_ppo/best_model.pt", help='Path to the saved model checkpoint')
     parser.add_argument('--dqn_model_path', type=str, default="rlcard_fork/examples/experiments/mahjong_dqn/model4.pth", help='DQN model path')
     parser.add_argument('--rm_model_path', type=str, default="rlcard_fork/examples/experiments/mahjong_rm_final.npy", help='RM model path')
+    parser.add_argument('--nfsp_model_path', type=str, default="", help='NFSP model path')
     
     parser.add_argument('--num_eval_games', type=int, default=10, help='Number of games to evaluate')
     parser.add_argument('--seed', type=int, default=42, help='Random seed')    
     parser.add_argument('--device', type=str, default="cpu", help='Device, default to cpu, have not tested cuda')
-
 
     args = parser.parse_args()
     
