@@ -16,18 +16,20 @@ from rlcard.utils import (
     plot_curve,
 )
 
-# import wandb
+os.environ["CUDA_VISIBLE_DEVICES"] = '7'
+import wandb
 
-# wandb.init(
-#     project="rlcard-nfsp",  # Change this to your project name
-#     name=f"NFSP"  # Name the run
-# )
+wandb.init(
+    project="rlcard-dqn",  # Change this to your project name
+    name=f"rlcard"  # Name the run
+)
 
 
 def train(args):
 
     # Check whether gpu is available
-    device = get_device()
+    device = torch.device('cuda')
+    print("DEVICE IS:   ", device)
         
     # Seed numpy, torch, random
     set_seed(args.seed)
@@ -50,7 +52,7 @@ def train(args):
             agent = DQNAgent(
                 num_actions=env.num_actions,
                 state_shape=env.state_shape[0],
-                mlp_layers=[64,64],
+                mlp_layers=[256, 128, 128],
                 device=device,
                 save_path=args.log_dir,
                 save_every=args.save_every
@@ -99,7 +101,7 @@ def train(args):
                 win_rate = tournament(env, args.num_eval_games)[0]
 
                 # Log evaluation results to W&B
-                # wandb.log({"episode": episode, "win_rate": win_rate})
+                wandb.log({"episode": episode, "win_rate": win_rate})
 
                 # Print progress
                 print(f"Episode {episode}: Win Rate = {win_rate:.2f}")
@@ -179,7 +181,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--evaluate_every',
         type=int,
-        default=100,
+        default=200,
     )
     parser.add_argument(
         '--log_dir',
@@ -200,6 +202,5 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda
     train(args)
 

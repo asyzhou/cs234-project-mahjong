@@ -138,10 +138,10 @@ if __name__ == "__main__":
     parser.add_argument('--model_path', type=str,default="rlcard_fork/examples/experiments/mahjong_ppo/best_model.pt", help='Path to the saved model checkpoint')
     parser.add_argument('--model_to_eval', type=str, default="PPO", help='Model being evaluated (either PPO or RM)')
     parser.add_argument('--opponent_agent', type=str, default="DQN", help='Opponent model being evaluated against (either DQN or RANDOM)')
-    parser.add_argument('--dqn_model_path', type=str, default="rlcard_fork/examples/experiments/mahjong_dqn/model4.pth", help='DQN model path')
+    parser.add_argument('--dqn_model_path', type=str, default="dqn_models/model4.pth", help='DQN model path')
     parser.add_argument('--rm_model_path', type=str, default="rlcard_fork/examples/experiments/mahjong_rm_final.npy", help='RM model path')
     
-    parser.add_argument('--num_eval_games', type=int, default=10, help='Number of games to evaluate')
+    parser.add_argument('--num_eval_games', type=int, default=100, help='Number of games to evaluate')
     parser.add_argument('--seed', type=int, default=42, help='Random seed')    
     parser.add_argument('--device', type=str, default="cpu", help='Device, default to cpu, have not tested cuda')
 

@@ -20,6 +20,18 @@ from torch.distributions import Categorical
 from torchrl.modules import ProbabilisticActor
 import wandb
 
+# class BatchedPolicyWrapper(nn.Module):
+#     def __init__(self, policy_net, transformer):
+#         super().__init__()
+#         self.policy_net = policy_net
+#         self.trans = transformer
+
+#     def forward(self, observation):
+#         if observation.dim() == 3:  # Single observation case (6, 36, 4)
+#             observation = observation.unsqueeze(0)  # Convert to (1, 6, 36, 4)
+#         observation = observation.flatten(start_dim=1)
+#         return self.policy_net(self.trans(observation))
+
 class BatchedPolicyWrapper(nn.Module):
     def __init__(self, policy_net):
         super().__init__()
@@ -29,6 +41,18 @@ class BatchedPolicyWrapper(nn.Module):
         if observation.dim() == 3:  # Single observation case (6, 36, 4)
             observation = observation.unsqueeze(0)  # Convert to (1, 6, 36, 4)
         return self.policy_net(observation)
+
+class BatchedValueWrapper(nn.Module):
+    def __init__(self, value_net, transformer):
+        super().__init__()
+        self.value_net = value_net
+        self.trans = transformer
+
+    def forward(self, observation):
+        if observation.dim() == 3:  # Single observation case (6, 36, 4)
+            observation = observation.unsqueeze(0)  # Convert to (1, 6, 36, 4)
+        observation = observation.flatten(start_dim=1)
+        return self.value_net(self.trans(observation))
 
 # sparse observation and no reward in the beginning
 # policy - mlp to predict action - which tile to throw away and which to take
@@ -40,6 +64,100 @@ class BatchedPolicyWrapper(nn.Module):
 # See if ppo on hand-crafted games to see if the data is wrong
 # self-play - need some searching - add heuristic in action planning/policy
 # 
+
+# class PPOActorCritic(nn.Module):
+#     def __init__(self, obs_shape, num_actions, embed_dim=128, num_heads=4, num_transformer_layers=2):
+#         super().__init__()
+        
+#         input_size = np.prod(obs_shape)
+#         self.flattened_dim = input_size
+#         self.embed_dim = embed_dim
+
+#         # Embedding layer: Map (num_players + 2) -> embed_dim per token
+#         self.embedding = nn.Linear(obs_shape[0], embed_dim)
+
+#         # Shared Transformer Encoder
+#         encoder_layer = nn.TransformerEncoderLayer(
+#             d_model=input_size, 
+#             nhead=num_heads, 
+#             dim_feedforward=4 * embed_dim,
+#             dropout=0.1,
+#             activation="relu",
+#             batch_first=True  # Uses batch as first dim (B, S, F)
+#         )
+#         self.shared_transformer = nn.TransformerEncoder(encoder_layer, num_layers=num_transformer_layers)
+
+#         self.raw_policy = nn.Sequential(
+#             nn.Linear(embed_dim, 128),
+#             nn.ReLU(),
+#             nn.Linear(128, num_actions)
+#         )
+#         self.policy = BatchedPolicyWrapper(self.raw_policy, self.shared_transformer)  # Keep wrapper
+
+#         # Value head (MLP after Transformer)
+#         self.raw_value = nn.Sequential(
+#             nn.Linear(embed_dim, 128),
+#             nn.ReLU(),
+#             nn.Linear(128, 1)
+#         )
+#         self.value = BatchedValueWrapper(self.raw_value, self.shared_transformer)
+
+#     def forward_transformer(self, obs):
+#         """Transform input using embedding and transformer encoder."""
+#         batch_size = obs.shape[0]
+        
+#         # Reshape to (batch_size, seq_len, num_features)
+#         obs = obs.permute(0, 2, 3, 1).reshape(batch_size, self.flattened_dim, -1)  # Shape: (B, 34*4, num_players+2)
+        
+#         # Pass through embedding layer
+#         embedded = self.embedding(obs)  # (B, 34*4, embed_dim)
+        
+#         # Transformer encoder
+#         encoded = self.transformer_encoder(embedded)  # (B, 34*4, embed_dim)
+
+#         # Aggregate across sequence (use mean pooling or first token)
+#         pooled = encoded.mean(dim=1)  # (B, embed_dim)
+
+#         return pooled
+
+#     def get_value(self, observation):
+#         if observation.dim() == 3:
+#             observation = observation.unsqueeze(0)
+#         pooled = self.forward_transformer(observation)
+#         return self.value_head(pooled)
+
+#     def get_action_and_value(self, observation, action=None):
+#         if isinstance(observation, dict):
+#             obs_tensor = observation["observation"]
+#             legal_mask = observation.get("legal_mask", None)
+#         else:
+#             obs_tensor = observation
+#             legal_mask = None
+
+#         if obs_tensor.dim() == 3:
+#             obs_tensor = obs_tensor.unsqueeze(0)
+
+#         pooled = self.forward_transformer(obs_tensor)
+        
+#         logits = self.policy_head(pooled)
+
+#         if legal_mask is not None:
+#             if not legal_mask.dtype == torch.bool:
+#                 legal_mask = legal_mask.bool()
+#             logits = logits.clone()
+#             legal_mask = legal_mask.unsqueeze(0)
+#             logits[~legal_mask] = float('-inf')
+        
+#         probs = Categorical(logits=logits)
+        
+#         if action is None:
+#             action = probs.sample()
+        
+#         log_prob = probs.log_prob(action)
+#         entropy = probs.entropy().mean()
+#         value = self.value_head(pooled)
+
+#         return action, log_prob, entropy, value
 
 class PPOActorCritic(nn.Module):
     def __init__(self, obs_shape, num_actions):
@@ -215,10 +333,25 @@ def train_ppo(args):
     
     print("Observation shape,",  obs_shape)
     print("Number of actions,", num_actions)
-    
     policy = PPOActorCritic(obs_shape, num_actions).to(device)
     optimizer = torch.optim.Adam(policy.parameters(), lr=args.learning_rate)
-    
+
+    if args.load_ckpt:
+        checkpoint = torch.load(args.load_ckpt, map_location=device)
+        policy.load_state_dict(checkpoint['model_state_dict'])
+        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+        if 'global_step' in checkpoint:
+            global_step = checkpoint['global_step']
+        if 'best_reward' in checkpoint:
+            best_reward = checkpoint['best_reward']
+        print(f"Loaded checkpoint from {args.load_ckpt}, starting at global_step={global_step}")
+        for param_group in optimizer.param_groups:
+            print(f"Loaded optimizer state: learning rate = {param_group['lr']}, weight decay = {param_group.get('weight_decay', 0)}")
+        policy.train()
+        for module in policy.modules():
+            if isinstance(module, nn.BatchNorm1d) or isinstance(module, nn.Dropout):
+                module.train()
+
     env_creator = lambda: SelfPlayMahjongEnv(
         MahjongTorchEnv(MahjongEnv(mahjong_config), device=device),
         policy,
@@ -416,7 +549,9 @@ if __name__ == "__main__":
     
     parser.add_argument('--cuda', type=str, default='', help='CUDA device index, empty for CPU')
     parser.add_argument('--log_dir', type=str, default='experiments/mahjong_ppo_results/', help='Directory to save logs and models')
-    parser.add_argument('--save_every', type=int, default=50, help='Save model every N updates')
+    parser.add_argument('--save_every', type=int, default=200, help='Save model every N updates')
+    parser.add_argument('--load_ckpt', type=str, default=None)#'experiments/mahjong_ppo/model_1400.pt',
+                        #help='Path to a .pt checkpoint fidle to resume training')
     
     '''parser.add_argument('--seed', type=int, default=42, help='Random seed')
     parser.add_argument('--learning_rate', type=float, default=5e-5, help='Learning rate')
