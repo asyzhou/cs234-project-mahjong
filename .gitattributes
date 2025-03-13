@@ -1,0 +1,2 @@
+rlcard_fork/examples/dqn_models/*.pth filter=lfs diff=lfs merge=lfs -text
+rlcard_fork/examples/dqn_models/*.pt filter=lfs diff=lfs merge=lfs -text
