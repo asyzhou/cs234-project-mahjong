@@ -48,6 +48,7 @@ class RegretMatch:
             hand = obs[:1, :, :]
             remaining = np.sum(obs[1:, :, :], axis=0, keepdims=True)
             reduced_state = np.concatenate([hand, remaining], axis=0)
+            reduced_state = reduced_state.sum(axis=2)
             return hash(reduced_state.tobytes())
         return hash(obs.tobytes())
         # # else try to hash the entire state
