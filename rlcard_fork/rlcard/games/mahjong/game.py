@@ -119,14 +119,17 @@ class MahjongGame:
         result = ""
 
         result += ("=> valid_act: " + str(self.cur_state["valid_act"]) + "\n")
-        result += ("=> table: " + ",".join([c.get_str() for c in self.cur_state['table']]) + "\n")
+        result += ("=> table: " + ",".join(sorted([c.get_str() for c in self.cur_state['table']])) + "\n")
         result += ("=> dealer: cards left" + str(len(self.dealer.deck))+ "\n")
         result += ("=> player: " + str(self.cur_state["player"]) + "\n")
-        result += ("=> current_hand: " + ",".join([c.get_str() + " idx=" + str(c.index_num) for c in self.cur_state['current_hand']]) + "\n")
+        # result += ("=> current_hand: " + ",".join([c.get_str() + " idx=" + str(c.index_num) for c in self.cur_state['current_hand']]) + "\n")
+        result += ("=> current_hand: " + ",".join(sorted([c.get_str() for c in self.cur_state['current_hand']])) + "\n")
         result += ("=> players_pile: \n")
         for player in self.cur_state["players_pile"]:
-            result += ("==> " + str(player) + ": ") + str([[c.get_str() + " idx=" + str(c.index_num) for c in s ] for s in self.cur_state["players_pile"][player]]) + "\n"
-        result += ("=> action-cards: " + ",".join([c.get_str() + " idx=" + str(c.index_num) for c in self.cur_state["action_cards"]]))
+            # result += ("==> " + str(player) + ": ") + str([[c.get_str() + " idx=" + str(c.index_num) for c in s ] for s in self.cur_state["players_pile"][player]]) + "\n"
+            result += ("==> " + str(player) + ": ") + str([[c.get_str() for c in s ] for s in self.cur_state["players_pile"][player]]) + "\n"
+        # result += ("=> action-cards: " + ",".join([c.get_str() + " idx=" + str(c.index_num) for c in self.cur_state["action_cards"]]))
+        result += ("=> action-cards: " + ",".join(sorted([c.get_str() for c in self.cur_state['action_cards']])))
     
         print(result) 
 
