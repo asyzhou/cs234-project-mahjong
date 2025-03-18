@@ -86,7 +86,7 @@ def load(args, env, model_type):
         obs_shape = env.observation_spec["observation"].shape
         num_actions = env.action_spec['action'].n
         ppo_model = PPOActorCritic(obs_shape, num_actions)
-        checkpoint = torch.load(args.ppo_model_path, map_location=args.device, weights_only=False)
+        checkpoint = torch.load(args.ppo_model_path, map_location=args.device)
         ppo_model.load_state_dict(checkpoint['model_state_dict'])
         ppo_model.to("cpu")
         print(f"Loaded PPO model from {args.ppo_model_path}")
