@@ -40,7 +40,7 @@ def evaluate_agent(args):
     from rlcard.agents import RandomAgent
     random_agents = [RandomAgent(num_actions=env.mahjong_env.num_actions) for _ in range(env.mahjong_env.num_players)]
     
-    num_players = 4
+    num_players = 2
     print("Evaluating against random agents...")
     
     num_wins = 0

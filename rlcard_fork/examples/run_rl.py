@@ -21,7 +21,7 @@ import wandb
 
 wandb.init(
     project="rlcard-dqn",  # Change this to your project name
-    name=f"rlcard"  # Name the run
+    name=f"rlcard-nfsp"  # Name the run
 )
 
 
@@ -186,7 +186,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--log_dir',
         type=str,
-        default='experiments/leduc_holdem_dqn_result/',
+        default='experiments/leduc_holdem_nfsp_result/',
     )
     
     parser.add_argument(
@@ -198,7 +198,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "--save_every",
         type=int,
-        default=-1)
+        default=100)
 
     args = parser.parse_args()
 

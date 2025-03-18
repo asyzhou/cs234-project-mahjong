@@ -7,7 +7,7 @@ from rlcard.envs.mahjong_envwrap import MahjongTorchEnv
 from tensordict import TensorDict
 from run_ppo import PPOActorCritic
 from run_regretmatch import RegretMatch
-from rlcard.agents import DQNAgent, RandomAgent
+from rlcard.agents import DQNAgent, RandomAgent, NFSPAgent
 from tqdm import tqdm
 
 def evaluate_vs_agent(args, env, model_tuple, opp_tuple, num_model):
@@ -86,7 +86,7 @@ def load(args, env, model_type):
         obs_shape = env.observation_spec["observation"].shape
         num_actions = env.action_spec['action'].n
         ppo_model = PPOActorCritic(obs_shape, num_actions)
-        checkpoint = torch.load(args.ppo_model_path, map_location=args.device)
+        checkpoint = torch.load(args.ppo_model_path, map_location=args.device, weights_only=False)
         ppo_model.load_state_dict(checkpoint['model_state_dict'])
         ppo_model.to("cpu")
         print(f"Loaded PPO model from {args.ppo_model_path}")
@@ -112,6 +112,14 @@ def load(args, env, model_type):
         random_agent = RandomAgent(num_actions=num_actions)
         print(f"Loaded RANDOM agents")
         return random_agent
+
+    elif model_type == "NFSP":  # Load NFSP model
+        nfsp_agent = torch.load(args.nfsp_model_path, weights_only=False, map_location='cpu')
+        nfsp_agent.set_device(torch.device('cpu'))
+        #nfsp_agent = NFSPAgent.from_checkpoint(checkpoint=c)
+        print(f"Loaded NFSP agent from {args.nfsp_model_path}")
+
+        return nfsp_agent
     
 def evaluate(args):
     device = torch.device(args.device)
@@ -123,7 +131,7 @@ def evaluate(args):
     np.random.seed(args.seed)
     mahjong_config = {
         'allow_step_back': False,
-        'num_players': 4,
+        'num_players': 2,
         'seed': args.seed,
         'device': str(device)
     }
@@ -141,10 +149,10 @@ if __name__ == "__main__":
     parser.add_argument('--opponent_agent', type=str, default="DQN", help='Opponent model being evaluated against (either DQN or RANDOM)')
     parser.add_argument('--num_models', type=int, default=1, help="Number of models to eval against opponent agent, e.g. 1 (1v3) or 3 (3v1)")
 
-    parser.add_argument('--ppo_model_path', type=str,default="rlcard_fork/examples/experiments/mahjong_ppo/best_model.pt", help='Path to the saved model checkpoint')
-    parser.add_argument('--dqn_model_path', type=str, default="rlcard_fork/examples/experiments/mahjong_dqn/model4.pth", help='DQN model path')
-    parser.add_argument('--rm_model_path', type=str, default="rlcard_fork/examples/experiments/mahjong_rm_final.npy", help='RM model path')
-    parser.add_argument('--nfsp_model_path', type=str, default="", help='NFSP model path')
+    parser.add_argument('--ppo_model_path', type=str,default="~/cs234-project-mahjong/rlcard_fork/examples/ppo_2_explore/best_model.pt")#, help='Path to the saved model checkpoint')
+    parser.add_argument('--dqn_model_path', type=str, default="~/backup_dqn/logs_mahjong/model2.pth", help='DQN model path')
+    parser.add_argument('--rm_model_path', type=str, default="~/cs234-project-mahjong/rlcard_fork/examples/experiments/mahjong_rm_2_player/rm_episode_10450.npy", help='RM model path')
+    parser.add_argument('--nfsp_model_path', type=str, default="~/cs234-project-mahjong/rlcard_fork/examples/experiments/leduc_holdem_nfsp_result/model.pth", help='NFSP model path')
     
     parser.add_argument('--num_eval_games', type=int, default=100, help='Number of games to evaluate')
     parser.add_argument('--seed', type=int, default=42, help='Random seed')    

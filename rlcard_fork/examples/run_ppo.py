@@ -197,6 +197,14 @@ class PPOActorCritic(nn.Module):
             nn.ReLU(),
             nn.Linear(128, 1),
         )
+
+        self.apply(self._init_weights)
+    
+    def _init_weights(self, m):
+        if isinstance(m, nn.Linear):
+            nn.init.orthogonal_(m.weight, gain=np.sqrt(2))
+            if m.bias is not None:
+                nn.init.zeros_(m.bias)
     
     def get_value(self, observation):
         # features = self.features(observation)
@@ -448,6 +456,7 @@ def train_ppo(args):
         clip_epsilon=args.clip_coef,
         entropy_coef=args.ent_coef,
         value_coef=args.vf_coef,
+        entropy_bonus=True
     )
     
     num_updates = args.total_timesteps // args.batch_size
@@ -482,7 +491,8 @@ def train_ppo(args):
                 loss_vals = ppo_loss(minibatch)
                 optimizer.zero_grad()
                 #loss_vals.backward()
-                total_loss = (loss_vals["loss_objective"] + args.vf_coef * loss_vals["loss_critic"] + args.ent_coef * loss_vals["loss_entropy"])
+                total_loss = (loss_vals["loss_objective"] + loss_vals["loss_critic"] + loss_vals["loss_entropy"])
+                total_loss.backward()
                 nn.utils.clip_grad_norm_(policy.parameters(), args.max_grad_norm)
                 optimizer.step()
                 wandb.log({
@@ -542,14 +552,14 @@ if __name__ == "__main__":
     parser.add_argument('--gamma', type=float, default=0.99, help='Discount factor')
     parser.add_argument('--gae_lambda', type=float, default=0.95, help='GAE lambda parameter')
     parser.add_argument('--clip_coef', type=float, default=0.2, help='PPO clip coefficient')
-    parser.add_argument('--ent_coef', type=float, default=0.01, help='Entropy coefficient')
+    parser.add_argument('--ent_coef', type=float, default=0.02, help='Entropy coefficient')
     parser.add_argument('--vf_coef', type=float, default=0.5, help='Value function coefficient')
     parser.add_argument('--max_grad_norm', type=float, default=0.5, help='Maximum gradient norm')
     parser.add_argument('--total_timesteps', type=int, default=1000000, help='Total timesteps to train for')
     
     parser.add_argument('--cuda', type=str, default='', help='CUDA device index, empty for CPU')
     parser.add_argument('--log_dir', type=str, default='experiments/mahjong_ppo_results/', help='Directory to save logs and models')
-    parser.add_argument('--save_every', type=int, default=200, help='Save model every N updates')
+    parser.add_argument('--save_every', type=int, default=300, help='Save model every N updates')
     parser.add_argument('--load_ckpt', type=str, default=None)#'experiments/mahjong_ppo/model_1400.pt',
                         #help='Path to a .pt checkpoint fidle to resume training')
     

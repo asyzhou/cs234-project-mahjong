@@ -12,7 +12,6 @@ import os
 import time
 from datetime import datetime
 
-
 class RegretMatch:
     def __init__(self, ppo_model, action_space_size, learning_rate=0.01, regret_discount=0.95):
         """
@@ -393,6 +392,7 @@ class RegretMatch:
 # Train wrapper
 def train_agent(args):
     # Create directories if they don't exist
+    print('DEVICEE', args.device)
     os.makedirs(args.save_path, exist_ok=True)
 
     # Initialize wandb
@@ -426,7 +426,7 @@ def train_agent(args):
     # load ppo model, initialize environment
     mahjong_config = {
         'allow_step_back': True,
-        'num_players': 4,
+        'num_players': 2,
         'seed': 0, # manually add seed here perhap
         'device': args.device
     }
@@ -477,16 +477,16 @@ def train_agent(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Training Regret Match Mahjong Agent")
-    parser.add_argument('--model_path', type=str, default="rlcard_fork/examples/experiments/mahjong_ppo/best_model.pt", help='Path to the saved model checkpoint')
-    parser.add_argument('--device', type=str, default="cpu", help='Device')
+    parser.add_argument('--model_path', type=str, default="~/cs234-project-mahjong/rlcard_fork/examples/ppo_2_explore/best_model.pt", help='Path to the saved model checkpoint')
+    parser.add_argument('--device', type=str, default="cuda:7", help='Device')
     parser.add_argument('--learning_rate', type=float, default=0.01, help='Learning rate for regret updates')
     parser.add_argument('--regret_discount', type=float, default=0.95, help='Discount factor for historical regrets')
     parser.add_argument('--num_episodes', type=int, default=500, help='Number of training episodes')
     parser.add_argument('--max_steps', type=int, default=100, help='Maximum steps per episode')
     parser.add_argument('--eval_interval', type=int, default=50, help='Interval to evaluate current policy')
-    parser.add_argument('--eval_episodes', type=int, default=10, help='Number of episodes for evaluation during training')
+    parser.add_argument('--eval_episodes', type=int, default=200, help='Number of episodes for evaluation during training')
     parser.add_argument('--final_eval_episodes', type=int, default=20, help='Number of episodes for final evaluation')
-    parser.add_argument('--save_path', type=str, default="rlcard_fork/examples/experiments/mahjong_rm", help='Path to save checkpoints')
+    parser.add_argument('--save_path', type=str, default="~/cs234-project-mahjong/rlcard_fork/examples/experiments/mahjong_rm_2_player", help='Path to save checkpoints')
     parser.add_argument('--seed', type=int, default=0, help='Random seed')
     parser.add_argument('--render', action='store_true', help='Whether to render during final evaluation')
     parser.add_argument('--use_wandb', action='store_true', help='Whether to use Weights & Biases for logging')    
